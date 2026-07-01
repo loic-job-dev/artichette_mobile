@@ -1,5 +1,6 @@
 import 'package:artichette/theme/app_theme.dart';
 import 'package:artichette/widgets/filled_button.dart';
+import 'package:artichette/widgets/login_form.dart';
 import 'package:artichette/widgets/outlined_button.dart';
 import 'package:artichette/widgets/room_preview_card.dart';
 import 'package:artichette/widgets/signup_form.dart';
@@ -83,11 +84,12 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Text(
               "Bienvenue",
-              style: Theme.of(context).textTheme.displayMedium,
+              style: Theme.of(context).textTheme.displayLarge,
             ),
 
             const SizedBox(height: 32),
 
+            //LoginForm(),
             SignupForm(),
 
             const SizedBox(height: 32),
