@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/booking.dart';
+import '../domain/models/booking.dart';
 import '../theme/app_radius.dart';
 import 'filled_button.dart';
 

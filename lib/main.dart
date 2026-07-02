@@ -8,9 +8,14 @@ import 'package:artichette/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'models/room_type.dart';
+import 'core/network/dio_client.dart';
+import 'domain/models/room_type.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  DioClient.init();
+
   runApp(const MyApp());
 }
 
@@ -33,8 +38,8 @@ class MyApp extends StatelessWidget {
       ],
       title: 'Artich\'hôtel',
       theme: AppTheme.light,
-      //home: const MyHomePage(title: 'Accueil de l\'hôtel Artichaut'),
-      home: const TestBookingSummaryPage(),
+      home: const MyHomePage(title: 'Accueil de l\'hôtel Artichaut'),
+      //home: const TestBookingSummaryPage(),
     );
   }
 }

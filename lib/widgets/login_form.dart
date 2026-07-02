@@ -1,5 +1,7 @@
+import 'package:artichette/core/network/token_storage.dart';
 import 'package:flutter/material.dart';
 
+import '../core/network/dio_client.dart';
 import '../theme/app_text_theme.dart';
 import 'filled_button.dart';
 import 'outlined_button.dart';
@@ -12,18 +14,21 @@ class LoginForm extends StatefulWidget {
 }
 
 class _SignupFormState extends State<LoginForm> {
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+
+  bool _obscurePassword = true;
 
   @override
   void dispose() {
-    nameController.dispose();
+    passwordController.dispose();
     emailController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -35,19 +40,33 @@ class _SignupFormState extends State<LoginForm> {
         const SizedBox(height: 12),
 
         TextField(
-          controller: nameController,
+          controller: emailController,
+          keyboardType: TextInputType.emailAddress,
           decoration: const InputDecoration(
-            hintText: "Nom",
+            hintText: "Email",
           ),
         ),
 
         const SizedBox(height: 16),
 
         TextField(
-          controller: emailController,
-          keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(
-            hintText: "Email",
+          controller: passwordController,
+          obscureText: _obscurePassword,
+          autocorrect: false,
+          enableSuggestions: false,
+          keyboardType: TextInputType.visiblePassword,
+          decoration: InputDecoration(
+            hintText: "Mot de passe",
+            suffixIcon: IconButton(
+              icon: Icon(
+                _obscurePassword ? Icons.visibility : Icons.visibility_off,
+              ),
+              onPressed: () {
+                setState(() {
+                  _obscurePassword = !_obscurePassword;
+                });
+              },
+            ),
           ),
         ),
 
@@ -56,8 +75,29 @@ class _SignupFormState extends State<LoginForm> {
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.8,
           child: AppFilledButton(
-            onPressed: () {
-              // TODO: Create connexion logic
+            onPressed: () async {
+              try {
+                await DioClient.authRepository.login(
+                  emailController.text,
+                  passwordController.text,
+                );
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      "Connexion valide",
+                    ),
+                  ),
+                );
+                // Navigation vers l'accueil
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      e.toString(),
+                    ),
+                  ),
+                );
+              }
             },
             compact: false,
             child: const Text("Connexion"),

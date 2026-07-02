@@ -1,6 +1,7 @@
-import 'package:artichette/models/reservation_option.dart';
-import 'package:artichette/models/room.dart';
-import 'package:artichette/models/room_type.dart';
+import 'package:artichette/domain/models/room.dart';
+import 'package:artichette/domain/models/reservation_option.dart';
+import 'package:artichette/domain/models/room.dart';
+import 'package:artichette/domain/models/room_type.dart';
 
 import 'client.dart';
 
@@ -63,4 +64,33 @@ class Booking {
 
   String get totalStayPriceWithoutOptionsDisplay =>
       "${((roomUnitPrice * numberOfNights)/100).toStringAsFixed(2)} €";
+
+  // factory Booking.fromJson(Map<String, dynamic> json) {
+  //   return Booking(
+  //     id: json['id'],
+  //     validationDate: DateTime.parse(json['validationDate']),
+  //     startBookedDate: DateTime.parse(json['startBookedDate']),
+  //     endBookedDate: DateTime.parse(json['endBookedDate']),
+  //     dateCheckin: json['dateCheckin'] != null
+  //         ? DateTime.parse(json['dateCheckin'])
+  //         : null,
+  //     dateCheckout: json['dateCheckout'] != null
+  //         ? DateTime.parse(json['dateCheckout'])
+  //         : null,
+  //     adultNumber: json['adultNumber'],
+  //     childrenNumber: json['childrenNumber'],
+  //     roomUnitPrice: json['roomUnitPrice'],
+  //     status: json['status'],
+  //     user: Client.fromJson(json['user']),
+  //     rooms: (json['rooms'] as List?)
+  //         ?.map((e) => Room.fromJson(e))
+  //         .toList(),
+  //     roomTypes: (json['roomTypes'] as List)
+  //         .map((e) => RoomType.fromJson(e))
+  //         .toSet(),
+  //     options: (json['options'] as List?)
+  //         ?.map((e) => ReservationOption.fromJson(e))
+  //         .toList(),
+  //   );
+  // }
 }

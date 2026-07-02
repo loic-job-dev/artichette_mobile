@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../models/booking.dart';
-import '../models/address.dart';
-import '../models/client.dart';
-import '../models/reservation_option.dart';
-import '../models/room.dart';
-import '../models/room_type.dart';
+import '../domain/models/booking.dart';
+import '../domain/models/address.dart';
+import '../domain/models/client.dart';
+import '../domain/models/reservation_option.dart';
+import '../domain/models/room.dart';
+import '../domain/models/room_type.dart';
 import '../widgets/booking_summary_card.dart';
 import '../widgets/stay_search_card.dart';
 

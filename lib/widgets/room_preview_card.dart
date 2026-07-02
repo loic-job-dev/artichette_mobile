@@ -2,7 +2,7 @@ import 'package:artichette/theme/app_color.dart';
 import 'package:artichette/theme/app_radius.dart';
 import 'package:artichette/widgets/carousel_room.dart';
 import 'package:flutter/material.dart';
-import '../models/room_type.dart';
+import '../domain/models/room_type.dart';
 import 'filled_button.dart';
 
 class RoomPreviewCard extends StatelessWidget {
