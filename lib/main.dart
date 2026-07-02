@@ -1,3 +1,4 @@
+import 'package:artichette/screens/test_booking_summary_screen.dart';
 import 'package:artichette/theme/app_theme.dart';
 import 'package:artichette/widgets/filled_button.dart';
 import 'package:artichette/widgets/login_form.dart';
@@ -5,6 +6,7 @@ import 'package:artichette/widgets/outlined_button.dart';
 import 'package:artichette/widgets/room_preview_card.dart';
 import 'package:artichette/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'models/room_type.dart';
 
@@ -19,9 +21,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: const Locale('fr', 'FR'),
+      supportedLocales: const [
+        Locale('fr', 'FR'),
+        Locale('en', 'US'),
+      ],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       title: 'Artich\'hôtel',
       theme: AppTheme.light,
-      home: const MyHomePage(title: 'Accueil de l\'hôtel Artichaut'),
+      //home: const MyHomePage(title: 'Accueil de l\'hôtel Artichaut'),
+      home: const TestBookingSummaryPage(),
     );
   }
 }
@@ -89,7 +102,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
             const SizedBox(height: 32),
 
-            //LoginForm(),
+            LoginForm(),
+
+            const SizedBox(height: 32),
+
             SignupForm(),
 
             const SizedBox(height: 32),
