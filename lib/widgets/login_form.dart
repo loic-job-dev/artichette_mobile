@@ -123,9 +123,9 @@ class _SignupFormState extends State<LoginForm> {
 
         TextButton(
           onPressed: () {
-            // TODO: forgot password navigation
+            authRepository.logout();
           },
-          child: const Text("Mot de passe oublié"),
+          child: const Text("Se déconnecter"),
         ),
       ],
     );

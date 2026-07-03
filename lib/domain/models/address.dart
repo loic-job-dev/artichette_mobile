@@ -29,4 +29,15 @@ class Address {
 
     return buffer.toString();
   }
+
+  factory Address.fromJson(Map<String, dynamic> json) {
+    return Address(
+      streetNumber: json['streetNumber'],
+      streetType: json['streetType'],
+      streetName: json['streetName'],
+      addressComplement: json['addressComplement'],
+      zipCode: json['zipCode'],
+      city: json['city'],
+    );
+  }
 }

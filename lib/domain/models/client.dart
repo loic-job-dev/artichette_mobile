@@ -14,4 +14,16 @@ class Client {
   });
 
   String get fullName => "$firstName $lastName";
+
+  factory Client.fromJson(Map<String, dynamic> json) {
+    return Client(
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      phoneNumber: json['phoneNumber'],
+      addresses: (json['addresses'] as List?)
+          ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
+          .toSet() ??
+          <Address>{},
+    );
+  }
 }

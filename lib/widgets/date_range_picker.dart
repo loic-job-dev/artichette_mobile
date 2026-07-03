@@ -4,7 +4,12 @@ import 'package:table_calendar/table_calendar.dart';
 import '../theme/calendar_style.dart';
 
 class DateRangePicker extends StatefulWidget {
-  const DateRangePicker({super.key});
+  final void Function(DateTimeRange range)? onRangeSelected;
+
+  const DateRangePicker({
+    super.key,
+    this.onRangeSelected,
+  });
 
   @override
   State<DateRangePicker> createState() => _DateRangePickerState();
@@ -87,8 +92,7 @@ class _DateRangePickerState extends State<DateRangePicker> {
             child: ElevatedButton(
               onPressed: (_rangeStart != null && _rangeEnd != null)
                   ? () {
-                Navigator.pop(
-                  context,
+                widget.onRangeSelected?.call(
                   DateTimeRange(
                     start: _rangeStart!,
                     end: _rangeEnd!,

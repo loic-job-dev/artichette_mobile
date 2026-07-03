@@ -14,7 +14,7 @@ class RoomPreviewCard extends StatelessWidget {
   });
 
   final RoomType roomType;
-  final VoidCallback onBook;
+  final void Function(RoomType room) onBook;
   final VoidCallback onDetails;
 
   @override
@@ -37,7 +37,7 @@ class RoomPreviewCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      roomType.type,
+                      roomType.description,
                       style: theme.textTheme.titleLarge,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -51,15 +51,15 @@ class RoomPreviewCard extends StatelessWidget {
 
               CarouselRoom(pictureList: roomType.pictures),
 
-              const SizedBox(height: 8),
-
-              // DESCRIPTION
-              Text(
-                roomType.description,
-                style: theme.textTheme.bodyMedium,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
+              // const SizedBox(height: 8),
+              //
+              // // DESCRIPTION
+              // Text(
+              //   roomType.description,
+              //   style: theme.textTheme.bodyMedium,
+              //   maxLines: 3,
+              //   overflow: TextOverflow.ellipsis,
+              // ),
 
               const SizedBox(height: 16),
 
@@ -68,14 +68,14 @@ class RoomPreviewCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    roomType.priceDisplay,
+                    roomType.priceToFixDisplay,
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
 
                   AppFilledButton(
-                    onPressed: isAvailable ? onBook : null,
+                    onPressed: isAvailable ? () => onBook(roomType) : null,
                     compact: true,
                     child: const Text("Réserver"),
                   ),

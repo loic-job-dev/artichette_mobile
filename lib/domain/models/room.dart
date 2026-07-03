@@ -8,4 +8,11 @@ class Room {
   });
 
   String get displayName => "Chambre $number";
+
+  factory Room.fromJson(Map<String, dynamic> json) {
+    return Room(
+      id: json['id'],
+      number: json['number'],
+    );
+  }
 }

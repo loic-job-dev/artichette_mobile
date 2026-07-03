@@ -19,4 +19,15 @@ class ReservationOption {
 
   String get priceDisplay =>
       "${(unitPrice / 100).toStringAsFixed(2)} €";
+
+  factory ReservationOption.fromJson(Map<String, dynamic> json) {
+    return ReservationOption(
+      id: json['id'],
+      optionName: json['optionName'],
+      optionDescription: json['optionDescription'],
+      startDate: DateTime.parse(json['startDate']),
+      endDate: DateTime.parse(json['endDate']),
+      unitPrice: json['unitPrice'],
+    );
+  }
 }

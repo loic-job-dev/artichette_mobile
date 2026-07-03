@@ -12,7 +12,8 @@ class StaySearchCard extends StatefulWidget {
   final void Function(
       DateTime startBookedDate,
       DateTime endBookedDate,
-      int travellerCount,
+      int adults,
+      int children,
       ) onSearch;
 
   @override
@@ -24,21 +25,23 @@ class _StaySearchCardState extends State<StaySearchCard> {
   DateTime? _endDate;
 
   final _formatter = DateFormat('dd/MM/yyyy');
-  int _travellerCount = 2;
+  int _adults = 2;
+  int _children = 0;
 
   Future<void> _selectDates() async {
-    final result = await showModalBottomSheet<DateTimeRange>(
+    await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (_) => const DateRangePicker(),
+      builder: (_) => DateRangePicker(
+        onRangeSelected: (range) {
+          Navigator.pop(context); // fermer modal
+          setState(() {
+            _startDate = range.start;
+            _endDate = range.end;
+          });
+        },
+      ),
     );
-
-    if (result == null) return;
-
-    setState(() {
-      _startDate = result.start;
-      _endDate = result.end;
-    });
   }
 
   String get _dateLabel {
@@ -76,10 +79,10 @@ class _StaySearchCardState extends State<StaySearchCard> {
                 ),
 
                 IconButton(
-                  onPressed: _travellerCount > 1
+                  onPressed: _adults > 1
                       ? () {
                     setState(() {
-                      _travellerCount--;
+                      _adults--;
                     });
                   }
                       : null,
@@ -87,14 +90,14 @@ class _StaySearchCardState extends State<StaySearchCard> {
                 ),
 
                 Text(
-                  "$_travellerCount",
+                  "$_adults",
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
 
                 IconButton(
                   onPressed: () {
                     setState(() {
-                      _travellerCount++;
+                      _adults++;
                     });
                   },
                   icon: const Icon(Icons.add_circle_outline),
@@ -112,7 +115,8 @@ class _StaySearchCardState extends State<StaySearchCard> {
                   widget.onSearch(
                     _startDate!,
                     _endDate!,
-                    _travellerCount,
+                    _adults,
+                    _children,
                   );
                 }
                     : null,
