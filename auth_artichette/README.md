@@ -21,15 +21,15 @@ A lightweight Flutter authentication SDK built on top of Dio, providing JWT auth
 ### Local development
 ```
 dependencies:
-auth_artichette:
-path: ../auth_artichette
+    auth_artichette:
+    path: ../auth_artichette
 ```
 ---
 
 ### From pub.dev (when published)
 ```
 dependencies:
-auth_artichette: ^1.0.0
+    auth_artichette: ^1.0.0
 ```
 Then install dependencies:
 ```
@@ -52,7 +52,7 @@ flutter build apk --dart-define=API_URL=[https://api.yourdomain.com](https://api
 ### Access inside package
 ```
 class ApiConfig {
-static const baseUrl = String.fromEnvironment('API_URL');
+    static const baseUrl = String.fromEnvironment('API_URL');
 }
 ```
 ---
@@ -62,11 +62,11 @@ static const baseUrl = String.fromEnvironment('API_URL');
 ### Create Dio instance
 ```
 final dio = Dio(
-BaseOptions(
-baseUrl: ApiConfig.baseUrl,
-connectTimeout: const Duration(seconds: 10),
-receiveTimeout: const Duration(seconds: 10),
-),
+    BaseOptions(
+        baseUrl: ApiConfig.baseUrl,
+        connectTimeout: const Duration(seconds: 10),
+        receiveTimeout: const Duration(seconds: 10),
+    ),
 );
 ```
 
@@ -79,9 +79,9 @@ final tokenStorage = TokenStorage();
 
 ```
 final authRepository = AuthRepository(
-api: AuthApi(dio),
-storage: tokenStorage,
-);
+    storage: tokenStorage,
+    api: AuthApi(dio),
+  );
 ```
 
 ---
@@ -89,8 +89,8 @@ storage: tokenStorage,
 ### Login
 ```
 await authRepository.login(
-'[email@example.com](mailto:email@example.com)',
-'password',
+    'email@example.com',
+    'password',
 );
 ```
 This will:
@@ -132,20 +132,20 @@ This clears all stored authentication tokens.
 ## Package Structure
 ```
 lib/
-└── src/
+├── src/
 ├── api/
 │   ├── auth_api.dart
 │   ├── auth_interceptor.dart
-│   └── api_config.dart
+│   └── api_exception.dart
 ├── models/
 │   ├── auth_response.dart
-│   └── login_request.dart
+│   ├── login_request.dart
+│   └── signup_request.dart
 ├── repository/
 │   └── auth_repository.dart
-├── storage/
-│   └── token_storage.dart
-└── dio/
-└── dio_client.dart
+└── storage/
+    └── token_storage.dart
+
 ```
 ---
 

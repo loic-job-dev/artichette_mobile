@@ -8,14 +8,12 @@ import '../storage/token_storage.dart';
 
 class AuthRepository {
   final TokenStorage storage;
-  final Dio dio;
+  final AuthApi api;
 
   AuthRepository({
     required this.storage,
-    required this.dio,
+    required this.api,
   });
-
-  late AuthApi api = AuthApi(dio);
 
   Future<void> login(String email, String password) async {
     final response = await api.login(
