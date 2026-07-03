@@ -1,3 +1,4 @@
+import 'package:auth_artichette/src/models/signup_request.dart';
 import 'package:dio/dio.dart';
 
 import '../models/auth_response.dart';
@@ -13,6 +14,22 @@ class AuthApi {
     try {
       final res = await dio.post(
         '/auth/login',
+        data: request.toJson(),
+      );
+
+      return AuthResponse.fromJson(res.data);
+    } on DioException catch (e) {
+      throw ApiException(
+        statusCode: e.response?.statusCode,
+        message: _extractMessage(e),
+      );
+    }
+  }
+
+  Future<AuthResponse> signUp(SignUpRequest request) async {
+    try {
+      final res = await dio.post(
+        '/auth/signup',
         data: request.toJson(),
       );
 

@@ -30,7 +30,6 @@ class _SignupFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     final authRepository = context.read<AuthRepository>();
 
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

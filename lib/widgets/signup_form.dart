@@ -1,5 +1,7 @@
 import 'package:artichette/theme/app_text_theme.dart';
+import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'filled_button.dart';
 import 'outlined_button.dart';
@@ -47,6 +49,8 @@ class _SignupFormState extends State<SignupForm> {
 
   @override
   Widget build(BuildContext context) {
+    final authRepository = context.read<AuthRepository>();
+
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -158,8 +162,51 @@ class _SignupFormState extends State<SignupForm> {
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
             child: AppFilledButton(
-              onPressed: () {
-                // TODO: create signup logic
+              onPressed: () async {
+                try {
+                  await authRepository.signUp(
+                    email: emailController.text,
+                    password: passwordController.text,
+                    firstName: firstNameController.text,
+                    lastName: lastNameController.text,
+                    phoneNumber: phoneController.text,
+                    pseudo: pseudoController.text,
+                    streetNumber: int.parse(streetNumberController.text),
+                    streetType: streetTypeController.text,
+                    streetName: streetNameController.text,
+                    addressComplement: addressComplementController.text.isEmpty
+                        ? null
+                        : addressComplementController.text,
+                    zipCode: zipCodeController.text,
+                    city: cityController.text,
+                  );
+
+                  if (!mounted) return;
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Compte créé avec succès"),
+                    ),
+                  );
+
+                  // Navigation vers login ou home
+                } on ApiException catch (e) {
+                  if (!mounted) return;
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(e.message),
+                    ),
+                  );
+                } catch (e) {
+                  if (!mounted) return;
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Erreur inattendue"),
+                    ),
+                  );
+                }
               },
               compact: false,
               child: const Text("Créer un compte"),
