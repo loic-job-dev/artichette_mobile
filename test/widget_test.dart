@@ -1,5 +1,6 @@
 import 'package:artichette/theme/app_color.dart';
 import 'package:artichette/theme/app_theme.dart';
+import 'package:artichette/widgets/filled_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -42,26 +43,32 @@ void main() {
     expect(text.style?.fontSize, 30);
   });
 
-  testWidgets('FilledButtonTheme uses the primary color', (tester) async {
+  testWidgets('AppFilledButton uses theme colors', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         theme: AppTheme.light,
-        home: const Scaffold(),
+        home: Scaffold(
+          body: AppFilledButton(
+            onPressed: () {},
+            child: const Text('test'),
+          ),
+        ),
       ),
     );
 
-    final context = tester.element(find.byType(Scaffold));
-
-    final style = Theme.of(context).filledButtonTheme.style!;
-
-    expect(
-      style.backgroundColor?.resolve({}),
-      AppColors.primary,
+    final button = tester.widget<FilledButton>(
+      find.byType(FilledButton),
     );
 
+    final style = button.style!;
+
+    final background = style.backgroundColor?.resolve({});
+    final foreground = style.foregroundColor?.resolve({});
+
+    expect(background, AppColors.primary);
     expect(
       style.foregroundColor?.resolve({}),
-      Colors.white,
+      AppColors.accent,
     );
   });
 }

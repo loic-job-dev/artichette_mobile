@@ -35,8 +35,8 @@ void main() {
   );
 
   final authRepository = AuthRepository(
-    dio: dio,
     storage: tokenStorage,
+    api: AuthApi(dio),
   );
 
   runApp(
