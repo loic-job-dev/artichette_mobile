@@ -5,18 +5,46 @@ import 'package:artichette/widgets/login_form.dart';
 import 'package:artichette/widgets/outlined_button.dart';
 import 'package:artichette/widgets/room_preview_card.dart';
 import 'package:artichette/widgets/signup_form.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:auth_artichette/auth_artichette.dart';
+import 'package:provider/provider.dart';
 
-import 'core/network/dio_client.dart';
+import 'core/network/api_config.dart';
 import 'domain/models/room_type.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  DioClient.init();
+  final tokenStorage = TokenStorage();
 
-  runApp(const MyApp());
+  final dio = Dio(
+    BaseOptions(
+      baseUrl: ApiConfig.baseUrl,
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 10),
+    ),
+  );
+
+  dio.interceptors.add(
+    AuthInterceptor(
+      dio: dio,
+      storage: tokenStorage,
+    ),
+  );
+
+  final authRepository = AuthRepository(
+    api: AuthApi(dio),
+    storage: tokenStorage,
+  );
+
+  runApp(
+    Provider<AuthRepository>.value(
+      value: authRepository,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

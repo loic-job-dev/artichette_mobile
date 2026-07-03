@@ -1,10 +1,10 @@
-import 'package:artichette/core/network/token_storage.dart';
+import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
 
-import '../core/network/dio_client.dart';
 import '../theme/app_text_theme.dart';
 import 'filled_button.dart';
 import 'outlined_button.dart';
+import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -28,6 +28,8 @@ class _SignupFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    final authRepository = context.read<AuthRepository>();
+
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -77,10 +79,11 @@ class _SignupFormState extends State<LoginForm> {
           child: AppFilledButton(
             onPressed: () async {
               try {
-                await DioClient.authRepository.login(
+                await authRepository.login(
                   emailController.text,
                   passwordController.text,
                 );
+                if (!mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
@@ -90,6 +93,7 @@ class _SignupFormState extends State<LoginForm> {
                 );
                 // Navigation vers l'accueil
               } catch (e) {
+                if (!mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
