@@ -92,13 +92,11 @@ class _SignupFormState extends State<LoginForm> {
                   ),
                 );
                 // Navigation vers l'accueil
-              } catch (e) {
+              } on ApiException catch (e) {
                 if (!mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text(
-                      e.toString(),
-                    ),
+                    content: Text(e.message),
                   ),
                 );
               }
