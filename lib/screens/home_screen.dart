@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final vm = context.watch<BookingViewModel>();
 
     return Scaffold(
       appBar: AppBar(
@@ -20,8 +21,36 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          AuthScreen(),
-         
+          StaySearchCard(
+            onSearch: (start, end, adults, children) {
+              vm.searchRooms(
+                start: start,
+                end: end,
+                adults: adults,
+                children: children,
+              );
+            },
+          ),
+
+          const SizedBox(height: 16),
+
+          if (vm.loading)
+            const Center(
+              child: CircularProgressIndicator(),
+            )
+          else
+            ...vm.rooms.map(
+                  (room) => Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: RoomPreviewCard(
+                  roomType: room,
+                  onBook: (room) {
+                    vm.createBooking(room);
+                  },
+                  onDetails: () {},
+                ),
+              ),
+            ),
         ],
       ),
     );
