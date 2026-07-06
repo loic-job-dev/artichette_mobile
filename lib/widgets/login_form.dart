@@ -1,3 +1,6 @@
+import 'package:artichette/view_models/booking_view_model.dart';
+import 'package:artichette/widgets/room_preview_card.dart';
+import 'package:artichette/widgets/stay_search_card.dart';
 import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +13,10 @@ class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
 
   @override
-  State<LoginForm> createState() => _SignupFormState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _SignupFormState extends State<LoginForm> {
+class _LoginFormState extends State<LoginForm> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
 
@@ -29,23 +32,20 @@ class _SignupFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final authRepository = context.read<AuthRepository>();
+        final vm = context.watch<BookingViewModel>();
+
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          "Se connecter",
-          style: AppTextTheme.textTheme.displayMedium,
-        ),
+        Text("Se connecter", style: AppTextTheme.textTheme.displayMedium),
 
         const SizedBox(height: 12),
 
         TextField(
           controller: emailController,
           keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(
-            hintText: "Email",
-          ),
+          decoration: const InputDecoration(hintText: "Email"),
         ),
 
         const SizedBox(height: 16),
@@ -79,25 +79,19 @@ class _SignupFormState extends State<LoginForm> {
             onPressed: () async {
               try {
                 await authRepository.login(
-                  emailController.text,
-                  passwordController.text,
+                  email: emailController.text,
+                  password: passwordController.text,
                 );
                 if (!mounted) return;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      "Connexion valide",
-                    ),
-                  ),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text("Connexion valide")));
                 // Navigation vers l'accueil
               } on ApiException catch (e) {
                 if (!mounted) return;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(e.message),
-                  ),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(e.message)));
               }
             },
             compact: false,
@@ -107,26 +101,43 @@ class _SignupFormState extends State<LoginForm> {
 
         const SizedBox(height: 12),
 
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          child:AppOutlinedButton(
-            onPressed: () {
-              // TODO: create account logic
-            },
-            compact: false,
-            child: const Text("Créer un compte"),
-          ),
-        ),
-
-
-        const SizedBox(height: 12),
-
         TextButton(
           onPressed: () {
             authRepository.logout();
           },
           child: const Text("Se déconnecter"),
         ),
+
+         StaySearchCard(
+            onSearch: (start, end, adults, children) {
+              vm.searchRooms(
+                start: start,
+                end: end,
+                adults: adults,
+                children: children,
+              );
+            },
+          ),
+
+          const SizedBox(height: 16),
+
+          if (vm.loading)
+            const Center(
+              child: CircularProgressIndicator(),
+            )
+          else
+            ...vm.rooms.map(
+                  (room) => Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: RoomPreviewCard(
+                  roomType: room,
+                  onBook: (room) {
+                    vm.createBooking(room);
+                  },
+                  onDetails: () {},
+                ),
+              ),
+            ),
       ],
     );
   }
