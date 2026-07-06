@@ -5,6 +5,7 @@ class RoomType {
   final bool availability;
   final int price;
   final List<String> pictures;
+  final String details;
 
   RoomType({
     required this.id,
@@ -13,6 +14,7 @@ class RoomType {
     required this.availability,
     required this.price,
     required this.pictures,
+    required this.details,
   });
 
   static List<String> _getPictures(String type) {
@@ -60,6 +62,21 @@ class RoomType {
       }
   }
 
+  static String _getDetails(String type) {
+    switch (type) {
+      case 'STD':
+        return "1 Lit King Size";
+
+      case 'DLX':
+        return "1 Lit Queen Size";
+
+      case 'STE':
+        return "Jacuzzi privatif inclus";
+
+      default:
+        return "";
+    }
+  }
 
   factory RoomType.fromJson(Map<String, dynamic> json) {
     return RoomType(
@@ -68,7 +85,8 @@ class RoomType {
       description: json['description'],
       availability: json['availability'],
       price: json['price'],
-        pictures: _getPictures(json['type'])
+        pictures: _getPictures(json['type']),
+      details: _getDetails(json['type'])
     );
   }
 
@@ -76,6 +94,6 @@ class RoomType {
       "${(price / 100).toStringAsFixed(2)} €";
 
   String get priceToFixDisplay =>
-      "${price.toString()} €";
+      "${price.toString()} € / nuit";
 }
 

@@ -49,7 +49,7 @@ abstract final class AppButtonTheme {
       double height = _height,
   }) {
     return OutlinedButton.styleFrom(
-      minimumSize: const Size(0, _height),
+      minimumSize: Size(0, height),
       elevation: 0,
       foregroundColor: AppColors.primary,
       side: const BorderSide(
