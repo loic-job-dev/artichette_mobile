@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:artichette/widgets/outlined_button.dart';
+import 'package:artichette/widgets/filled_button.dart';
 
 import '../domain/models/booking.dart';
-import '../theme/app_radius.dart';
-import 'filled_button.dart';
 
 class BookingSummaryCard extends StatelessWidget {
   const BookingSummaryCard({
@@ -17,103 +18,194 @@ class BookingSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final startBookedDate = DateFormat(
+      'dd-MM-yyyy',
+    ).format(booking.startBookedDate);
+    final endBookedDate = DateFormat(
+      'dd-MM-yyyy',
+    ).format(booking.endBookedDate);
 
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Récapitulatif de votre réservation",
-              style: theme.textTheme.titleLarge,
-            ),
-
-            const SizedBox(height: 20),
-
-            _InfoRow(
-              icon: Icons.calendar_month,
-              title: "Séjour",
-              value:
-              "${booking.startBookedDate.day}/${booking.startBookedDate.month}/${booking.startBookedDate.year}"
-                  " → "
-                  "${booking.endBookedDate.day}/${booking.endBookedDate.month}/${booking.endBookedDate.year}",
-            ),
-
-            const Divider(),
-
-            _InfoRow(
-              icon: Icons.people,
-              title: "Voyageurs",
-              value:
-              "${booking.adultNumber} adulte(s)"
-                  "${booking.childrenNumber != null && booking.childrenNumber! > 0 ? " • ${booking.childrenNumber} enfant(s)" : ""}",
-            ),
-
-            const Divider(),
-
-            _InfoRow(
-              icon: Icons.hotel,
-              title: "Type(s) de chambre",
-              value: booking.roomTypes
-                  .map((room) => room.type)
-                  .join(", "),
-            ),
-
-
-            if ((booking.options?.isNotEmpty ?? false)) ...[
-              const Divider(),
-
-              Row(
-                children: [
-                  const Icon(Icons.add_circle_outline),
-                  const SizedBox(width: 8),
-                  Text(
-                    "Options",
-                    style: theme.textTheme.titleMedium,
-                  ),
-                ],
+    return SingleChildScrollView(
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset('assets/checkmark.png', width: 60, height: 60),
+              Text("C'est confirmé\n", style: theme.textTheme.titleLarge),
+              Text(
+                "Votre séjour à l'Artichaut est réservé.\n Préparez-vous pour une immersion sereine en pleine nature.",
+                style: theme.textTheme.bodyMedium,
+                textAlign: TextAlign.center,
               ),
 
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
 
-              ...?booking.options?.map(
-                    (option) => Padding(
-                  padding: const EdgeInsets.only(left: 32, bottom: 4),
-                  child: Text("• ${option.optionName}"),
+              Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      'assets/pictures/rooms/DLX2.png',
+                      width: 150,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Positioned(
+                    top: 6,
+                    left: 6,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF5A8A6B),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        "Réservation n° ${booking.id}",
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 215),
+                 ],
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 4),
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.surfaceContainerHighest,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: theme.colorScheme.outline,
+                          width: 1,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                booking.roomTypes.first.type,
+                                style: theme.textTheme.titleMedium,
+                              ),
+                              Text(
+                                "${booking.numberOfNights} nuit${booking.numberOfNights > 1 ? 's' : ''}",
+                                style: theme.textTheme.headlineMedium,
+                              ),
+                            ],
+                          ),
+                          Text("450€ / nuit", style: theme.textTheme.bodySmall),
+                          Divider(
+                            color: theme.colorScheme.outline,
+                            thickness: 1,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text("Arrivée"),
+                                  Text(
+                                    startBookedDate.toString(),
+                                    style: theme.textTheme.titleLarge,
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const Text("Départ"),
+                                  Text(
+                                    endBookedDate.toString(),
+                                    style: theme.textTheme.titleLarge,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Divider(
+                            color: theme.colorScheme.outline,
+                            thickness: 1,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Total payé',
+                                style: theme.textTheme.labelLarge,
+                              ),
+                              Text(
+                                booking.totalStayPriceWithoutOptionsDisplay,
+                                style: theme.textTheme.labelLarge,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              AppOutlinedButton(
+                                onPressed: () {
+                                  // TODO : create navigation between screens
+                                },
+                                compact: false,
+                                child: const Text("Ajouter au calendrier"),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AppFilledButton(
+                          onPressed: () {
+                            // TODO : create navigation between screens
+                          },
+                          compact: false,
+                          child: const Text("Retourner à l'accueil ➞"),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AppOutlinedButton(
+                          onPressed: () {
+                            // TODO : create navigation between screens
+                          },
+                          compact: false,
+                          child: const Text("Voir mes réservations"),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 50),
+                  ],
                 ),
               ),
             ],
-
-            const Divider(height: 32),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Prix hors options",
-                  style: theme.textTheme.titleLarge,
-                ),
-                Text(
-                  booking.totalStayPriceWithoutOptionsDisplay,
-                  style: theme.textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 20),
-
-            SizedBox(
-              width: double.infinity,
-              child: AppFilledButton(
-                onPressed: onConfirm,
-                compact: false,
-                child: const Text("Procéder au paiement"),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
