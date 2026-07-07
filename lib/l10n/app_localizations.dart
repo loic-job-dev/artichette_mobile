@@ -322,6 +322,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Got it, I\'ll have some tea.'**
   String get profile_logoutSnackBarAction;
+
+  /// No description provided for @auth_signup.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get auth_signup;
+
+  /// No description provided for @auth_signin.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get auth_signin;
+
+  /// No description provided for @navbar_home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get navbar_home;
+
+  /// No description provided for @navbar_profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get navbar_profile;
+
+  /// No description provided for @navbar_signin.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get navbar_signin;
+
+  /// No description provided for @bookingSummaryCard_confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s confirmed\n'**
+  String get bookingSummaryCard_confirmation;
+
+  /// No description provided for @bookingSummaryCard_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Your stay at L\'Artichaut is booked.\nGet ready for a peaceful immersion in the heart of nature.'**
+  String get bookingSummaryCard_description;
+
+  /// No description provided for @bookingSummaryCard_nbNight.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 night} other{{count} nights}}'**
+  String bookingSummaryCard_nbNight(num count);
+
+  /// No description provided for @bookingSummaryCard_night.
+  ///
+  /// In en, this message translates to:
+  /// **'night'**
+  String get bookingSummaryCard_night;
+
+  /// No description provided for @bookingSummaryCard_arrival.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival'**
+  String get bookingSummaryCard_arrival;
+
+  /// No description provided for @bookingSummaryCard_leaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaving'**
+  String get bookingSummaryCard_leaving;
+
+  /// No description provided for @bookingSummaryCard_calendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to calendar'**
+  String get bookingSummaryCard_calendar;
+
+  /// No description provided for @bookingSummaryCard_home.
+  ///
+  /// In en, this message translates to:
+  /// **'Back home ➞'**
+  String get bookingSummaryCard_home;
+
+  /// No description provided for @bookingSummaryCard_myBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'My bookings'**
+  String get bookingSummaryCard_myBookings;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

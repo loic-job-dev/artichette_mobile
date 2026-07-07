@@ -1,3 +1,4 @@
+import 'package:artichette/l10n/app_localizations.dart';
 import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,7 @@ class AppBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authRepository = context.read<AuthRepository>();
+    final l10n = AppLocalizations.of(context)!;
 
     return SafeArea(
       top: false,
@@ -35,13 +37,13 @@ class AppBottomNavigationBar extends StatelessWidget {
           children: [
             _NavigationItem(
               icon: Icons.home,
-              label: "Accueil",
+              label: l10n.navbar_home,
               selected: currentIndex == 0,
               onTap: () => onTap(0),
             ),
             _NavigationItem(
               icon: Icons.person_outline,
-              label: authRepository.isLoggedIn ? "Profil" : "Se connecter",
+              label: authRepository.isLoggedIn ? l10n.navbar_profile : l10n.navbar_signin,
               selected: currentIndex == 1,
               onTap: () => onTap(1),
             ),

@@ -1,3 +1,4 @@
+import 'package:artichette/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:artichette/widgets/outlined_button.dart';
@@ -26,6 +27,7 @@ class BookingSummaryCard extends StatelessWidget {
     final endBookedDate = DateFormat(
       'dd-MM-yyyy',
     ).format(mockBooking.endBookedDate);
+    final l10n = AppLocalizations.of(context)!;
 
     return SingleChildScrollView(
       child: Card(
@@ -35,9 +37,12 @@ class BookingSummaryCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset('assets/checkmark.png', width: 60, height: 60),
-              Text("C'est confirmé\n", style: theme.textTheme.titleLarge),
               Text(
-                "Votre séjour à l'Artichaut est réservé.\n Préparez-vous pour une immersion sereine en pleine nature.",
+                l10n.bookingSummaryCard_confirmation,
+                style: theme.textTheme.titleLarge,
+              ),
+              Text(
+                l10n.bookingSummaryCard_description,
                 style: theme.textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
@@ -77,7 +82,7 @@ class BookingSummaryCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 215),
-                 ],
+                ],
               ),
               Align(
                 alignment: Alignment.centerLeft,
@@ -106,12 +111,15 @@ class BookingSummaryCard extends StatelessWidget {
                                 style: theme.textTheme.titleMedium,
                               ),
                               Text(
-                                "${mockBooking.numberOfNights} nuit${mockBooking.numberOfNights > 1 ? 's' : ''}",
+                                "${mockBooking.numberOfNights} ${l10n.bookingSummaryCard_nbNight(mockBooking.numberOfNights)}",
                                 style: theme.textTheme.headlineMedium,
                               ),
                             ],
                           ),
-                          Text("450€ / nuit", style: theme.textTheme.bodySmall),
+                          Text(
+                            "450€ / ${l10n.bookingSummaryCard_night}",
+                            style: theme.textTheme.bodySmall,
+                          ),
                           Divider(
                             color: theme.colorScheme.outline,
                             thickness: 1,
@@ -122,7 +130,7 @@ class BookingSummaryCard extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text("Arrivée"),
+                                  Text(l10n.bookingSummaryCard_arrival),
                                   Text(
                                     startBookedDate.toString(),
                                     style: theme.textTheme.titleLarge,
@@ -132,7 +140,7 @@ class BookingSummaryCard extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  const Text("Départ"),
+                                  Text(l10n.bookingSummaryCard_leaving),
                                   Text(
                                     endBookedDate.toString(),
                                     style: theme.textTheme.titleLarge,
@@ -166,7 +174,7 @@ class BookingSummaryCard extends StatelessWidget {
                                   // TODO : create navigation between screens
                                 },
                                 compact: false,
-                                child: const Text("Ajouter au calendrier"),
+                                child: Text(l10n.bookingSummaryCard_calendar),
                               ),
                             ],
                           ),
@@ -184,7 +192,7 @@ class BookingSummaryCard extends StatelessWidget {
                             // TODO : create navigation between screens
                           },
                           compact: false,
-                          child: const Text("Retourner à l'accueil ➞"),
+                          child: Text(l10n.bookingSummaryCard_home),
                         ),
                       ],
                     ),
@@ -197,7 +205,7 @@ class BookingSummaryCard extends StatelessWidget {
                             // TODO : create navigation between screens
                           },
                           compact: false,
-                          child: const Text("Voir mes réservations"),
+                          child: Text(l10n.bookingSummaryCard_myBookings),
                         ),
                       ],
                     ),

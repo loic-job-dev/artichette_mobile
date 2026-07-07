@@ -121,4 +121,60 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile_logoutSnackBarAction => 'Got it, I\'ll have some tea.';
+
+  @override
+  String get auth_signup => 'Sign up';
+
+  @override
+  String get auth_signin => 'Sign in';
+
+  @override
+  String get navbar_home => 'Home';
+
+  @override
+  String get navbar_profile => 'Profile';
+
+  @override
+  String get navbar_signin => 'Sign in';
+
+  @override
+  String get bookingSummaryCard_confirmation => 'It\'s confirmed\n';
+
+  @override
+  String get bookingSummaryCard_description => 'Your stay at L\'Artichaut is booked.\nGet ready for a peaceful immersion in the heart of nature.';
+
+  @override
+  String bookingSummaryCard_nbNight(num count) {
+    final intl.NumberFormat countNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+      
+    );
+    final String countString = countNumberFormat.format(count);
+
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$countString nights',
+      one: '1 night',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get bookingSummaryCard_night => 'night';
+
+  @override
+  String get bookingSummaryCard_arrival => 'Arrival';
+
+  @override
+  String get bookingSummaryCard_leaving => 'Leaving';
+
+  @override
+  String get bookingSummaryCard_calendar => 'Add to calendar';
+
+  @override
+  String get bookingSummaryCard_home => 'Back home ➞';
+
+  @override
+  String get bookingSummaryCard_myBookings => 'My bookings';
 }

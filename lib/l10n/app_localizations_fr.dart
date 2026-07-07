@@ -121,4 +121,60 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profile_logoutSnackBarAction => 'C\'est compris, je vais prendre un thé.';
+
+  @override
+  String get auth_signup => 'Inscription';
+
+  @override
+  String get auth_signin => 'Connexion';
+
+  @override
+  String get navbar_home => 'Accueil';
+
+  @override
+  String get navbar_profile => 'Profil';
+
+  @override
+  String get navbar_signin => 'Se connecter';
+
+  @override
+  String get bookingSummaryCard_confirmation => 'C\'est confirmé\n';
+
+  @override
+  String get bookingSummaryCard_description => 'Votre séjour à l\'Artichaut est réservé.\nPréparez-vous pour une immersion sereine en pleine nature.';
+
+  @override
+  String bookingSummaryCard_nbNight(num count) {
+    final intl.NumberFormat countNumberFormat = intl.NumberFormat.compact(
+      locale: localeName,
+      
+    );
+    final String countString = countNumberFormat.format(count);
+
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$countString nuits',
+      one: '1 nuit',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get bookingSummaryCard_night => 'nuit';
+
+  @override
+  String get bookingSummaryCard_arrival => 'Arrivée';
+
+  @override
+  String get bookingSummaryCard_leaving => 'Départ';
+
+  @override
+  String get bookingSummaryCard_calendar => 'Ajouter au calendrier';
+
+  @override
+  String get bookingSummaryCard_home => 'Retourner à l\'accueil ➞';
+
+  @override
+  String get bookingSummaryCard_myBookings => 'Voir mes réservations';
 }

@@ -51,5 +51,35 @@
   "profile_implementationInProgressMessage": "Implémentation en cours",
 
   "profile_saveSnackBarAction": "C'est compris, je vais faire une sieste.",
-  "profile_logoutSnackBarAction": "C'est compris, je vais prendre un thé."
+  "profile_logoutSnackBarAction": "C'est compris, je vais prendre un thé.",
+
+
+
+  "auth_signup": "Inscription",
+  "auth_signin": "Connexion",
+
+
+
+  "navbar_home": "Accueil",
+  "navbar_profile": "Profil",
+  "navbar_signin": "Se connecter",
+
+
+  "bookingSummaryCard_confirmation": "C'est confirmé\n",
+    "bookingSummaryCard_description": "Votre séjour à l'Artichaut est réservé.\nPréparez-vous pour une immersion sereine en pleine nature.",
+    "bookingSummaryCard_nbNight": "{count, plural, =1{1 nuit} other {{count} nuits}}",
+    "@bookingSummaryCard_nbNight": {
+        "placeholders": {
+            "count": {
+                "type": "num",
+                "format": "compact"
+            }
+        }
+    },
+    "bookingSummaryCard_night": "nuit",
+    "bookingSummaryCard_arrival": "Arrivée",
+    "bookingSummaryCard_leaving": "Départ",
+    "bookingSummaryCard_calendar": "Ajouter au calendrier",
+    "bookingSummaryCard_home": "Retourner à l'accueil ➞",
+    "bookingSummaryCard_myBookings": "Voir mes réservations"
 }
