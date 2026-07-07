@@ -126,7 +126,7 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                     ],
                   ),
                   FilledButton(
-                    onPressed: () => print("hey"),
+                    onPressed: () => (),
                     child: const Text('Disponibilite'),
                   ),
                 ],
@@ -229,7 +229,7 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                           ],
                         ),
                         FilledButton(
-                          onPressed: () => print("oups"),
+                          onPressed: () => (),
                           child: Text("Réserver maintenant"),
                         ),
                       ],
