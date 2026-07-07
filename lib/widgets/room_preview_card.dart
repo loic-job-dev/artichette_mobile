@@ -1,6 +1,7 @@
 import 'package:artichette/theme/app_color.dart';
 import 'package:artichette/theme/app_radius.dart';
 import 'package:artichette/widgets/carousel_room.dart';
+import 'package:artichette/widgets/outlined_button.dart';
 import 'package:flutter/material.dart';
 import '../domain/models/room_type.dart';
 import 'filled_button.dart';
@@ -24,7 +25,7 @@ class RoomPreviewCard extends StatelessWidget {
 
     return Card(
       child: InkWell(
-        onTap: onDetails,
+        //onTap: onDetails,
         borderRadius: AppRadius.medium,
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -51,29 +52,37 @@ class RoomPreviewCard extends StatelessWidget {
 
               CarouselRoom(pictureList: roomType.pictures),
 
-              // const SizedBox(height: 8),
-              //
-              // // DESCRIPTION
-              // Text(
-              //   roomType.description,
-              //   style: theme.textTheme.bodyMedium,
-              //   maxLines: 3,
-              //   overflow: TextOverflow.ellipsis,
-              // ),
+               const SizedBox(height: 8),
+
+
 
               const SizedBox(height: 16),
 
-              // PRICE + ACTION
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Text(
+                    roomType.details,
+                    style: theme.textTheme.bodyMedium,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                   Text(
                     roomType.priceToFixDisplay,
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AppOutlinedButton(
+                      onPressed: onDetails,
+                      compact: true,
+                      child: const Text("Détails"),
+                  ),
                   AppFilledButton(
                     onPressed: isAvailable ? () => onBook(roomType) : null,
                     compact: true,
