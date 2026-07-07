@@ -167,14 +167,104 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bookingSummaryCard_arrival => 'Arrival';
 
   @override
-  String get bookingSummaryCard_leaving => 'Leaving';
+  String get bookingSummaryCard_leaving => 'Departure';
 
   @override
   String get bookingSummaryCard_calendar => 'Add to calendar';
 
   @override
-  String get bookingSummaryCard_home => 'Back home ➞';
+  String get bookingSummaryCard_home => 'Back to home ➞';
 
   @override
-  String get bookingSummaryCard_myBookings => 'My bookings';
+  String get bookingSummaryCard_myBookings => 'View my bookings';
+
+  @override
+  String get dateRangePicker_chooseDate => 'Select your dates';
+
+  @override
+  String get dateRangePicker_month => 'Month';
+
+  @override
+  String get dateRangePicker_validate => 'Confirm';
+
+  @override
+  String get login_signin => 'Sign in';
+
+  @override
+  String get login_passwordHint => 'Password';
+
+  @override
+  String get login_connexionOK => 'Connection OK';
+
+  @override
+  String get login_connexion => 'Sign in';
+
+  @override
+  String get login_logout => 'Log out';
+
+  @override
+  String get roomPreviewCard_details => 'Details';
+
+  @override
+  String get roomPreviewCard_bookingBtn => 'Book';
+
+  @override
+  String get signup_title => 'Create an account';
+
+  @override
+  String get signup_email => 'Email';
+
+  @override
+  String get signup_password => 'Password';
+
+  @override
+  String get signup_firstName => 'First name';
+
+  @override
+  String get signup_lastName => 'Last name';
+
+  @override
+  String get signup_phone => 'Phone number';
+
+  @override
+  String get signup_pseudo => 'Username';
+
+  @override
+  String get signup_streetNumber => 'Number';
+
+  @override
+  String get signup_streetType => 'Type (street, avenue...)';
+
+  @override
+  String get signup_streetName => 'Street name';
+
+  @override
+  String get signup_addressComplement => 'Address complement (optional)';
+
+  @override
+  String get signup_zipCode => 'ZIP code';
+
+  @override
+  String get signup_city => 'City';
+
+  @override
+  String get signup_success => 'Account created successfully';
+
+  @override
+  String get signup_errorUnexpected => 'Unexpected error';
+
+  @override
+  String get signup_submit => 'Create an account';
+
+  @override
+  String get staySearchCard_stay => 'Stay';
+
+  @override
+  String get staySearchCard_selectDates => 'Select dates';
+
+  @override
+  String get staySearchCard_travelers => 'Travelers';
+
+  @override
+  String get staySearchCard_searchRoom => 'Search for a room';
 }

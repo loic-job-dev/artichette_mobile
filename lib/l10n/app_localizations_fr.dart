@@ -177,4 +177,94 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get bookingSummaryCard_myBookings => 'Voir mes réservations';
+
+  @override
+  String get dateRangePicker_chooseDate => 'Sélectionnez vos dates';
+
+  @override
+  String get dateRangePicker_month => 'Mois';
+
+  @override
+  String get dateRangePicker_validate => 'Valider';
+
+  @override
+  String get login_signin => 'Se connecter';
+
+  @override
+  String get login_passwordHint => 'Mot de passe';
+
+  @override
+  String get login_connexionOK => 'Connexion valide';
+
+  @override
+  String get login_connexion => 'Connexion';
+
+  @override
+  String get login_logout => 'Se déconnecter';
+
+  @override
+  String get roomPreviewCard_details => 'Détails';
+
+  @override
+  String get roomPreviewCard_bookingBtn => 'Réserver';
+
+  @override
+  String get signup_title => 'Créer un compte';
+
+  @override
+  String get signup_email => 'Email';
+
+  @override
+  String get signup_password => 'Mot de passe';
+
+  @override
+  String get signup_firstName => 'Prénom';
+
+  @override
+  String get signup_lastName => 'Nom';
+
+  @override
+  String get signup_phone => 'Téléphone';
+
+  @override
+  String get signup_pseudo => 'Pseudo';
+
+  @override
+  String get signup_streetNumber => 'Numéro';
+
+  @override
+  String get signup_streetType => 'Type (rue, av...)';
+
+  @override
+  String get signup_streetName => 'Nom de rue';
+
+  @override
+  String get signup_addressComplement => 'Complément d\'adresse (optionnel)';
+
+  @override
+  String get signup_zipCode => 'Code postal';
+
+  @override
+  String get signup_city => 'Ville';
+
+  @override
+  String get signup_success => 'Compte créé avec succès';
+
+  @override
+  String get signup_errorUnexpected => 'Erreur inattendue';
+
+  @override
+  String get signup_submit => 'Créer un compte';
+
+  @override
+  String get staySearchCard_stay => 'Séjour';
+
+  @override
+  String get staySearchCard_selectDates => 'Sélectionner les dates';
+
+  @override
+  String get staySearchCard_travelers => 'Voyageurs';
+
+  @override
+  String get staySearchCard_searchRoom => 'Rechercher une chambre';
 }

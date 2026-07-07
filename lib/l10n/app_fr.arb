@@ -1,71 +1,48 @@
 {
-  "profile_pictureLinkLabel": "Lien vers votre photo",
-
-  "profile_firstNameLabel": "Prénom *",
-  "profile_firstNameRequired": "Veuillez saisir un prénom.",
-  "profile_firstNameTooLong": "Le prénom est trop long (50 caractères maximum).",
-
-  "profile_lastNameLabel": "Nom *",
-  "profile_lastNameRequired": "Veuillez saisir un nom.",
-  "profile_lastNameTooLong": "Le nom est trop long (50 caractères maximum).",
-
-  "profile_pseudoLabel": "Pseudo",
-  "profile_pseudoTooLong": "Le pseudo est trop long (50 caractères maximum).",
-
-  "profile_emailLabel": "Email *",
-
-  "profile_phoneNumberLabel": "Numéro de téléphone *",
-  "profile_phoneNumberRequired": "Veuillez saisir un numéro de téléphone.",
-  "profile_phoneNumberTooLong": "Le numéro de téléphone est trop long (15 caractères maximum).",
-
-  "profile_streetNumberLabel": "N° Rue *",
-  "profile_streetNumberRequired": "Veuillez saisir un numéro de rue.",
-  "profile_streetNumberInvalid": "Le numéro doit être un entier.",
-  "profile_streetNumberPositive": "Le numéro doit être supérieur à 0.",
-
-  "profile_streetTypeLabel": "Type de voie *",
-  "profile_streetTypeRequired": "Veuillez saisir un type de voie.",
-  "profile_streetTypeTooLong": "Le type de voie est trop long (10 caractères maximum).",
-
-  "profile_streetNameLabel": "Nom de la voie *",
-  "profile_streetNameRequired": "Veuillez saisir un nom de voie.",
-  "profile_streetNameTooLong": "Le nom de la voie est trop long (50 caractères maximum).",
-
-  "profile_addressComplementLabel": "Complément d'adresse",
-  "profile_addressComplementTooLong": "Le complément d'adresse est trop long (50 caractères maximum).",
-
-  "profile_zipCodeLabel": "Code postal *",
-  "profile_zipCodeRequired": "Veuillez saisir un code postal.",
-  "profile_zipCodeTooLong": "Le code postal est trop long (10 caractères maximum).",
-
-  "profile_cityLabel": "Ville *",
-  "profile_cityRequired": "Veuillez saisir une ville.",
-  "profile_cityTooLong": "Le nom de la ville est trop long (50 caractères maximum).",
-
-  "profile_passwordLabel": "Mot de passe *",
-  "profile_passwordRequired": "Veuillez saisir votre mot de passe.",
-
-  "profile_saveChangesButton": "Enregistrer les modifications",
-  "profile_logoutButton": "Se déconnecter",
-
-  "profile_implementationInProgressMessage": "Implémentation en cours",
-
-  "profile_saveSnackBarAction": "C'est compris, je vais faire une sieste.",
-  "profile_logoutSnackBarAction": "C'est compris, je vais prendre un thé.",
-
-
-
-  "auth_signup": "Inscription",
-  "auth_signin": "Connexion",
-
-
-
-  "navbar_home": "Accueil",
-  "navbar_profile": "Profil",
-  "navbar_signin": "Se connecter",
-
-
-  "bookingSummaryCard_confirmation": "C'est confirmé\n",
+    "profile_pictureLinkLabel": "Lien vers votre photo",
+    "profile_firstNameLabel": "Prénom *",
+    "profile_firstNameRequired": "Veuillez saisir un prénom.",
+    "profile_firstNameTooLong": "Le prénom est trop long (50 caractères maximum).",
+    "profile_lastNameLabel": "Nom *",
+    "profile_lastNameRequired": "Veuillez saisir un nom.",
+    "profile_lastNameTooLong": "Le nom est trop long (50 caractères maximum).",
+    "profile_pseudoLabel": "Pseudo",
+    "profile_pseudoTooLong": "Le pseudo est trop long (50 caractères maximum).",
+    "profile_emailLabel": "Email *",
+    "profile_phoneNumberLabel": "Numéro de téléphone *",
+    "profile_phoneNumberRequired": "Veuillez saisir un numéro de téléphone.",
+    "profile_phoneNumberTooLong": "Le numéro de téléphone est trop long (15 caractères maximum).",
+    "profile_streetNumberLabel": "N° Rue *",
+    "profile_streetNumberRequired": "Veuillez saisir un numéro de rue.",
+    "profile_streetNumberInvalid": "Le numéro doit être un entier.",
+    "profile_streetNumberPositive": "Le numéro doit être supérieur à 0.",
+    "profile_streetTypeLabel": "Type de voie *",
+    "profile_streetTypeRequired": "Veuillez saisir un type de voie.",
+    "profile_streetTypeTooLong": "Le type de voie est trop long (10 caractères maximum).",
+    "profile_streetNameLabel": "Nom de la voie *",
+    "profile_streetNameRequired": "Veuillez saisir un nom de voie.",
+    "profile_streetNameTooLong": "Le nom de la voie est trop long (50 caractères maximum).",
+    "profile_addressComplementLabel": "Complément d'adresse",
+    "profile_addressComplementTooLong": "Le complément d'adresse est trop long (50 caractères maximum).",
+    "profile_zipCodeLabel": "Code postal *",
+    "profile_zipCodeRequired": "Veuillez saisir un code postal.",
+    "profile_zipCodeTooLong": "Le code postal est trop long (10 caractères maximum).",
+    "profile_cityLabel": "Ville *",
+    "profile_cityRequired": "Veuillez saisir une ville.",
+    "profile_cityTooLong": "Le nom de la ville est trop long (50 caractères maximum).",
+    "profile_passwordLabel": "Mot de passe *",
+    "profile_passwordRequired": "Veuillez saisir votre mot de passe.",
+    "profile_saveChangesButton": "Enregistrer les modifications",
+    "profile_logoutButton": "Se déconnecter",
+    "profile_implementationInProgressMessage": "Implémentation en cours",
+    "profile_saveSnackBarAction": "C'est compris, je vais faire une sieste.",
+    "profile_logoutSnackBarAction": "C'est compris, je vais prendre un thé.",
+    "auth_signup": "Inscription",
+    "auth_signin": "Connexion",
+    "navbar_home": "Accueil",
+    "navbar_profile": "Profil",
+    "navbar_signin": "Se connecter",
+    "bookingSummaryCard_confirmation": "C'est confirmé\n",
     "bookingSummaryCard_description": "Votre séjour à l'Artichaut est réservé.\nPréparez-vous pour une immersion sereine en pleine nature.",
     "bookingSummaryCard_nbNight": "{count, plural, =1{1 nuit} other {{count} nuits}}",
     "@bookingSummaryCard_nbNight": {
@@ -81,5 +58,36 @@
     "bookingSummaryCard_leaving": "Départ",
     "bookingSummaryCard_calendar": "Ajouter au calendrier",
     "bookingSummaryCard_home": "Retourner à l'accueil ➞",
-    "bookingSummaryCard_myBookings": "Voir mes réservations"
+    "bookingSummaryCard_myBookings": "Voir mes réservations",
+    "dateRangePicker_chooseDate": "Sélectionnez vos dates",
+    "dateRangePicker_month": "Mois",
+    "dateRangePicker_validate": "Valider",
+    "login_signin": "Se connecter",
+    "login_passwordHint": "Mot de passe",
+    "login_connexionOK": "Connexion valide",
+    "login_connexion": "Connexion",
+    "login_logout": "Se déconnecter",
+    "roomPreviewCard_details": "Détails",
+    "roomPreviewCard_bookingBtn": "Réserver",
+    "signup_title": "Créer un compte",
+    "signup_email": "Email",
+    "signup_password": "Mot de passe",
+    "signup_firstName": "Prénom",
+    "signup_lastName": "Nom",
+    "signup_phone": "Téléphone",
+    "signup_pseudo": "Pseudo",
+    "signup_streetNumber": "Numéro",
+    "signup_streetType": "Type (rue, av...)",
+    "signup_streetName": "Nom de rue",
+    "signup_addressComplement": "Complément d'adresse (optionnel)",
+    "signup_zipCode": "Code postal",
+    "signup_city": "Ville",
+    "signup_success": "Compte créé avec succès",
+    "signup_errorUnexpected": "Erreur inattendue",
+    "signup_submit": "Créer un compte",
+    
+  "staySearchCard_stay": "Séjour",
+  "staySearchCard_selectDates": "Sélectionner les dates",
+  "staySearchCard_travelers": "Voyageurs",
+  "staySearchCard_searchRoom": "Rechercher une chambre"
 }

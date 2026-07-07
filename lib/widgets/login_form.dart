@@ -1,3 +1,4 @@
+import 'package:artichette/l10n/app_localizations.dart';
 import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
 
@@ -29,12 +30,12 @@ class _LoginFormState  extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final authRepository = context.read<AuthRepository>();
-
+     final l10n = AppLocalizations.of(context)!;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "Se connecter",
+          l10n.login_signin,
           style: AppTextTheme.textTheme.displayMedium,
         ),
 
@@ -57,7 +58,7 @@ class _LoginFormState  extends State<LoginForm> {
           enableSuggestions: false,
           keyboardType: TextInputType.visiblePassword,
           decoration: InputDecoration(
-            hintText: "Mot de passe",
+            hintText: l10n.login_passwordHint,
             suffixIcon: IconButton(
               icon: Icon(
                 _obscurePassword ? Icons.visibility : Icons.visibility_off,
@@ -85,8 +86,7 @@ class _LoginFormState  extends State<LoginForm> {
                 if (!mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text(
-                      "Connexion valide",
+                    content: Text(l10n.login_connexionOK,
                     ),
                   ),
                 );
@@ -101,7 +101,7 @@ class _LoginFormState  extends State<LoginForm> {
               }
             },
             compact: false,
-            child: const Text("Connexion"),
+            child:  Text(l10n.login_connexion),
           ),
         ),
 
@@ -111,7 +111,7 @@ class _LoginFormState  extends State<LoginForm> {
           onPressed: () {
             authRepository.logout();
           },
-          child: const Text("Se déconnecter"),
+          child:  Text(l10n.login_logout),
         ),
       ],
     );

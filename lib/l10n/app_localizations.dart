@@ -386,7 +386,7 @@ abstract class AppLocalizations {
   /// No description provided for @bookingSummaryCard_leaving.
   ///
   /// In en, this message translates to:
-  /// **'Leaving'**
+  /// **'Departure'**
   String get bookingSummaryCard_leaving;
 
   /// No description provided for @bookingSummaryCard_calendar.
@@ -398,14 +398,194 @@ abstract class AppLocalizations {
   /// No description provided for @bookingSummaryCard_home.
   ///
   /// In en, this message translates to:
-  /// **'Back home ➞'**
+  /// **'Back to home ➞'**
   String get bookingSummaryCard_home;
 
   /// No description provided for @bookingSummaryCard_myBookings.
   ///
   /// In en, this message translates to:
-  /// **'My bookings'**
+  /// **'View my bookings'**
   String get bookingSummaryCard_myBookings;
+
+  /// No description provided for @dateRangePicker_chooseDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your dates'**
+  String get dateRangePicker_chooseDate;
+
+  /// No description provided for @dateRangePicker_month.
+  ///
+  /// In en, this message translates to:
+  /// **'Month'**
+  String get dateRangePicker_month;
+
+  /// No description provided for @dateRangePicker_validate.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get dateRangePicker_validate;
+
+  /// No description provided for @login_signin.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get login_signin;
+
+  /// No description provided for @login_passwordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get login_passwordHint;
+
+  /// No description provided for @login_connexionOK.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection OK'**
+  String get login_connexionOK;
+
+  /// No description provided for @login_connexion.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get login_connexion;
+
+  /// No description provided for @login_logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get login_logout;
+
+  /// No description provided for @roomPreviewCard_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get roomPreviewCard_details;
+
+  /// No description provided for @roomPreviewCard_bookingBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Book'**
+  String get roomPreviewCard_bookingBtn;
+
+  /// No description provided for @signup_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account'**
+  String get signup_title;
+
+  /// No description provided for @signup_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get signup_email;
+
+  /// No description provided for @signup_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get signup_password;
+
+  /// No description provided for @signup_firstName.
+  ///
+  /// In en, this message translates to:
+  /// **'First name'**
+  String get signup_firstName;
+
+  /// No description provided for @signup_lastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Last name'**
+  String get signup_lastName;
+
+  /// No description provided for @signup_phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get signup_phone;
+
+  /// No description provided for @signup_pseudo.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get signup_pseudo;
+
+  /// No description provided for @signup_streetNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Number'**
+  String get signup_streetNumber;
+
+  /// No description provided for @signup_streetType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type (street, avenue...)'**
+  String get signup_streetType;
+
+  /// No description provided for @signup_streetName.
+  ///
+  /// In en, this message translates to:
+  /// **'Street name'**
+  String get signup_streetName;
+
+  /// No description provided for @signup_addressComplement.
+  ///
+  /// In en, this message translates to:
+  /// **'Address complement (optional)'**
+  String get signup_addressComplement;
+
+  /// No description provided for @signup_zipCode.
+  ///
+  /// In en, this message translates to:
+  /// **'ZIP code'**
+  String get signup_zipCode;
+
+  /// No description provided for @signup_city.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get signup_city;
+
+  /// No description provided for @signup_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created successfully'**
+  String get signup_success;
+
+  /// No description provided for @signup_errorUnexpected.
+  ///
+  /// In en, this message translates to:
+  /// **'Unexpected error'**
+  String get signup_errorUnexpected;
+
+  /// No description provided for @signup_submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account'**
+  String get signup_submit;
+
+  /// No description provided for @staySearchCard_stay.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay'**
+  String get staySearchCard_stay;
+
+  /// No description provided for @staySearchCard_selectDates.
+  ///
+  /// In en, this message translates to:
+  /// **'Select dates'**
+  String get staySearchCard_selectDates;
+
+  /// No description provided for @staySearchCard_travelers.
+  ///
+  /// In en, this message translates to:
+  /// **'Travelers'**
+  String get staySearchCard_travelers;
+
+  /// No description provided for @staySearchCard_searchRoom.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for a room'**
+  String get staySearchCard_searchRoom;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
