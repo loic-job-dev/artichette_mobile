@@ -1,5 +1,6 @@
 import 'package:artichette/widgets/login_form.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../view_models/booking_view_model.dart';
@@ -46,8 +47,14 @@ class HomeScreen extends StatelessWidget {
                   roomType: room,
                   onBook: (room) {
                     vm.createBooking(room);
+                    //Future navigation
+                    //context.go('/booking');
                   },
                   onDetails: () {},
+                  //TODO : Add room details page
+                  // onDetails: (room) {
+                  //   context.go('/roomdetails');
+                  // },
                 ),
               ),
             ),
