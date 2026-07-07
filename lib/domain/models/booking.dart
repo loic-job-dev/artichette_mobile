@@ -3,7 +3,7 @@ import 'package:artichette/domain/models/reservation_option.dart';
 import 'package:artichette/domain/models/room.dart';
 import 'package:artichette/domain/models/room_type.dart';
 
-import 'client.dart';
+import 'user.dart';
 
 class Booking {
   final String id;
@@ -22,7 +22,7 @@ class Booking {
 
   final String status;
 
-  final Client user;
+  final User user;
 
   final List<Room>? rooms;
   final Set<RoomType> roomTypes;
@@ -81,7 +81,7 @@ class Booking {
       childrenNumber: json['childrenNumber'],
       roomUnitPrice: json['roomUnitPrice'],
       status: json['status'],
-      user: Client.fromJson(json['user']),
+      user: User.fromJson(json['user']),
       rooms: (json['rooms'] as List?)
           ?.whereType<Map<String, dynamic>>()
           .map(Room.fromJson)

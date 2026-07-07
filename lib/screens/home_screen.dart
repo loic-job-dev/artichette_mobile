@@ -8,7 +8,7 @@ import 'package:artichette/domain/models/room_type.dart';
 import 'package:artichette/data/mocks/roomtype_mock..dart';
 
 import '../domain/models/booking.dart';
-import '../domain/models/client.dart';
+import '../domain/models/user.dart';
 
 import '../view_models/booking_view_model.dart';
 import '../widgets/room_preview_card.dart';
