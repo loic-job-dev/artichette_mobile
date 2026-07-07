@@ -121,7 +121,7 @@ class _StaySearchCardState extends State<StaySearchCard> {
                 }
                     : null,
                 compact: false,
-                child: const Text("Rechercher"),
+                child: const Text("Rechercher une chambre"),
               ),
             ),
           ],

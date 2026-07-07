@@ -63,7 +63,7 @@ class Booking {
           .inDays;
 
   String get totalStayPriceWithoutOptionsDisplay =>
-      "${((roomUnitPrice * numberOfNights)/100).toStringAsFixed(2)} €";
+      "${((roomUnitPrice * numberOfNights)).toStringAsFixed(2)} €";
 
   factory Booking.fromJson(Map<String, dynamic> json) {
     return Booking(

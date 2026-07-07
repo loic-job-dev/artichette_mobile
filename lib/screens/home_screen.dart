@@ -1,7 +1,14 @@
-import 'package:artichette/widgets/login_form.dart';
+import 'package:artichette/data/mocks/booking_mock.dart';
+import 'package:artichette/widgets/booking_summary_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:artichette/domain/models/address.dart';
+import 'package:artichette/domain/models/room_type.dart';
+import 'package:artichette/data/mocks/roomtype_mock..dart';
+
+import '../domain/models/booking.dart';
+import '../domain/models/client.dart';
 
 import '../view_models/booking_view_model.dart';
 import '../widgets/room_preview_card.dart';
@@ -13,7 +20,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<BookingViewModel>();
+    final bookingVM = context.watch<BookingViewModel>();
 
     return Scaffold(
       body: ListView(
@@ -21,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           StaySearchCard(
             onSearch: (start, end, adults, children) {
-              vm.searchRooms(
+              bookingVM.searchRooms(
                 start: start,
                 end: end,
                 adults: adults,
@@ -30,22 +37,20 @@ class HomeScreen extends StatelessWidget {
             },
           ),
 
-          const SizedBox(height: 16),
+      //     const SizedBox(height: 16),
 
-          if (vm.loading)
+          if (bookingVM.loading)
             const Center(
               child: CircularProgressIndicator(),
             )
           else
-            ...vm.rooms.map(
+            ...bookingVM.rooms.map(
                   (room) => Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: RoomPreviewCard(
                   roomType: room,
                   onBook: (room) {
-                    vm.createBooking(room);
-                    //Future navigation
-                    //context.go('/booking');
+                    bookingVM.createBooking(room);
                   },
                   onDetails: () {},
                   //TODO : Add room details page
