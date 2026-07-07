@@ -10,10 +10,10 @@ class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
 
   @override
-  State<LoginForm> createState() => _SignupFormState();
+  State<LoginForm> createState() => _LoginFormState ();
 }
 
-class _SignupFormState extends State<LoginForm> {
+class _LoginFormState  extends State<LoginForm> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
 
@@ -79,8 +79,8 @@ class _SignupFormState extends State<LoginForm> {
             onPressed: () async {
               try {
                 await authRepository.login(
-                  emailController.text,
-                  passwordController.text,
+                   email: emailController.text,
+                   password: passwordController.text,
                 );
                 if (!mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -104,20 +104,6 @@ class _SignupFormState extends State<LoginForm> {
             child: const Text("Connexion"),
           ),
         ),
-
-        const SizedBox(height: 12),
-
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          child:AppOutlinedButton(
-            onPressed: () {
-              // TODO: create account logic
-            },
-            compact: false,
-            child: const Text("Créer un compte"),
-          ),
-        ),
-
 
         const SizedBox(height: 12),
 

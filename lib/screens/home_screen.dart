@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../view_models/booking_view_model.dart';
 import '../widgets/room_preview_card.dart';
 import '../widgets/stay_search_card.dart';
+import '../screens/auth_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -46,6 +48,10 @@ class HomeScreen extends StatelessWidget {
                     bookingVM.createBooking(room);
                   },
                   onDetails: () {},
+                  //TODO : Add room details page
+                  // onDetails: (room) {
+                  //   context.go('/roomdetails');
+                  // },
                 ),
               ),
             ),
