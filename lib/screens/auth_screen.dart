@@ -47,7 +47,7 @@ class _AuthScreenState extends State<AuthScreen> {
           const SizedBox(height: 24),
 
           AnimatedSwitcher(
-            duration: const Duration(milliseconds: 250),
+            duration: const Duration(milliseconds: 0),
             transitionBuilder: (child, animation) {
               return FadeTransition(opacity: animation, child: child);
             },
