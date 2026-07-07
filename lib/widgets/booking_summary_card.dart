@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:artichette/widgets/outlined_button.dart';
 import 'package:artichette/widgets/filled_button.dart';
+import 'package:artichette/data/mocks/booking_mock.dart';
 
 import '../domain/models/booking.dart';
 
@@ -18,12 +19,13 @@ class BookingSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final mockBooking = BookingMock.getMockBooking();
     final startBookedDate = DateFormat(
       'dd-MM-yyyy',
-    ).format(booking.startBookedDate);
+    ).format(mockBooking.startBookedDate);
     final endBookedDate = DateFormat(
       'dd-MM-yyyy',
-    ).format(booking.endBookedDate);
+    ).format(mockBooking.endBookedDate);
 
     return SingleChildScrollView(
       child: Card(
@@ -66,7 +68,7 @@ class BookingSummaryCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
-                        "Réservation n° ${booking.id}",
+                        "Réservation n° ${mockBooking.id}",
                         style: theme.textTheme.labelSmall?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -100,11 +102,11 @@ class BookingSummaryCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                booking.roomTypes.first.type,
+                                mockBooking.roomTypes.first.type,
                                 style: theme.textTheme.titleMedium,
                               ),
                               Text(
-                                "${booking.numberOfNights} nuit${booking.numberOfNights > 1 ? 's' : ''}",
+                                "${mockBooking.numberOfNights} nuit${mockBooking.numberOfNights > 1 ? 's' : ''}",
                                 style: theme.textTheme.headlineMedium,
                               ),
                             ],
@@ -151,7 +153,7 @@ class BookingSummaryCard extends StatelessWidget {
                                 style: theme.textTheme.labelLarge,
                               ),
                               Text(
-                                booking.totalStayPriceWithoutOptionsDisplay,
+                                mockBooking.totalStayPriceWithoutOptionsDisplay,
                                 style: theme.textTheme.labelLarge,
                               ),
                             ],
