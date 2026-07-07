@@ -47,6 +47,7 @@ dependencies:
   auth_artichette:
     path: auth_artichette
   provider: ^6.1.5
+  go_router: ^17.3.0
 
 dev_dependencies:
   flutter_test:
