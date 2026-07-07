@@ -28,7 +28,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final _zipCodeController = TextEditingController();
   final _cityController = TextEditingController();
 
-  bool editPictureUrl = false;
+  final _passwordController = TextEditingController();
+
+  bool _editPictureUrl = false;
+  bool _obscurePassword = true;
 
   @override
   void initState() {
@@ -75,6 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _addressComplementController.dispose();
     _zipCodeController.dispose();
     _cityController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -110,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             spacing: 20,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (editPictureUrl) ...[
+              if (_editPictureUrl) ...[
                 Row(
                   spacing: 10,
                   children: [
@@ -126,49 +130,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     IconButton(
                       onPressed: () {
-                        setState(() => editPictureUrl = !editPictureUrl);
+                        setState(() => _editPictureUrl = !_editPictureUrl);
                       },
                       icon: Icon(Icons.check),
                     ),
                   ],
                 ),
               ],
-              Stack(
-                children: [
-                  Center(
-                    child: CircleAvatar(
-                      radius: 70,
-                      backgroundColor: Theme.of(context).colorScheme.outline,
-                      child: CircleAvatar(
-                        radius: 68,
-                        backgroundImage: NetworkImage(
-                          _pictureUrlController.text,
+
+              Center(
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 70,
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        child: CircleAvatar(
+                          radius: 67,
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.outline,
+                          backgroundImage: NetworkImage(
+                            _pictureUrlController.text,
+                          ),
                         ),
                       ),
-                    ),
+                      if (!_editPictureUrl) ...[
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() => _editPictureUrl = !_editPictureUrl);
+                            },
+                            icon: Icon(Icons.edit),
+                          ),
+                        ),
+                      ],
+                    ],
                   ),
-
-                  if (!editPictureUrl) ...[
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: IconButton(
-                        onPressed: () {
-                          setState(() => editPictureUrl = !editPictureUrl);
-                        },
-                        icon: Icon(Icons.camera_alt),
-                      ),
-                    ),
-                  ],
-                ],
+                ),
               ),
+
               Row(
                 spacing: 16,
                 children: [
                   Expanded(
                     child: TextFormField(
                       controller: _firstNameController,
-                      decoration: InputDecoration(labelText: "Prénom"),
+                      decoration: InputDecoration(labelText: "Prénom *"),
                       keyboardType: TextInputType.name,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -186,7 +198,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _lastNameController,
-                      decoration: InputDecoration(labelText: "Nom"),
+                      decoration: InputDecoration(labelText: "Nom *"),
                       keyboardType: TextInputType.name,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -215,12 +227,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               TextFormField(
                 controller: _mailController,
-                decoration: InputDecoration(labelText: "Email"),
+                decoration: InputDecoration(labelText: "Email *"),
                 readOnly: true,
               ),
               TextFormField(
                 controller: _phoneNumberController,
-                decoration: InputDecoration(labelText: "Numéro de téléphone"),
+                decoration: InputDecoration(labelText: "Numéro de téléphone *"),
                 keyboardType: TextInputType.phone,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -238,7 +250,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _streetNumberController,
-                      decoration: InputDecoration(labelText: "N° Rue"),
+                      decoration: InputDecoration(labelText: "N° Rue *"),
                       keyboardType: TextInputType.number,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -262,7 +274,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _streetTypeController,
-                      decoration: InputDecoration(labelText: "Type de voie"),
+                      decoration: InputDecoration(labelText: "Type de voie *"),
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -281,7 +293,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               TextFormField(
                 controller: _streetNameController,
-                decoration: InputDecoration(labelText: "Nom de la voie"),
+                decoration: InputDecoration(labelText: "Nom de la voie *"),
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -313,7 +325,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _zipCodeController,
-                      decoration: InputDecoration(labelText: "Code Postal"),
+                      decoration: InputDecoration(labelText: "Code Postal *"),
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -331,14 +343,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _cityController,
-                      decoration: InputDecoration(labelText: "Ville"),
+                      decoration: InputDecoration(labelText: "Ville *"),
                       keyboardType: TextInputType.name,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Veuillez saisir une ville.";
                         }
 
-                        if (value.length > 10) {
+                        if (value.length > 50) {
                           return "Le nom de la ville est trop long (50 caractères maximum).";
                         }
 
@@ -347,6 +359,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ],
+              ),
+              TextFormField(
+                controller: _passwordController,
+                obscureText: _obscurePassword,
+                autocorrect: false,
+                enableSuggestions: false,
+                keyboardType: TextInputType.visiblePassword,
+                decoration: InputDecoration(
+                  labelText: "Mot de passe *",
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty){
+                    return "Veuillez saisir votre mot de passe";
+                  }
+                  return null;
+                },
               ),
               SizedBox(
                 width: double.infinity,
