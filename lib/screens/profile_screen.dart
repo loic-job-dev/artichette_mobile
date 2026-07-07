@@ -1,6 +1,7 @@
 import 'package:artichette/domain/models/address.dart';
 import 'package:artichette/domain/models/client.dart';
 import 'package:flutter/material.dart';
+import '../l10n/app_localizations.dart';
 
 class ProfileScreen extends StatefulWidget {
   final Client client;
@@ -105,6 +106,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: Form(
         key: _formKey,
@@ -123,7 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         controller: _pictureUrlController,
                         onChanged: (_) => setState(() {}),
                         decoration: InputDecoration(
-                          labelText: 'Lien vers votre photo',
+                          labelText: l10n.profile_pictureLinkLabel,
                         ),
                         keyboardType: TextInputType.url,
                       ),
@@ -163,7 +166,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           right: 0,
                           child: IconButton(
                             onPressed: () {
-                              setState(() => _editPictureUrl = !_editPictureUrl);
+                              setState(
+                                () => _editPictureUrl = !_editPictureUrl,
+                              );
                             },
                             icon: Icon(Icons.edit),
                           ),
@@ -180,15 +185,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _firstNameController,
-                      decoration: InputDecoration(labelText: "Prénom *"),
+                      decoration: InputDecoration(labelText: l10n.profile_firstNameLabel),
                       keyboardType: TextInputType.name,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Veuillez saisir un prénom";
+                          return l10n.profile_firstNameRequired;
                         }
 
                         if (value.length > 50) {
-                          return "Le prénom est trop long (50 caractères maximum).";
+                          return l10n.profile_firstNameTooLong;
                         }
 
                         return null;
@@ -198,15 +203,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _lastNameController,
-                      decoration: InputDecoration(labelText: "Nom *"),
+                      decoration: InputDecoration(labelText: l10n.profile_lastNameLabel),
                       keyboardType: TextInputType.name,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Veuillez saisir un nom.";
+                          return l10n.profile_lastNameRequired;
                         }
 
                         if (value.length > 50) {
-                          return "Le nom est trop long (50 caractères maximum).";
+                          return l10n.profile_lastNameTooLong;
                         }
                         return null;
                       },
@@ -216,30 +221,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               TextFormField(
                 controller: _pseudoController,
-                decoration: InputDecoration(labelText: "Pseudo"),
+                decoration: InputDecoration(labelText: l10n.profile_pseudoLabel),
                 keyboardType: TextInputType.name,
                 validator: (value) {
                   if (value != null && value.length > 50) {
-                    return "Le pseudo est trop long (50 caractères maximum).";
+                    return l10n.profile_pseudoTooLong;
                   }
                   return null;
                 },
               ),
               TextFormField(
                 controller: _mailController,
-                decoration: InputDecoration(labelText: "Email *"),
+                decoration: InputDecoration(labelText: l10n.profile_emailLabel),
                 readOnly: true,
               ),
               TextFormField(
                 controller: _phoneNumberController,
-                decoration: InputDecoration(labelText: "Numéro de téléphone *"),
+                decoration: InputDecoration(labelText: l10n.profile_phoneNumberLabel),
                 keyboardType: TextInputType.phone,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return "Veuillez saisir un numéro de téléphone.";
+                    return l10n.profile_phoneNumberRequired;
                   }
                   if (value.length > 15) {
-                    return "Le numéro de téléphone est trop long (15 caractères maximum).";
+                    return l10n.profile_phoneNumberTooLong;
                   }
                   return null;
                 },
@@ -250,21 +255,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _streetNumberController,
-                      decoration: InputDecoration(labelText: "N° Rue *"),
+                      decoration: InputDecoration(labelText: l10n.profile_streetNumberLabel),
                       keyboardType: TextInputType.number,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Veuillez saisir un numéro de rue.";
+                          return l10n.profile_streetNumberRequired;
                         }
 
                         final number = int.tryParse(value);
 
                         if (number == null) {
-                          return "Le numéro doit être un entier";
+                          return l10n.profile_streetNumberInvalid;
                         }
 
                         if (number < 1) {
-                          return "Le numéro doit être supérieur à 0";
+                          return l10n.profile_streetNumberPositive;
                         }
 
                         return null;
@@ -274,15 +279,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _streetTypeController,
-                      decoration: InputDecoration(labelText: "Type de voie *"),
+                      decoration: InputDecoration(labelText: l10n.profile_streetTypeLabel),
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Veuillez saisir un type de voie.";
+                          return l10n.profile_streetTypeRequired;
                         }
 
                         if (value.length > 10) {
-                          return "Le type de voie est trop long (10 caractères maximum).";
+                          return l10n.profile_streetTypeTooLong;
                         }
 
                         return null;
@@ -293,15 +298,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               TextFormField(
                 controller: _streetNameController,
-                decoration: InputDecoration(labelText: "Nom de la voie *"),
+                decoration: InputDecoration(labelText: l10n.profile_streetNameLabel),
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return "Veuillez saisir un nom de voie.";
+                    return l10n.profile_streetNameRequired;
                   }
 
                   if (value.length > 50) {
-                    return "Le nom de la voie est trop long (50 caractères maximum).";
+                    return l10n.profile_streetNameTooLong;
                   }
 
                   return null;
@@ -309,11 +314,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               TextFormField(
                 controller: _addressComplementController,
-                decoration: InputDecoration(labelText: "Complément d'adresse"),
+                decoration: InputDecoration(labelText: l10n.profile_addressComplementLabel),
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   if (value != null && value.length > 50) {
-                    return "Le complément d'adresse est trop long (50 caractères maximum).";
+                    return l10n.profile_addressComplementTooLong;
                   }
 
                   return null;
@@ -325,15 +330,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _zipCodeController,
-                      decoration: InputDecoration(labelText: "Code Postal *"),
+                      decoration: InputDecoration(labelText: l10n.profile_zipCodeLabel),
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Veuillez saisir un code postal.";
+                          return l10n.profile_zipCodeRequired;
                         }
 
                         if (value.length > 10) {
-                          return "Le code postal est trop long (10 caractères maximum).";
+                          return l10n.profile_zipCodeTooLong;
                         }
 
                         return null;
@@ -343,15 +348,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _cityController,
-                      decoration: InputDecoration(labelText: "Ville *"),
+                      decoration: InputDecoration(labelText: l10n.profile_cityLabel),
                       keyboardType: TextInputType.name,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Veuillez saisir une ville.";
+                          return l10n.profile_cityRequired;
                         }
 
                         if (value.length > 50) {
-                          return "Le nom de la ville est trop long (50 caractères maximum).";
+                          return l10n.profile_cityTooLong;
                         }
 
                         return null;
@@ -367,7 +372,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 enableSuggestions: false,
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
-                  labelText: "Mot de passe *",
+                  labelText: l10n.profile_passwordLabel,
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword
@@ -382,8 +387,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 validator: (value) {
-                  if (value == null || value.isEmpty){
-                    return "Veuillez saisir votre mot de passe";
+                  if (value == null || value.isEmpty) {
+                    return l10n.profile_passwordRequired;
                   }
                   return null;
                 },
@@ -402,10 +407,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Implémentation en cours'),
+                        content: Text(l10n.profile_implementationInProgressMessage),
                         duration: Duration(seconds: 2),
                         action: SnackBarAction(
-                          label: "C'est compris, je vais faire une sieste",
+                          label: l10n.profile_saveChangesButton,
                           onPressed: () {
                             // TODO: implémenter l'appel API
                           },
@@ -414,7 +419,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     );
                   },
                   icon: Icon(Icons.save_outlined),
-                  label: Text('Enregistrer les modifications'),
+                  label: Text(l10n.profile_saveSnackBarAction),
                 ),
               ),
               SizedBox(
@@ -423,10 +428,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onPressed: () => {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Implémentation en cours'),
+                        content: Text(l10n.profile_implementationInProgressMessage),
                         duration: Duration(seconds: 2),
                         action: SnackBarAction(
-                          label: "C'est compris, je vais prendre un thé.",
+                          label: l10n.profile_logoutButton,
                           onPressed: () {
                             // TODO: implémenter le logout
                           },
@@ -435,7 +440,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   },
                   icon: Icon(Icons.logout),
-                  label: Text('Se déconnecter'),
+                  label: Text(l10n.profile_logoutSnackBarAction),
                 ),
               ),
             ],

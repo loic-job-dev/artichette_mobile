@@ -1,0 +1,55 @@
+{
+  "profile_pictureLinkLabel": "Picture URL",
+
+  "profile_firstNameLabel": "First name *",
+  "profile_firstNameRequired": "Please enter a first name.",
+  "profile_firstNameTooLong": "First name is too long (50 characters maximum).",
+
+  "profile_lastNameLabel": "Last name *",
+  "profile_lastNameRequired": "Please enter a last name.",
+  "profile_lastNameTooLong": "Last name is too long (50 characters maximum).",
+
+  "profile_pseudoLabel": "Username",
+  "profile_pseudoTooLong": "Username is too long (50 characters maximum).",
+
+  "profile_emailLabel": "Email *",
+
+  "profile_phoneNumberLabel": "Phone number *",
+  "profile_phoneNumberRequired": "Please enter a phone number.",
+  "profile_phoneNumberTooLong": "Phone number is too long (15 characters maximum).",
+
+  "profile_streetNumberLabel": "Street number *",
+  "profile_streetNumberRequired": "Please enter a street number.",
+  "profile_streetNumberInvalid": "Street number must be an integer.",
+  "profile_streetNumberPositive": "Street number must be greater than 0.",
+
+  "profile_streetTypeLabel": "Street type *",
+  "profile_streetTypeRequired": "Please enter a street type.",
+  "profile_streetTypeTooLong": "Street type is too long (10 characters maximum).",
+
+  "profile_streetNameLabel": "Street name *",
+  "profile_streetNameRequired": "Please enter a street name.",
+  "profile_streetNameTooLong": "Street name is too long (50 characters maximum).",
+
+  "profile_addressComplementLabel": "Address complement",
+  "profile_addressComplementTooLong": "Address complement is too long (50 characters maximum).",
+
+  "profile_zipCodeLabel": "ZIP code *",
+  "profile_zipCodeRequired": "Please enter a ZIP code.",
+  "profile_zipCodeTooLong": "ZIP code is too long (10 characters maximum).",
+
+  "profile_cityLabel": "City *",
+  "profile_cityRequired": "Please enter a city.",
+  "profile_cityTooLong": "City name is too long (50 characters maximum).",
+
+  "profile_passwordLabel": "Password *",
+  "profile_passwordRequired": "Please enter your password.",
+
+  "profile_saveChangesButton": "Save changes",
+  "profile_logoutButton": "Log out",
+
+  "profile_implementationInProgressMessage": "Implementation in progress",
+
+  "profile_saveSnackBarAction": "Got it, I'll take a nap.",
+  "profile_logoutSnackBarAction": "Got it, I'll have some tea."
+}

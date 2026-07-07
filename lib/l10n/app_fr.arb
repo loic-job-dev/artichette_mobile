@@ -1,0 +1,55 @@
+{
+  "profile_pictureLinkLabel": "Lien vers votre photo",
+
+  "profile_firstNameLabel": "Prénom *",
+  "profile_firstNameRequired": "Veuillez saisir un prénom.",
+  "profile_firstNameTooLong": "Le prénom est trop long (50 caractères maximum).",
+
+  "profile_lastNameLabel": "Nom *",
+  "profile_lastNameRequired": "Veuillez saisir un nom.",
+  "profile_lastNameTooLong": "Le nom est trop long (50 caractères maximum).",
+
+  "profile_pseudoLabel": "Pseudo",
+  "profile_pseudoTooLong": "Le pseudo est trop long (50 caractères maximum).",
+
+  "profile_emailLabel": "Email *",
+
+  "profile_phoneNumberLabel": "Numéro de téléphone *",
+  "profile_phoneNumberRequired": "Veuillez saisir un numéro de téléphone.",
+  "profile_phoneNumberTooLong": "Le numéro de téléphone est trop long (15 caractères maximum).",
+
+  "profile_streetNumberLabel": "N° Rue *",
+  "profile_streetNumberRequired": "Veuillez saisir un numéro de rue.",
+  "profile_streetNumberInvalid": "Le numéro doit être un entier.",
+  "profile_streetNumberPositive": "Le numéro doit être supérieur à 0.",
+
+  "profile_streetTypeLabel": "Type de voie *",
+  "profile_streetTypeRequired": "Veuillez saisir un type de voie.",
+  "profile_streetTypeTooLong": "Le type de voie est trop long (10 caractères maximum).",
+
+  "profile_streetNameLabel": "Nom de la voie *",
+  "profile_streetNameRequired": "Veuillez saisir un nom de voie.",
+  "profile_streetNameTooLong": "Le nom de la voie est trop long (50 caractères maximum).",
+
+  "profile_addressComplementLabel": "Complément d'adresse",
+  "profile_addressComplementTooLong": "Le complément d'adresse est trop long (50 caractères maximum).",
+
+  "profile_zipCodeLabel": "Code postal *",
+  "profile_zipCodeRequired": "Veuillez saisir un code postal.",
+  "profile_zipCodeTooLong": "Le code postal est trop long (10 caractères maximum).",
+
+  "profile_cityLabel": "Ville *",
+  "profile_cityRequired": "Veuillez saisir une ville.",
+  "profile_cityTooLong": "Le nom de la ville est trop long (50 caractères maximum).",
+
+  "profile_passwordLabel": "Mot de passe *",
+  "profile_passwordRequired": "Veuillez saisir votre mot de passe.",
+
+  "profile_saveChangesButton": "Enregistrer les modifications",
+  "profile_logoutButton": "Se déconnecter",
+
+  "profile_implementationInProgressMessage": "Implémentation en cours",
+
+  "profile_saveSnackBarAction": "C'est compris, je vais faire une sieste.",
+  "profile_logoutSnackBarAction": "C'est compris, je vais prendre un thé."
+}
