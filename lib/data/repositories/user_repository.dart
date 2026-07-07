@@ -12,10 +12,10 @@ class UserRepository {
   }
 
   Future<User> updateMe({
-    required User client,
+    required User user,
     required String password,
   }) async {
-    final data = await api.updateMe(client.toUpdateRequest(password: password));
+    final data = await api.updateMe(user.toUpdateRequest(password: password));
     return User.fromJson(data);
   }
 }
