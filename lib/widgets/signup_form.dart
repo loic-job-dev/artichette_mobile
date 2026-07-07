@@ -215,16 +215,6 @@ class _SignupFormState extends State<SignupForm> {
 
           const SizedBox(height: 12),
 
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
-            child: AppOutlinedButton(
-              onPressed: () {
-                // TODO : create navigation between screens
-              },
-              compact: false,
-              child: const Text("Accueil"),
-            ),
-          ),
         ],
       ),
     );

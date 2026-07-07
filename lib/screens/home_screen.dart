@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../view_models/booking_view_model.dart';
 import '../widgets/room_preview_card.dart';
 import '../widgets/stay_search_card.dart';
+import '../screens/auth_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,7 +21,6 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          LoginForm(),
           StaySearchCard(
             onSearch: (start, end, adults, children) {
               vm.searchRooms(
