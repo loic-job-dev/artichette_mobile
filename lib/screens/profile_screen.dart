@@ -1,17 +1,62 @@
 import 'package:artichette/domain/models/address.dart';
-import 'package:artichette/domain/models/client.dart';
+import 'package:artichette/domain/models/user.dart';
+import 'package:artichette/view_models/user_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
-  final Client client;
-
-  const ProfileScreen({super.key, required this.client});
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  bool _initialized = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (_initialized) {
+      return;
+    }
+
+    final user = context.read<UserViewModel>().user;
+
+    if (user == null) {
+      return;
+    }
+
+    _populateControllers(user);
+    _initialized = true;
+  }
+
+  void _populateControllers(User user) {
+    final Address? address = user.addresses.isNotEmpty
+        ? user.addresses.first
+        : null;
+
+    _firstNameController.text = user.firstName;
+    _lastNameController.text = user.lastName;
+    _pseudoController.text = user.pseudo ?? "";
+    _phoneNumberController.text = user.phoneNumber;
+    _pictureUrlController.text =
+        user.media ??
+        "https://api.dicebear.com/9.x/adventurer/png?seed=${user.firstName}";
+
+    _mailController.text = user.email;
+
+    if (address != null) {
+      _streetNumberController.text = address.streetNumber.toString();
+      _streetTypeController.text = address.streetType;
+      _streetNameController.text = address.streetName;
+      _addressComplementController.text = address.addressComplement ?? "";
+      _zipCodeController.text = address.zipCode;
+      _cityController.text = address.city;
+    }
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   final _firstNameController = TextEditingController();
@@ -36,32 +81,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-
-    final client = widget.client;
-    final Address? address = client.addresses.isNotEmpty
-        ? client.addresses.first
-        : null;
-
-    _firstNameController.text = client.firstName;
-    _lastNameController.text = client.lastName;
-    _pseudoController.text = client.pseudo ?? "";
-    _phoneNumberController.text = client.phoneNumber;
-
-    //TODO : récupérer l'image
-    _pictureUrlController.text =
-        "https://api.dicebear.com/9.x/adventurer/png?seed=${client.firstName}";
-
-    //TODO : récupérér le mail
-    _mailController.text = "${client.firstName}@${client.lastName}.com";
-
-    if (address != null) {
-      _streetNumberController.text = address.streetNumber.toString();
-      _streetTypeController.text = address.streetType;
-      _streetNameController.text = address.streetName;
-      _addressComplementController.text = address.addressComplement ?? "";
-      _zipCodeController.text = address.zipCode;
-      _cityController.text = address.city;
-    }
   }
 
   @override
@@ -82,7 +101,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.dispose();
   }
 
-  Client updatedClient() {
+  User updatedUser() {
     final address = Address(
       streetNumber: int.parse(_streetNumberController.text),
       streetType: _streetTypeController.text,
@@ -94,17 +113,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
       city: _cityController.text,
     );
 
-    return Client(
+    return User(
       firstName: _firstNameController.text,
       lastName: _lastNameController.text,
       phoneNumber: _phoneNumberController.text,
       pseudo: _pseudoController.text.isEmpty ? null : _pseudoController.text,
+      email: _mailController.text,
       addresses: {address},
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final userViewModel = context.watch<UserViewModel>();
+
+    if (userViewModel.user == null) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+
     return Scaffold(
       body: Form(
         key: _formKey,
@@ -163,7 +189,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           right: 0,
                           child: IconButton(
                             onPressed: () {
-                              setState(() => _editPictureUrl = !_editPictureUrl);
+                              setState(
+                                () => _editPictureUrl = !_editPictureUrl,
+                              );
                             },
                             icon: Icon(Icons.edit),
                           ),
@@ -382,7 +410,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 validator: (value) {
-                  if (value == null || value.isEmpty){
+                  if (value == null || value.isEmpty) {
                     return "Veuillez saisir votre mot de passe";
                   }
                   return null;
@@ -396,7 +424,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       return;
                     }
 
-                    final client = updatedClient();
+                    final client = updatedUser();
 
                     print(client);
 
@@ -429,6 +457,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           label: "C'est compris, je vais prendre un thé.",
                           onPressed: () {
                             // TODO: implémenter le logout
+                            // et appeller  await context.read<UserViewModel>().clear();
                           },
                         ),
                       ),

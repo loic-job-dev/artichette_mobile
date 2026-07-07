@@ -1,3 +1,4 @@
+import 'package:artichette/view_models/user_view_model.dart';
 import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
 
@@ -90,6 +91,8 @@ class _LoginFormState  extends State<LoginForm> {
                     ),
                   ),
                 );
+                await context.read<UserViewModel>().load();
+                
                 // Navigation vers l'accueil
               } on ApiException catch (e) {
                 if (!mounted) return;

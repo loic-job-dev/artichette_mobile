@@ -1,4 +1,5 @@
 import 'package:artichette/theme/app_text_theme.dart';
+import 'package:artichette/view_models/user_view_model.dart';
 import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -188,6 +189,8 @@ class _SignupFormState extends State<SignupForm> {
                       content: Text("Compte créé avec succès"),
                     ),
                   );
+                  
+                  await context.read<UserViewModel>().load();
 
                   // Navigation vers login ou home
                 } on ApiException catch (e) {
