@@ -12,7 +12,7 @@ class UserApi {
   }
 
   Future<dynamic> updateMe(UserUpdateRequest request) async {
-    final response = await dio.post('/users/me', data: request.toJson());
+    final response = await dio.put('/users/me', data: request.toJson());
     return response.data;
   }
 }
