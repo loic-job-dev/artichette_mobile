@@ -55,7 +55,7 @@ class RoomType {
           return "Chambre deluxe";
 
           case 'STE':
-            return "Chambre deluxe";
+            return "Suite";
 
         default:
           return "";

@@ -15,6 +15,14 @@ class AuthRepository {
     required this.api,
   });
 
+  bool _isLoggedIn = false;
+
+  bool get isLoggedIn => _isLoggedIn;
+
+  Future<void> initialize() async {
+    _isLoggedIn = await storage.getAccess() != null;
+  }
+
   Future<void> login({required String password, required String email}) async {
     final response = await api.login(
       LoginRequest(
@@ -27,10 +35,12 @@ class AuthRepository {
       response.accessToken,
       response.refreshToken,
     );
+    _isLoggedIn = true;
   }
 
   Future<void> logout() async {
     await storage.clear();
+    _isLoggedIn = false;
   }
 
   Future<void> signUp({
@@ -69,5 +79,6 @@ class AuthRepository {
       response.accessToken,
       response.refreshToken,
     );
+    _isLoggedIn = true;
   }
 }

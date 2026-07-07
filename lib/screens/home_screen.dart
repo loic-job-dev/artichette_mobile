@@ -23,9 +23,6 @@ class HomeScreen extends StatelessWidget {
     final bookingVM = context.watch<BookingViewModel>();
 
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text("Hôtel"),
-      // ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
