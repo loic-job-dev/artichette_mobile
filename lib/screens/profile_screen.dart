@@ -178,8 +178,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           backgroundColor: Theme.of(
                             context,
                           ).colorScheme.outline,
-                          backgroundImage: NetworkImage(
-                            _pictureUrlController.text,
+                          child: ClipOval(
+                            child: Image.network(
+                              _pictureUrlController.text,
+                              width: 134,
+                              height: 134,
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, _, _) {
+                                return const Icon(Icons.person, size: 60);
+                              },
+                            ),
                           ),
                         ),
                       ),
@@ -419,28 +427,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
-                  onPressed: () {
-                    if (!_formKey.currentState!.validate()) {
-                      return;
-                    }
-
-                    final client = updatedUser();
-
-                    print(client);
-
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Implémentation en cours'),
-                        duration: Duration(seconds: 2),
-                        action: SnackBarAction(
-                          label: "C'est compris, je vais faire une sieste",
-                          onPressed: () {
-                            // TODO: implémenter l'appel API
-                          },
-                        ),
-                      ),
-                    );
-                  },
+                  onPressed: _save,
                   icon: Icon(Icons.save_outlined),
                   label: Text('Enregistrer les modifications'),
                 ),
@@ -472,5 +459,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _save() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    try {
+      await context.read<UserViewModel>().update(
+        user: updatedUser(),
+        password: _passwordController.text,
+      );
+
+      if (!context.mounted) return;
+
+      _passwordController.clear();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Profil mis à jour'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    } catch (e) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString()), duration: Duration(minutes: 2),));
+    }
   }
 }
