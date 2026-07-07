@@ -1,7 +1,9 @@
 import 'package:artichette/domain/models/address.dart';
 import 'package:artichette/domain/models/user.dart';
 import 'package:artichette/view_models/user_view_model.dart';
+import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -126,6 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final userViewModel = context.watch<UserViewModel>();
+    final authRepository = context.read<AuthRepository>();
 
     if (userViewModel.user == null) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
@@ -435,20 +438,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton.icon(
-                  onPressed: () => {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Implémentation en cours'),
-                        duration: Duration(seconds: 2),
-                        action: SnackBarAction(
-                          label: "C'est compris, je vais prendre un thé.",
-                          onPressed: () {
-                            // TODO: implémenter le logout
-                            // et appeller  await context.read<UserViewModel>().clear();
-                          },
-                        ),
-                      ),
-                    ),
+                  onPressed: () {
+                    authRepository.logout();
+                    context.read<UserViewModel>().clear();
+                    context.go('/');
                   },
                   icon: Icon(Icons.logout),
                   label: Text('Se déconnecter'),
