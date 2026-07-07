@@ -1,6 +1,7 @@
 import 'package:artichette/view_models/user_view_model.dart';
 import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../theme/app_text_theme.dart';
 import 'filled_button.dart';
@@ -84,16 +85,9 @@ class _LoginFormState  extends State<LoginForm> {
                    password: passwordController.text,
                 );
                 if (!mounted) return;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      "Connexion valide",
-                    ),
-                  ),
-                );
+
                 await context.read<UserViewModel>().load();
-                
-                // Navigation vers l'accueil
+                context.go('/');
               } on ApiException catch (e) {
                 if (!mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -111,8 +105,12 @@ class _LoginFormState  extends State<LoginForm> {
         const SizedBox(height: 12),
 
         TextButton(
-          onPressed: () {
-            authRepository.logout();
+          onPressed: () async {
+            await authRepository.logout();
+            context.read<UserViewModel>().clear();
+
+            if (!mounted) return;
+            context.go('/');
           },
           child: const Text("Se déconnecter"),
         ),

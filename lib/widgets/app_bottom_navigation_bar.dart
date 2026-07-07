@@ -2,7 +2,9 @@ import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../domain/models/user.dart';
 import '../theme/app_color.dart';
+import '../view_models/user_view_model.dart';
 
 class AppBottomNavigationBar extends StatelessWidget {
   const AppBottomNavigationBar({
@@ -17,6 +19,10 @@ class AppBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authRepository = context.read<AuthRepository>();
+
+    final user = context.select<UserViewModel, User?>(
+          (vm) => vm.user,
+    );
 
     return SafeArea(
       top: false,
@@ -41,7 +47,7 @@ class AppBottomNavigationBar extends StatelessWidget {
             ),
             _NavigationItem(
               icon: Icons.person_outline,
-              label: authRepository.isLoggedIn ? "Profil" : "Se connecter",
+              label: user != null ? 'Profil' : 'Se connecter',
               selected: currentIndex == 1,
               onTap: () => onTap(1),
             ),

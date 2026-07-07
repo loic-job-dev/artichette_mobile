@@ -14,8 +14,12 @@ final GoRouter appRouter = GoRouter(
 
         switch (state.uri.path) {
           case '/login':
+          case '/me':
             currentIndex = 1;
             break;
+
+          case '/':
+            currentIndex = 0;
 
           default:
             currentIndex = 0;
