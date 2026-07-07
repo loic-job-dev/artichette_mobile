@@ -15,7 +15,7 @@ class AuthRepository {
     required this.api,
   });
 
-  Future<void> login(String email, String password) async {
+  Future<void> login({required String password, required String email}) async {
     final response = await api.login(
       LoginRequest(
         email: email,

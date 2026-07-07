@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../view_models/booking_view_model.dart';
 import '../widgets/room_preview_card.dart';
 import '../widgets/stay_search_card.dart';
+import '../screens/auth_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
