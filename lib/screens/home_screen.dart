@@ -20,19 +20,18 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<BookingViewModel>();
-    final mockBooking = BookingMock.getMockBooking();    
+    final bookingVM = context.watch<BookingViewModel>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Hôtel"),
-      ),
+      // appBar: AppBar(
+      //   title: const Text("Hôtel"),
+      // ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           StaySearchCard(
             onSearch: (start, end, adults, children) {
-              vm.searchRooms(
+              bookingVM.searchRooms(
                 start: start,
                 end: end,
                 adults: adults,
@@ -43,20 +42,18 @@ class HomeScreen extends StatelessWidget {
 
       //     const SizedBox(height: 16),
 
-          if (vm.loading)
+          if (bookingVM.loading)
             const Center(
               child: CircularProgressIndicator(),
             )
           else
-            ...vm.rooms.map(
+            ...bookingVM.rooms.map(
                   (room) => Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: RoomPreviewCard(
                   roomType: room,
                   onBook: (room) {
-                    vm.createBooking(room);
-                    //Future navigation
-                    //context.go('/booking');
+                    bookingVM.createBooking(room);
                   },
                   onDetails: () {},
                   //TODO : Add room details page
