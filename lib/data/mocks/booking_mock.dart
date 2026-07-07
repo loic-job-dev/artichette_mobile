@@ -35,6 +35,7 @@ class BookingMock {
           availability: true,
           price: 450,
           pictures: ["assets/pictures/rooms/STD1.png"],
+          details: '1 Lit Queen Size',
         ),
       },
     );

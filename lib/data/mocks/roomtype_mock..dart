@@ -13,7 +13,7 @@ class RoomtypeMock {
       "assets/pictures/rooms/STE3.png",
       "assets/pictures/rooms/STE4.png",
     ];
-    
+
     return RoomType(
           id: "1",
           type: "STD",
@@ -21,6 +21,7 @@ class RoomtypeMock {
           availability: true,
           price: 450,
           pictures: roomTypeTestFullPictures,
+          details: '1 Lit Queen Size'
         );
       }
 }

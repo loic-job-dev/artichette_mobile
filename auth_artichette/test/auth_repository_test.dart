@@ -42,7 +42,7 @@ void main() {
     when(() => storage.save(any(), any()))
         .thenAnswer((_) async {});
 
-    await repository.login(email, password);
+    await repository.login(email: email, password: password);
 
     verify(() => api.login(any())).called(1);
 
