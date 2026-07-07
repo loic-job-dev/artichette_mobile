@@ -16,6 +16,11 @@ class UserViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> update({required User user, required String password}) async {
+    _user = await userRepository.updateMe(user: user, password: password);
+    notifyListeners();
+  }
+
   void clear() {
     _user = null;
     notifyListeners();
