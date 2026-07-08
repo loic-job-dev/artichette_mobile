@@ -103,18 +103,16 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: AppSpacing.lg),
           AppFilledButton(
             onPressed: () async {
-              final scaffoldMessenger = ScaffoldMessenger.of(context);
-              final userViewModel = context.read<UserViewModel>();
               try {
                 await authRepository.login(
                   email: emailController.text.trim(),
                   password: passwordController.text,
                 );
-                if (!mounted) return;
+                if (!context.mounted) return;
                 await context.read<UserViewModel>().load();
+                if (!context.mounted) return;
                 context.go('/');
               } on ApiException catch (e) {
-                print('heee : ${e.runtimeType}');
                 if (!mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

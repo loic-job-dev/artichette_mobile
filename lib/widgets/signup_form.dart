@@ -209,20 +209,19 @@ class _SignupFormState extends State<SignupForm> {
                   city: cityController.text,
                 );
 
-                if (!mounted) return;
-
+                if (!context.mounted) return;
                 ScaffoldMessenger.of(
                   context,
                 ).showSnackBar(SnackBar(content: Text(l10n.signup_success)));
 
                 await context.read<UserViewModel>().load();
               } on ApiException catch (e) {
-                if (!mounted) return;
+                if (!context.mounted) return;
                 ScaffoldMessenger.of(
                   context,
                 ).showSnackBar(SnackBar(content: Text(e.message)));
               } catch (e) {
-                if (!mounted) return;
+                if (!context.mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(l10n.signup_errorUnexpected)),
                 );
@@ -299,7 +298,7 @@ class _SignupFormState extends State<SignupForm> {
                     city: cityController.text,
                   );
 
-                  if (!mounted) return;
+                  if (!context.mounted) return;
 
                   ScaffoldMessenger.of(
                     context,

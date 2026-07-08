@@ -17,13 +17,13 @@ class _AuthScreenState extends State<AuthScreen> {
   void _handleError(String message) {
     setState(() => _errorMessage = message);
   }
-
+/*
   void _clearError() {
     if (_errorMessage != null) {
       setState(() => _errorMessage = null);
     }
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
