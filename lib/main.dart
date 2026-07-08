@@ -4,18 +4,15 @@ import 'package:artichette/data/api/user_api.dart';
 import 'package:artichette/data/repositories/booking_repository.dart';
 import 'package:artichette/data/repositories/room_repository.dart';
 import 'package:artichette/data/repositories/user_repository.dart';
+import 'package:artichette/l10n/app_localizations.dart';
 import 'package:artichette/router/go_router.dart';
-import 'package:artichette/screens/home_screen.dart';
 import 'package:artichette/theme/app_theme.dart';
 import 'package:artichette/view_models/booking_view_model.dart';
 import 'package:artichette/view_models/user_view_model.dart';
-import 'package:artichette/widgets/login_form.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:auth_artichette/auth_artichette.dart';
 import 'package:provider/provider.dart';
-import 'screens/auth_screen.dart';
 import 'core/network/api_config.dart';
 
 
@@ -86,19 +83,14 @@ class MyApp extends StatelessWidget {
       routerConfig: appRouter,
 
       locale: const Locale('fr', 'FR'),
-      supportedLocales: const [
-        Locale('fr', 'FR'), 
-        Locale('en', 'US'),
-        ],
-      localizationsDelegates: const [
-        
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
+
+      supportedLocales: AppLocalizations.supportedLocales,
+
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
 
       title: "Artich'hôtel",
       theme: AppTheme.light,
     );
   }
 }
+
