@@ -17,6 +17,7 @@ import 'package:auth_artichette/auth_artichette.dart';
 import 'package:provider/provider.dart';
 import 'screens/auth_screen.dart';
 import 'core/network/api_config.dart';
+import 'package:artichette/l10n/app_localizations.dart';
 
 
 void main() {
@@ -86,16 +87,10 @@ class MyApp extends StatelessWidget {
       routerConfig: appRouter,
 
       locale: const Locale('fr', 'FR'),
-      supportedLocales: const [
-        Locale('fr', 'FR'), 
-        Locale('en', 'US'),
-        ],
-      localizationsDelegates: const [
-        
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
+
+      supportedLocales: AppLocalizations.supportedLocales,
+
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
 
       title: "Artich'hôtel",
       theme: AppTheme.light,

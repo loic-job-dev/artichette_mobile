@@ -8,7 +8,7 @@ class UserRepository {
 
   Future<User> getMe() async {
     final data = await api.getMe();
-    return User.fromJson(data);
+    return User.fromJsonUserResponse(data);
   }
 
   Future<User> updateMe({
@@ -16,6 +16,6 @@ class UserRepository {
     required String password,
   }) async {
     final data = await api.updateMe(user.toUpdateRequest(password: password));
-    return User.fromJson(data);
+    return User.fromJsonUserResponse(data);
   }
 }

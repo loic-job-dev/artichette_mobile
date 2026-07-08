@@ -12,8 +12,15 @@ class UserViewModel extends ChangeNotifier {
   User? get user => _user;
 
   Future<void> load() async {
+    debugPrint('load() début');
+
     _user = await userRepository.getMe();
+
+    debugPrint('user = $_user');
+
     notifyListeners();
+
+    debugPrint('notifyListeners()');
   }
 
   Future<void> update({required User user, required String password}) async {

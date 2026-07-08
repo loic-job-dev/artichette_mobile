@@ -17,7 +17,7 @@ class RoomPreviewCard extends StatelessWidget {
 
   final RoomType roomType;
   final void Function(RoomType room) onBook;
-  final VoidCallback onDetails;
+  final void Function(RoomType room) onDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class RoomPreviewCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AppOutlinedButton(
-                    onPressed: onDetails,
+                    onPressed: () => onDetails(roomType),
                     compact: true,
                     child: Text(l10n.roomPreviewCard_details),
                   ),

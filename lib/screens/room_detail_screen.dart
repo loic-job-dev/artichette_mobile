@@ -1,21 +1,18 @@
 import 'package:artichette/widgets/feature_chip.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:artichette/widgets/outlined_button.dart';
-import 'package:artichette/widgets/filled_button.dart';
-import 'package:artichette/data/mocks/booking_mock.dart';
-import '../domain/models/booking.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import '../domain/models/room_type.dart';
+import '../domain/models/user.dart';
+import '../view_models/booking_view_model.dart';
+import '../view_models/user_view_model.dart';
 
 class RoomDetailScreen extends StatefulWidget {
-  final Booking booking;
-  final VoidCallback onConfirm;
-  final List<String> imageUrls;
+  final RoomType room;
 
   const RoomDetailScreen({
     super.key,
-    required this.booking,
-    required this.onConfirm,
-    required this.imageUrls,
+    required this.room,
   });
 
   @override
@@ -41,13 +38,10 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final mockBooking = BookingMock.getMockBooking();
-    final startBookedDate = DateFormat(
-      'dd-MM-yyyy',
-    ).format(mockBooking.startBookedDate);
-    final endBookedDate = DateFormat(
-      'dd-MM-yyyy',
-    ).format(mockBooking.endBookedDate);
+    final bookingVM = context.read<BookingViewModel>();
+    final user = context.select<UserViewModel, User?>(
+          (vm) => vm.user,
+    );
 
     return SingleChildScrollView(
       child: Center(
@@ -68,13 +62,13 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                   children: [
                     PageView.builder(
                       controller: _controller,
-                      itemCount: widget.imageUrls.length,
+                      itemCount: widget.room.pictures.length,
                       onPageChanged: (index) {
                         setState(() => _currentIndex = index);
                       },
                       itemBuilder: (context, index) {
                         return Image.asset(
-                          widget.imageUrls[index],
+                          widget.room.pictures[index],
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) =>
                               Container(
@@ -95,7 +89,7 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                         padding: const EdgeInsets.all(4),
                         color: Colors.black54,
                         child: Text(
-                          '${_currentIndex + 1}/${widget.imageUrls.length}',
+                            '${_currentIndex + 1}/${widget.room.pictures.length}',
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -114,7 +108,7 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Suite canopée',
+                        widget.room.description,
                         style: theme.textTheme.displayMedium,
                       ),
                       Row(
@@ -125,10 +119,10 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                       ),
                     ],
                   ),
-                  FilledButton(
-                    onPressed: () => (),
-                    child: const Text('Disponibilite'),
-                  ),
+                  // FilledButton(
+                  //   onPressed: () => (),
+                  //   child: const Text('Disponibilite'),
+                  // ),
                 ],
               ),
             ),
@@ -139,7 +133,7 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                 children: [
                   FeatureChip(label: "45 m²", icon: Icons.square),
                   FeatureChip(
-                    label: widget.booking.roomTypes.first.details,
+                    label: widget.room.details,
                     icon: Icons.bed,
                   ),
                   FeatureChip(label: "Vue forêt", icon: Icons.forest),
@@ -155,7 +149,7 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                   children: [
                     Text("Description", style: theme.textTheme.displayMedium),
                     Text(
-                      widget.booking.roomTypes.first.description,
+                      widget.room.description,
                       style: theme.textTheme.bodyMedium,
                     ),
                   ],
@@ -224,13 +218,19 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                           children: [
                             Text("Prix par nuit"),
                             Text(
-                              widget.booking.roomTypes.first.price.toString(),
+                              widget.room.priceToFixDisplay,
                             ),
                           ],
                         ),
                         FilledButton(
-                          onPressed: () => (),
-                          child: Text("Réserver maintenant"),
+                          onPressed: () {
+                            if (user != null) {
+                              bookingVM.createBooking(widget.room);
+                            } else {
+                              context.go('/login');
+                            }
+                          },
+                          child: const Text("Réserver maintenant"),
                         ),
                       ],
                     ),
