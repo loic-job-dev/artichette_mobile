@@ -1,0 +1,44 @@
+name: Flutter CI
+
+on:
+  push:
+    branches:
+      - loic_deployment
+
+  pull_request:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Installer Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.29.0"
+
+      - name: Installer les dépendances
+        run: flutter pub get
+
+      - name: Analyse
+        run: flutter analyze
+
+      - name: Tests
+        run: flutter test
+
+      - name: Build APK
+        run: |
+          flutter build apk \
+          --release \
+          --dart-define=API_URL=${{ secrets.API_URL_LOIC }}
+
+      - name: Sauvegarder l'APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: artichaut-test-apk
+          path: build/app/outputs/flutter-apk/app-test.apk
