@@ -31,6 +31,7 @@ class HomeScreen extends StatelessWidget {
                 child: SelectableText(bookingVM.errorMessage!),
               ),
             ),
+          Text(ApiConfig.baseUrl),
           StaySearchCard(
             onSearch: (start, end, adults, children) {
               bookingVM.searchRooms(
