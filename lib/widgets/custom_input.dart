@@ -1,4 +1,3 @@
-// lib/widgets/custom_input.dart
 import 'package:flutter/material.dart';
 import '../theme/app_color.dart';
 import '../theme/app_spacing.dart';
