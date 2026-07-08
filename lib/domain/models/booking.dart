@@ -46,7 +46,7 @@ class Booking {
   });
 
   String get roomUnitPriceDisplay =>
-      "${(roomUnitPrice / 100).toStringAsFixed(2)} €";
+      "${(roomUnitPrice.toString())} €";
 
   int get roomCount =>
       rooms?.length ?? roomTypes.length;

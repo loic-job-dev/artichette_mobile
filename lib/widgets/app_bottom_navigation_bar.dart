@@ -26,6 +26,8 @@ class AppBottomNavigationBar extends StatelessWidget {
           (vm) => vm.user,
     );
 
+    debugPrint('BottomBar rebuild : $user');
+
     return SafeArea(
       top: false,
       child: Container(

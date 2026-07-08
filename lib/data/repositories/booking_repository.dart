@@ -1,6 +1,5 @@
 import 'package:artichette/data/dto/booking_create_request.dart';
 import 'package:artichette/domain/models/booking.dart';
-import 'package:intl/intl.dart';
 import '../api/booking_api.dart';
 
 class BookingRepository {

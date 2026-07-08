@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:auth_artichette/auth_artichette.dart';
 import 'package:provider/provider.dart';
 import 'core/network/api_config.dart';
+import 'package:artichette/l10n/app_localizations.dart';
 
 
 void main() {
