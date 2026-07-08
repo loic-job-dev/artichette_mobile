@@ -4,6 +4,7 @@ import 'package:artichette/data/api/user_api.dart';
 import 'package:artichette/data/repositories/booking_repository.dart';
 import 'package:artichette/data/repositories/room_repository.dart';
 import 'package:artichette/data/repositories/user_repository.dart';
+import 'package:artichette/l10n/app_localizations.dart';
 import 'package:artichette/router/go_router.dart';
 import 'package:artichette/screens/home_screen.dart';
 import 'package:artichette/theme/app_theme.dart';
@@ -86,19 +87,14 @@ class MyApp extends StatelessWidget {
       routerConfig: appRouter,
 
       locale: const Locale('fr', 'FR'),
-      supportedLocales: const [
-        Locale('fr', 'FR'), 
-        Locale('en', 'US'),
-        ],
-      localizationsDelegates: const [
-        
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
+
+      supportedLocales: AppLocalizations.supportedLocales,
+
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
 
       title: "Artich'hôtel",
       theme: AppTheme.light,
     );
   }
 }
+
