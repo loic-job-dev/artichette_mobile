@@ -3,8 +3,12 @@ import 'package:artichette/view_models/user_view_model.dart';
 import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
+import '../theme/app_color.dart';
+import '../theme/app_spacing.dart';
 import '../theme/app_text_theme.dart';
+import 'custom_input.dart';
 import 'filled_button.dart';
 import 'package:provider/provider.dart';
 
@@ -18,15 +22,14 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-
+  final TextEditingController passwordController = TextEditingController();
   bool _obscurePassword = true;
 
   @override
   void dispose() {
-    passwordController.dispose();
     emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -34,32 +37,48 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     final authRepository = context.read<AuthRepository>();
     final l10n = AppLocalizations.of(context)!;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(l10n.login_signin, style: AppTextTheme.textTheme.displayMedium),
 
-        const SizedBox(height: 12),
-
-        TextField(
-          controller: emailController,
-          keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(hintText: "Email"),
-        ),
-
-        const SizedBox(height: 16),
-
-        TextField(
-          controller: passwordController,
-          obscureText: _obscurePassword,
-          autocorrect: false,
-          enableSuggestions: false,
-          keyboardType: TextInputType.visiblePassword,
-          decoration: InputDecoration(
-            hintText: l10n.login_passwordHint,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            l10n.login_signin,
+            style: AppTextTheme.textTheme.displayMedium?.copyWith(
+              color: AppColors.textPrimary,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          Text(
+            l10n.login_subtitle,
+            style: AppTextTheme.textTheme.bodyMedium?.copyWith(
+              color: AppColors.textSecondary,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: AppSpacing.xl),
+          CustomInput(
+            label: l10n.signup_email,
+            hintText: l10n.signup_emailHint,
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
+            prefixIcon: Icons.email_outlined,
+          ),
+          const SizedBox(height: AppSpacing.md),
+          CustomInput(
+            label: l10n.login_passwordHint,
+            hintText: "••••••••",
+            controller: passwordController,
+            obscureText: _obscurePassword,
+            prefixIcon: Icons.lock_outline,
             suffixIcon: IconButton(
               icon: Icon(
-                _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                _obscurePassword
+                    ? Icons.visibility_outlined
+                    : Icons.visibility_off_outlined,
+                size: 20,
+                color: AppColors.textSecondary,
               ),
               onPressed: () {
                 setState(() {
@@ -68,17 +87,26 @@ class _LoginFormState extends State<LoginForm> {
               },
             ),
           ),
-        ),
-
-        const SizedBox(height: 32),
-
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: AppFilledButton(
+          const SizedBox(height: AppSpacing.xs),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                l10n.login_forgotPassword,
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 16, 44, 36),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+          AppFilledButton(
             onPressed: () async {
               try {
                 await authRepository.login(
-                  email: emailController.text,
+                  email: emailController.text.trim(),
                   password: passwordController.text,
                 );
                 if (!mounted) return;
@@ -87,30 +115,34 @@ class _LoginFormState extends State<LoginForm> {
               } on ApiException catch (e) {
                 print('heee : ${e.runtimeType}');
                 if (!mounted) return;
-                widget.onError(e.message);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(e.message),
+                    backgroundColor: AppColors.error,
+                  ),
+                );
               } catch (e) {
                 if (!mounted) return;
-                widget.onError('Une erreur est survenue.');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(l10n.signup_errorUnexpected),
+                    backgroundColor: AppColors.error,
+                  ),
+                );
               }
             },
             compact: false,
-            child: Text(l10n.login_connexion),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(l10n.login_connexion),
+                const SizedBox(width: AppSpacing.xs),
+                const Icon(Icons.arrow_forward, size: 16),
+              ],
+            ),
           ),
-        ),
-
-        const SizedBox(height: 12),
-
-        TextButton(
-          onPressed: () async {
-            await authRepository.logout();
-            context.read<UserViewModel>().clear();
-
-            if (!mounted) return;
-            context.go('/');
-          },
-          child: Text(l10n.login_logout),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

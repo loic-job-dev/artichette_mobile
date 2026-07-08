@@ -311,17 +311,11 @@ abstract class AppLocalizations {
   /// **'Implementation in progress'**
   String get profile_implementationInProgressMessage;
 
-  /// No description provided for @profile_saveSnackBarAction.
+  /// No description provided for @profile_saveSnackBarConfirmation.
   ///
   /// In en, this message translates to:
-  /// **'Got it, I\'ll take a nap.'**
-  String get profile_saveSnackBarAction;
-
-  /// No description provided for @profile_logoutSnackBarAction.
-  ///
-  /// In en, this message translates to:
-  /// **'Got it, I\'ll have some tea.'**
-  String get profile_logoutSnackBarAction;
+  /// **'Changes saved.'**
+  String get profile_saveSnackBarConfirmation;
 
   /// No description provided for @auth_signup.
   ///
@@ -449,11 +443,23 @@ abstract class AppLocalizations {
   /// **'Sign in'**
   String get login_connexion;
 
+  /// No description provided for @login_forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password ?'**
+  String get login_forgotPassword;
+
   /// No description provided for @login_logout.
   ///
   /// In en, this message translates to:
   /// **'Log out'**
   String get login_logout;
+
+  /// No description provided for @login_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to access your escape.'**
+  String get login_subtitle;
 
   /// No description provided for @roomPreviewCard_details.
   ///
@@ -478,6 +484,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Email'**
   String get signup_email;
+
+  /// No description provided for @signup_emailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'example@mail.com'**
+  String get signup_emailHint;
 
   /// No description provided for @signup_password.
   ///

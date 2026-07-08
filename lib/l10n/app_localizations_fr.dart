@@ -117,10 +117,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profile_implementationInProgressMessage => 'Implémentation en cours';
 
   @override
-  String get profile_saveSnackBarAction => 'C\'est compris, je vais faire une sieste.';
-
-  @override
-  String get profile_logoutSnackBarAction => 'C\'est compris, je vais prendre un thé.';
+  String get profile_saveSnackBarConfirmation => 'Modifications enregistrées.';
 
   @override
   String get auth_signup => 'Inscription';
@@ -200,7 +197,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get login_connexion => 'Connexion';
 
   @override
+  String get login_forgotPassword => 'Mot de passe oublié ?';
+
+  @override
   String get login_logout => 'Se déconnecter';
+
+  @override
+  String get login_subtitle => 'Connectez-vous pour accéder à votre évasion.';
 
   @override
   String get roomPreviewCard_details => 'Détails';
@@ -213,6 +216,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get signup_email => 'Email';
+
+  @override
+  String get signup_emailHint => 'exemple@mail.com';
 
   @override
   String get signup_password => 'Mot de passe';
