@@ -31,7 +31,7 @@ class _AuthScreenState extends State<AuthScreen> {
       child: Column(
         children: [
           SegmentedButton<AuthMode>(
-            segments: const [
+            segments: [
               ButtonSegment(value: AuthMode.login, label: Text(l10n.auth_signup)),
               ButtonSegment(
                 value: AuthMode.register,
