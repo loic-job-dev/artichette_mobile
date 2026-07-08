@@ -221,7 +221,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _firstNameController,
-                      decoration: InputDecoration(labelText: l10n.profile_firstNameLabel),
+                      decoration: InputDecoration(
+                        labelText: l10n.profile_firstNameLabel,
+                      ),
                       keyboardType: TextInputType.name,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -239,7 +241,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _lastNameController,
-                      decoration: InputDecoration(labelText: l10n.profile_lastNameLabel),
+                      decoration: InputDecoration(
+                        labelText: l10n.profile_lastNameLabel,
+                      ),
                       keyboardType: TextInputType.name,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -257,7 +261,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               TextFormField(
                 controller: _pseudoController,
-                decoration: InputDecoration(labelText: l10n.profile_pseudoLabel),
+                decoration: InputDecoration(
+                  labelText: l10n.profile_pseudoLabel,
+                ),
                 keyboardType: TextInputType.name,
                 validator: (value) {
                   if (value != null && value.length > 50) {
@@ -273,7 +279,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               TextFormField(
                 controller: _phoneNumberController,
-                decoration: InputDecoration(labelText: l10n.profile_phoneNumberLabel),
+                decoration: InputDecoration(
+                  labelText: l10n.profile_phoneNumberLabel,
+                ),
                 keyboardType: TextInputType.phone,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -291,7 +299,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _streetNumberController,
-                      decoration: InputDecoration(labelText: l10n.profile_streetNumberLabel),
+                      decoration: InputDecoration(
+                        labelText: l10n.profile_streetNumberLabel,
+                      ),
                       keyboardType: TextInputType.number,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -315,7 +325,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _streetTypeController,
-                      decoration: InputDecoration(labelText: l10n.profile_streetTypeLabel),
+                      decoration: InputDecoration(
+                        labelText: l10n.profile_streetTypeLabel,
+                      ),
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -334,7 +346,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               TextFormField(
                 controller: _streetNameController,
-                decoration: InputDecoration(labelText: l10n.profile_streetNameLabel),
+                decoration: InputDecoration(
+                  labelText: l10n.profile_streetNameLabel,
+                ),
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -350,7 +364,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               TextFormField(
                 controller: _addressComplementController,
-                decoration: InputDecoration(labelText: l10n.profile_addressComplementLabel),
+                decoration: InputDecoration(
+                  labelText: l10n.profile_addressComplementLabel,
+                ),
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   if (value != null && value.length > 50) {
@@ -366,7 +382,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _zipCodeController,
-                      decoration: InputDecoration(labelText: l10n.profile_zipCodeLabel),
+                      decoration: InputDecoration(
+                        labelText: l10n.profile_zipCodeLabel,
+                      ),
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -384,7 +402,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       controller: _cityController,
-                      decoration: InputDecoration(labelText: l10n.profile_cityLabel),
+                      decoration: InputDecoration(
+                        labelText: l10n.profile_cityLabel,
+                      ),
                       keyboardType: TextInputType.name,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -444,7 +464,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     authRepository.logout();
                     context.read<UserViewModel>().clear();
                     context.go('/');
-
                   },
                   icon: Icon(Icons.logout),
                   label: Text(l10n.profile_logoutSnackBarAction),
@@ -459,6 +478,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> _save() async {
     final l10n = AppLocalizations.of(context)!;
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -472,7 +493,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       _passwordController.clear();
 
-      ScaffoldMessenger.of(context).showSnackBar(
+      scaffoldMessenger.showSnackBar(
         SnackBar(
           content: Text(l10n.profile_saveChangesButton),
           duration: Duration(seconds: 2),
@@ -480,9 +501,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       );
     } catch (e) {
       if (!context.mounted) return;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(e.toString()), duration: Duration(minutes: 2),));
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(e.toString()), duration: Duration(minutes: 2)),
+      );
     }
   }
 }

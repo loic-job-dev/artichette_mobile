@@ -166,6 +166,9 @@ class _SignupFormState extends State<SignupForm> {
             width: MediaQuery.of(context).size.width * 0.8,
             child: AppFilledButton(
               onPressed: () async {
+                final scaffoldMessenger = ScaffoldMessenger.of(context);
+                final userViewModel = context.read<UserViewModel>();
+
                 try {
                   await authRepository.signUp(
                     email: emailController.text,
@@ -186,29 +189,25 @@ class _SignupFormState extends State<SignupForm> {
 
                   if (!mounted) return;
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                     SnackBar(content: Text(l10n.signup_success)),
-                  );
-                  
-                  await context.read<UserViewModel>().load();
+                  scaffoldMessenger.showSnackBar(SnackBar(content: Text(l10n.signup_success)));
+
+                  await userViewModel.load();
 
                   // Navigation vers login ou home
                 } on ApiException catch (e) {
                   if (!mounted) return;
 
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(SnackBar(content: Text(e.message)));
+                  scaffoldMessenger.showSnackBar(SnackBar(content: Text(e.message)));
                 } catch (e) {
                   if (!mounted) return;
 
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(SnackBar(content: Text(l10n.signup_errorUnexpected)));
+                  scaffoldMessenger.showSnackBar(
+                    SnackBar(content: Text(l10n.signup_errorUnexpected)),
+                  );
                 }
               },
               compact: false,
-              child:  Text(l10n.signup_submit),
+              child: Text(l10n.signup_submit),
             ),
           ),
 

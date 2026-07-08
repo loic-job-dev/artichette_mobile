@@ -45,7 +45,7 @@ class RoomType {
         ];
     }
   }
-
+/*
   static String _getNameFromType(String type) {
       switch (type) {
         case 'STD':
@@ -61,7 +61,7 @@ class RoomType {
           return "";
       }
   }
-
+*/
   static String _getDetails(String type) {
     switch (type) {
       case 'STD':

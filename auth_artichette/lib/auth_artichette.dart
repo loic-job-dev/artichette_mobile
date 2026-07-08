@@ -1,5 +1,3 @@
-library auth_artichette;
-
 export 'src/api/auth_api.dart';
 export 'src/api/auth_interceptor.dart';
 export 'src/api/api_exception.dart';

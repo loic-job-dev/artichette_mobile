@@ -1,8 +1,5 @@
 import '../../auth_artichette.dart';
-import '../api/auth_api.dart';
-import '../models/login_request.dart';
 import '../models/signup_request.dart';
-import '../storage/token_storage.dart';
 
 class AuthRepository {
   final TokenStorage storage;

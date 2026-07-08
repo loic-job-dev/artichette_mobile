@@ -1,7 +1,6 @@
 import 'package:artichette/widgets/feature_chip.dart';
 import 'package:flutter/material.dart';
 
-import '../domain/models/booking.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../domain/models/room_type.dart';

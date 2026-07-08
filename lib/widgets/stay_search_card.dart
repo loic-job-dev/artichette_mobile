@@ -25,7 +25,7 @@ class _StaySearchCardState extends State<StaySearchCard> {
 
   final _formatter = DateFormat('dd/MM/yyyy');
   int _adults = 2;
-  int _children = 0;
+  final int _children = 0;
 
   Future<void> _selectDates() async {
     await showModalBottomSheet(
