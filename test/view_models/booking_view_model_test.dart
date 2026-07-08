@@ -6,7 +6,7 @@ import 'package:artichette/view_models/booking_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:artichette/domain/models/client.dart';
+import 'package:artichette/domain/models/user.dart';
 
 class MockRoomsRepository extends Mock implements RoomsRepository {}
 
@@ -21,11 +21,12 @@ void main() {
   late MockBookingRepository bookingRepository;
   late BookingViewModel viewModel;
 
-  Client fakeClient() {
-    return const Client(
+  User fakeClient() {
+    return const User(
       firstName: 'Jean',
       lastName: 'Dupont',
       phoneNumber: '0600000000',
+      email: 'fake@mail.com',
       addresses: {},
     );
   }
