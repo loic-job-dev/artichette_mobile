@@ -25,34 +25,40 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-     final l10n = AppLocalizations.of(context)!;
-    return Column(
-      children: [
-        SegmentedButton<AuthMode>(
-          segments: [
-            ButtonSegment(value: AuthMode.login, label: Text(l10n.auth_signup)),
-            ButtonSegment(value: AuthMode.register, label: Text(l10n.auth_signin)),
-          ],
-          selected: {_selected},
-          onSelectionChanged: (value) {
-            setState(() {
-              _selected = value.first;
-            });
-          },
-        ),
+    final l10n = AppLocalizations.of(context)!;
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          SegmentedButton<AuthMode>(
+            segments: const [
+              ButtonSegment(value: AuthMode.login, label: Text(l10n.auth_signup)),
+              ButtonSegment(
+                value: AuthMode.register,
+                label: Text(l10n.auth_signin),
+              ),
+            ],
+            selected: {_selected},
+            onSelectionChanged: (value) {
+              setState(() {
+                _selected = value.first;
+              });
+            },
+          ),
 
-        const SizedBox(height: 24),
+          const SizedBox(height: 24),
 
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 250),
-          transitionBuilder: (child, animation) {
-            return FadeTransition(opacity: animation, child: child);
-          },
-          child: _selected == AuthMode.login
-              ? const LoginForm(key: ValueKey('login'))
-              : const SignupForm(key: ValueKey('register')),
-        ),
-      ],
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 0),
+            transitionBuilder: (child, animation) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+            child: _selected == AuthMode.login
+                ? const LoginForm(key: ValueKey('login'))
+                : const SignupForm(key: ValueKey('register')),
+          ),
+        ],
+      ),
     );
   }
 }

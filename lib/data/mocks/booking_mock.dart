@@ -1,6 +1,6 @@
 import 'package:artichette/domain/models/address.dart';
 import 'package:artichette/domain/models/booking.dart';
-import 'package:artichette/domain/models/client.dart';
+import 'package:artichette/domain/models/user.dart';
 import 'package:artichette/domain/models/room_type.dart';
 
 class BookingMock {
@@ -13,10 +13,13 @@ class BookingMock {
       adultNumber: 2,
       roomUnitPrice: 70,
       status: 'available',
-      user: Client(
+      user: User(
         firstName: "Hey",
         lastName: "Joe",
         phoneNumber: "0606060606",
+        email: "fake@mail.com",
+        media:
+            "https://media.licdn.com/dms/image/v2/D4D03AQHyNrqbK_p30w/profile-displayphoto-shrink_200_200/B4DZVSI5jMGcAc-/0/1740839820425?e=2147483647&v=beta&t=NhNJ3SOpmxKbn_kaGBv8FlifcbU9aW-AIt_jPOSSnS8",
         addresses: {
           const Address(
             streetNumber: 1,

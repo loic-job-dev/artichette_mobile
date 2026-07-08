@@ -1,18 +1,65 @@
 import 'package:artichette/domain/models/address.dart';
-import 'package:artichette/domain/models/client.dart';
+import 'package:artichette/domain/models/user.dart';
+import 'package:artichette/view_models/user_view_model.dart';
+import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
-  final Client client;
-
-  const ProfileScreen({super.key, required this.client});
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  bool _initialized = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (_initialized) {
+      return;
+    }
+
+    final user = context.read<UserViewModel>().user;
+
+    if (user == null) {
+      return;
+    }
+
+    _populateControllers(user);
+    _initialized = true;
+  }
+
+  void _populateControllers(User user) {
+    final Address? address = user.addresses.isNotEmpty
+        ? user.addresses.first
+        : null;
+
+    _firstNameController.text = user.firstName;
+    _lastNameController.text = user.lastName;
+    _pseudoController.text = user.pseudo ?? "";
+    _phoneNumberController.text = user.phoneNumber;
+    _pictureUrlController.text =
+        user.media ??
+        "https://api.dicebear.com/9.x/adventurer/png?seed=${user.firstName}";
+
+    _mailController.text = user.email;
+
+    if (address != null) {
+      _streetNumberController.text = address.streetNumber.toString();
+      _streetTypeController.text = address.streetType;
+      _streetNameController.text = address.streetName;
+      _addressComplementController.text = address.addressComplement ?? "";
+      _zipCodeController.text = address.zipCode;
+      _cityController.text = address.city;
+    }
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   final _firstNameController = TextEditingController();
@@ -37,32 +84,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-
-    final client = widget.client;
-    final Address? address = client.addresses.isNotEmpty
-        ? client.addresses.first
-        : null;
-
-    _firstNameController.text = client.firstName;
-    _lastNameController.text = client.lastName;
-    _pseudoController.text = client.pseudo ?? "";
-    _phoneNumberController.text = client.phoneNumber;
-
-    //TODO : récupérer l'image
-    _pictureUrlController.text =
-        "https://api.dicebear.com/9.x/adventurer/png?seed=${client.firstName}";
-
-    //TODO : récupérér le mail
-    _mailController.text = "${client.firstName}@${client.lastName}.com";
-
-    if (address != null) {
-      _streetNumberController.text = address.streetNumber.toString();
-      _streetTypeController.text = address.streetType;
-      _streetNameController.text = address.streetName;
-      _addressComplementController.text = address.addressComplement ?? "";
-      _zipCodeController.text = address.zipCode;
-      _cityController.text = address.city;
-    }
   }
 
   @override
@@ -83,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.dispose();
   }
 
-  Client updatedClient() {
+  User updatedUser() {
     final address = Address(
       streetNumber: int.parse(_streetNumberController.text),
       streetType: _streetTypeController.text,
@@ -95,11 +116,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       city: _cityController.text,
     );
 
-    return Client(
+    return User(
       firstName: _firstNameController.text,
       lastName: _lastNameController.text,
       phoneNumber: _phoneNumberController.text,
       pseudo: _pseudoController.text.isEmpty ? null : _pseudoController.text,
+      email: _mailController.text,
       addresses: {address},
     );
   }
@@ -107,6 +129,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final userViewModel = context.watch<UserViewModel>();
+    final authRepository = context.read<AuthRepository>();
+
+    if (userViewModel.user == null) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
 
     return Scaffold(
       body: Form(
@@ -155,8 +183,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           backgroundColor: Theme.of(
                             context,
                           ).colorScheme.outline,
-                          backgroundImage: NetworkImage(
-                            _pictureUrlController.text,
+                          child: ClipOval(
+                            child: Image.network(
+                              _pictureUrlController.text,
+                              width: 134,
+                              height: 134,
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, _, _) {
+                                return const Icon(Icons.person, size: 60);
+                              },
+                            ),
                           ),
                         ),
                       ),
@@ -396,28 +432,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
-                  onPressed: () {
-                    if (!_formKey.currentState!.validate()) {
-                      return;
-                    }
-
-                    final client = updatedClient();
-
-                    print(client);
-
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(l10n.profile_implementationInProgressMessage),
-                        duration: Duration(seconds: 2),
-                        action: SnackBarAction(
-                          label: l10n.profile_saveChangesButton,
-                          onPressed: () {
-                            // TODO: implémenter l'appel API
-                          },
-                        ),
-                      ),
-                    );
-                  },
+                  onPressed: _save,
                   icon: Icon(Icons.save_outlined),
                   label: Text(l10n.profile_saveSnackBarAction),
                 ),
@@ -425,19 +440,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton.icon(
-                  onPressed: () => {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(l10n.profile_implementationInProgressMessage),
-                        duration: Duration(seconds: 2),
-                        action: SnackBarAction(
-                          label: l10n.profile_logoutButton,
-                          onPressed: () {
-                            // TODO: implémenter le logout
-                          },
-                        ),
-                      ),
-                    ),
+                  onPressed: () {
+                    authRepository.logout();
+                    context.read<UserViewModel>().clear();
+                    context.go('/');
+
                   },
                   icon: Icon(Icons.logout),
                   label: Text(l10n.profile_logoutSnackBarAction),
@@ -448,5 +455,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _save() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    try {
+      await context.read<UserViewModel>().update(
+        user: updatedUser(),
+        password: _passwordController.text,
+      );
+
+      if (!context.mounted) return;
+
+      _passwordController.clear();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(l10n.profile_saveChangesButton),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    } catch (e) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString()), duration: Duration(minutes: 2),));
+    }
   }
 }

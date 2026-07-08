@@ -1,3 +1,4 @@
+import 'package:artichette/screens/profile_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../screens/auth_screen.dart';
@@ -13,8 +14,12 @@ final GoRouter appRouter = GoRouter(
 
         switch (state.uri.path) {
           case '/login':
+          case '/me':
             currentIndex = 1;
             break;
+
+          case '/':
+            currentIndex = 0;
 
           default:
             currentIndex = 0;
@@ -41,10 +46,10 @@ final GoRouter appRouter = GoRouter(
         //   builder: (context, state) => const BookingScreen(),
         // ),
         //
-        // GoRoute(
-        //   path: '/me',
-        //   builder: (context, state) => const ClientDetailsScreen(),
-        // ),
+        GoRoute(
+           path: '/me',
+           builder: (context, state) => const ProfileScreen(),
+         ),
       ],
     ),
   ],

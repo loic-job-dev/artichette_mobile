@@ -16,6 +16,8 @@ class BookingRepository {
     int? children,
     required String roomType,
   }) async {
+
+
     final request = BookingCreateRequest(
       startBookedDate: startDate,
       endBookedDate: endDate,
@@ -25,7 +27,6 @@ class BookingRepository {
     );
 
     final data = await api.createBooking(request);
-
     return Booking.fromJson(data);
   }
 }

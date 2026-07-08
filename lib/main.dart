@@ -1,11 +1,14 @@
 import 'package:artichette/data/api/booking_api.dart';
 import 'package:artichette/data/api/room_api.dart';
+import 'package:artichette/data/api/user_api.dart';
 import 'package:artichette/data/repositories/booking_repository.dart';
 import 'package:artichette/data/repositories/room_repository.dart';
+import 'package:artichette/data/repositories/user_repository.dart';
 import 'package:artichette/router/go_router.dart';
 import 'package:artichette/screens/home_screen.dart';
 import 'package:artichette/theme/app_theme.dart';
 import 'package:artichette/view_models/booking_view_model.dart';
+import 'package:artichette/view_models/user_view_model.dart';
 import 'package:artichette/widgets/login_form.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -33,8 +36,8 @@ void main() {
     AuthInterceptor(
       dio: dio,
       storage: tokenStorage,
-    ),
-  );
+      ),
+      );
 
   final authRepository = AuthRepository(
     storage: tokenStorage,
@@ -43,25 +46,31 @@ void main() {
 
   final roomsRepository = RoomsRepository(RoomsApi(dio));
   final bookingRepository = BookingRepository(BookingApi(dio));
+  final userRepository = UserRepository(UserApi(dio));
 
   runApp(
     MultiProvider(
       providers: [
         Provider<AuthRepository>.value(
           value: authRepository,
-        ),
+          ),
 
         Provider<RoomsRepository>.value(
           value: roomsRepository,
-        ),
+          ),
 
         Provider<BookingRepository>.value(
           value: bookingRepository,
-        ),
+          ),
+
+        Provider<UserRepository>.value(value: userRepository),
 
         ChangeNotifierProvider(
           create: (_) => BookingViewModel(roomsRepository, bookingRepository),
         ),
+
+        ChangeNotifierProvider(
+          create: (_) => UserViewModel(userRepository)),
       ],
       child: const MyApp(),
     ),
@@ -78,9 +87,9 @@ class MyApp extends StatelessWidget {
 
       locale: const Locale('fr', 'FR'),
       supportedLocales: const [
-        Locale('fr', 'FR'),
+        Locale('fr', 'FR'), 
         Locale('en', 'US'),
-      ],
+        ],
       localizationsDelegates: const [
         
         GlobalMaterialLocalizations.delegate,
