@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../core/network/api_config.dart';
 import '../domain/models/user.dart';
 import '../view_models/booking_view_model.dart';
 import '../view_models/user_view_model.dart';
@@ -22,6 +23,7 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          const Text(ApiConfig.baseUrl),
           StaySearchCard(
             onSearch: (start, end, adults, children) {
               bookingVM.searchRooms(
