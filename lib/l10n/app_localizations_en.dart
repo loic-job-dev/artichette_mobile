@@ -117,10 +117,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_implementationInProgressMessage => 'Implementation in progress';
 
   @override
-  String get profile_saveSnackBarAction => 'Got it, I\'ll take a nap.';
-
-  @override
-  String get profile_logoutSnackBarAction => 'Got it, I\'ll have some tea.';
+  String get profile_saveSnackBarConfirmation => 'Changes saved.';
 
   @override
   String get auth_signup => 'Sign up';

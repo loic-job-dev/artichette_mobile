@@ -434,7 +434,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: FilledButton.icon(
                   onPressed: _save,
                   icon: Icon(Icons.save_outlined),
-                  label: Text(l10n.profile_saveSnackBarAction),
+                  label: Text(l10n.profile_saveChangesButton),
                 ),
               ),
               SizedBox(
@@ -447,7 +447,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   },
                   icon: Icon(Icons.logout),
-                  label: Text(l10n.profile_logoutSnackBarAction),
+                  label: Text(l10n.profile_logoutButton),
                 ),
               ),
             ],
@@ -474,7 +474,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(l10n.profile_saveChangesButton),
+          content: Text(l10n.profile_saveSnackBarConfirmation),
           duration: Duration(seconds: 2),
         ),
       );
