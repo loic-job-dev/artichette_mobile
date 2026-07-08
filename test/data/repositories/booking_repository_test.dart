@@ -1,6 +1,7 @@
 import 'package:artichette/data/api/booking_api.dart';
 import 'package:artichette/data/dto/booking_create_request.dart';
 import 'package:artichette/data/repositories/booking_repository.dart';
+import 'package:artichette/domain/models/address.dart';
 import 'package:artichette/domain/models/user.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -15,7 +16,15 @@ User fakeClient() {
     lastName: 'Dupont',
     phoneNumber: '0600000000',
     email: 'fake@mail.com',
-    addresses: {},
+    addresses: {
+      Address(
+        streetNumber: 1,
+        streetType: 'rue',
+        streetName: 'arti',
+        zipCode: '64000',
+        city: 'Pau',
+      ),
+    },
   );
 }
 
@@ -48,12 +57,22 @@ void main() {
           "firstName": "Jean",
           "lastName": "Dupont",
           "phoneNumber": "0600000000",
-          "addresses": [],
+          "email": "fake@mail.com",
+          "addresses": [
+            {
+              "streetNumber": 1,
+              "streetType": "rue",
+              "streetName": "arti",
+              "zipCode": "64000",
+              "city": "Pau",
+            },
+          ],
         },
 
         "roomTypes": [],
       },
     );
+    print('coucou');
 
     final result = await repository.createBooking(
       startDate: DateTime(2026, 1, 10),
@@ -62,6 +81,8 @@ void main() {
       children: 1,
       roomType: 'STD',
     );
+    print('coucou');
+    print(result);
 
     final captured =
         verify(() => api.createBooking(captureAny())).captured.first
