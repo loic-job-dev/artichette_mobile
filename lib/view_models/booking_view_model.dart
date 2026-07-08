@@ -1,4 +1,5 @@
 import 'package:artichette/data/repositories/booking_repository.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../data/repositories/room_repository.dart';
@@ -48,7 +49,37 @@ class BookingViewModel extends ChangeNotifier {
         startDate: start,
         endDate: end,
       );
-    } catch (e) {
+    } on DioException catch (e, stack) {
+      debugPrint("===== DIO EXCEPTION =====");
+      debugPrint("Type      : ${e.type}");
+      debugPrint("Message   : ${e.message}");
+      debugPrint("Error     : ${e.error}");
+      debugPrint("Response  : ${e.response?.statusCode}");
+      debugPrint("Data      : ${e.response?.data}");
+      debugPrintStack(stackTrace: stack);
+
+      errorMessage = '''
+Type : ${e.type}
+
+Message :
+${e.message}
+
+Erreur :
+${e.error}
+
+Status :
+${e.response?.statusCode}
+
+Réponse :
+${e.response?.data}
+''';
+
+      rooms = [];
+    } catch (e, stack) {
+      debugPrint("===== AUTRE EXCEPTION =====");
+      debugPrint(e.toString());
+      debugPrintStack(stackTrace: stack);
+
       errorMessage = e.toString();
       rooms = [];
     } finally {
