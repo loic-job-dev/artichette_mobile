@@ -31,6 +31,15 @@ jobs:
       - name: Tests
         run: flutter test
 
+      - name: Vérifier API_URL
+        run: |
+          if [ -z "${{ secrets.API_URL_LOIC }}" ]; then
+            echo "API_URL_LOIC est vide"
+            exit 1
+          else
+            echo "API_URL_LOIC est configuré"
+          fi
+
       - name: Build APK
         run: |
           flutter build apk \
