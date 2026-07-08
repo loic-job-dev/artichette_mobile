@@ -12,10 +12,16 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   AuthMode _selected = AuthMode.login;
+  String? _errorMessage;
 
-  @override
-  void dispose() {
-    super.dispose();
+  void _handleError(String message) {
+    setState(() => _errorMessage = message);
+  }
+
+  void _clearError() {
+    if (_errorMessage != null) {
+      setState(() => _errorMessage = null);
+    }
   }
 
   @override
@@ -27,30 +33,48 @@ class _AuthScreenState extends State<AuthScreen> {
         children: [
           SegmentedButton<AuthMode>(
             segments: [
-              ButtonSegment(value: AuthMode.login, label: Text(l10n.auth_signup)),
+              ButtonSegment(value: AuthMode.login, label: Text(l10n.auth_signin)),
               ButtonSegment(
                 value: AuthMode.register,
-                label: Text(l10n.auth_signin),
+                label: Text(l10n.auth_signup),
               ),
             ],
             selected: {_selected},
             onSelectionChanged: (value) {
               setState(() {
                 _selected = value.first;
+                _errorMessage = null;
               });
             },
           ),
-
-          const SizedBox(height: 24),
-
+          const SizedBox(height: 16),
+          if (_errorMessage != null)
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              margin: const EdgeInsets.only(bottom: 8),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.errorContainer,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                _errorMessage!,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onErrorContainer,
+                ),
+              ),
+            ),
           AnimatedSwitcher(
-            duration: const Duration(milliseconds: 0),
+            duration: const Duration(milliseconds: 250),
             transitionBuilder: (child, animation) {
               return FadeTransition(opacity: animation, child: child);
             },
             child: _selected == AuthMode.login
-                ? const LoginForm(key: ValueKey('login'))
-                : const SignupForm(key: ValueKey('register')),
+                ? LoginForm(key: ValueKey(l10n.auth_signin), onError: _handleError)
+                : SignupForm(
+                    key:  ValueKey(l10n.auth_signup),
+                    onError: _handleError,
+                  ),
           ),
         ],
       ),

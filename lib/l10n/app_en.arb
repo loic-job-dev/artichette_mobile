@@ -35,8 +35,7 @@
     "profile_saveChangesButton": "Save changes",
     "profile_logoutButton": "Log out",
     "profile_implementationInProgressMessage": "Implementation in progress",
-    "profile_saveSnackBarAction": "Got it, I'll take a nap.",
-    "profile_logoutSnackBarAction": "Got it, I'll have some tea.",
+    "profile_saveSnackBarConfirmation": "Changes saved.",
     "auth_signup": "Sign up",
     "auth_signin": "Sign in",
     "navbar_home": "Home",
@@ -66,11 +65,14 @@
     "login_passwordHint": "Password",
     "login_connexionOK": "Connection OK",
     "login_connexion": "Sign in",
+    "login_forgotPassword" : "Forgot password ?",
     "login_logout": "Log out",
+    "login_subtitle": "Sign in to access your escape.",
     "roomPreviewCard_details": "Details",
     "roomPreviewCard_bookingBtn": "Book",
      "signup_title": "Create an account",
   "signup_email": "Email",
+  "signup_emailHint": "example@mail.com",
   "signup_password": "Password",
   "signup_firstName": "First name",
   "signup_lastName": "Last name",
@@ -86,8 +88,7 @@
   "signup_errorUnexpected": "Unexpected error",
   "signup_submit": "Create an account",
     "staySearchCard_stay": "Stay",
-  "staySearchCard_selectDates": "Select dates",
-  "staySearchCard_travelers": "Travelers",
-  "staySearchCard_searchRoom": "Search for a room"
-
+    "staySearchCard_selectDates": "Select dates",
+    "staySearchCard_travelers": "Travelers",
+    "staySearchCard_searchRoom": "Search for a room"
 }
