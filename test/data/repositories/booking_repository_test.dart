@@ -72,7 +72,6 @@ void main() {
         "roomTypes": [],
       },
     );
-    print('coucou');
 
     final result = await repository.createBooking(
       startDate: DateTime(2026, 1, 10),
@@ -81,8 +80,6 @@ void main() {
       children: 1,
       roomType: 'STD',
     );
-    print('coucou');
-    print(result);
 
     final captured =
         verify(() => api.createBooking(captureAny())).captured.first
