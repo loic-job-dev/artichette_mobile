@@ -21,9 +21,9 @@ class RoomType {
     switch (type) {
       case 'STD':
         return [
-          "assets/pictures/rooms/DLX2.png",
-          "assets/pictures/rooms/DLX3.png",
-          "assets/pictures/rooms/DLX4.png",
+          "assets/pictures/rooms/STD2.png",
+          "assets/pictures/rooms/STD3.png",
+          "assets/pictures/rooms/STD4.jpg",
         ];
       case 'DLX':
         return [
@@ -39,9 +39,9 @@ class RoomType {
         ];
       default:
         return [
-          "assets/pictures/rooms/DLX2.png",
-          "assets/pictures/rooms/DLX3.png",
-          "assets/pictures/rooms/DLX4.png",
+          "assets/pictures/rooms/STD2.png",
+          "assets/pictures/rooms/STD3.png",
+          "assets/pictures/rooms/STD4.jpg",
         ];
     }
   }
