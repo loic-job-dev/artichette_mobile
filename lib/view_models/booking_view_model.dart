@@ -84,7 +84,6 @@ class BookingViewModel extends ChangeNotifier {
 
       currentBooking = booking;
 
-      // reset
       range = null;
       adults = null;
       children = null;

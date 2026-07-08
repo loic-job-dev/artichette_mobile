@@ -48,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         user.media ??
         "https://api.dicebear.com/9.x/adventurer/png?seed=${user.firstName}";
 
-    _mailController.text = user.email;
+    _mailController.text = user.email ?? "";
 
     if (address != null) {
       _streetNumberController.text = address.streetNumber.toString();
