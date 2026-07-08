@@ -1,7 +1,6 @@
 import 'package:artichette/l10n/app_localizations.dart';
 import 'package:artichette/theme/app_text_theme.dart';
 import 'package:artichette/view_models/user_view_model.dart';
-// 1. IMPORTANTE : Pense à importer ton nouveau composant ici (adapte le chemin selon ton projet)
 import 'package:artichette/widgets/custom_input.dart';
 import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
