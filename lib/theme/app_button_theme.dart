@@ -15,7 +15,7 @@ abstract final class AppButtonTheme {
     return FilledButton.styleFrom(
       minimumSize: Size(0, height),
       elevation: 0,
-      backgroundColor: AppColors.primary,
+      backgroundColor: const Color.fromRGBO(45, 73, 76, 1),
       foregroundColor: AppColors.accent,
       disabledBackgroundColor: AppColors.outline,
       disabledForegroundColor: Colors.white70,

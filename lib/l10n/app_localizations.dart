@@ -449,11 +449,23 @@ abstract class AppLocalizations {
   /// **'Sign in'**
   String get login_connexion;
 
+  /// No description provided for @login_forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password ?'**
+  String get login_forgotPassword;
+
   /// No description provided for @login_logout.
   ///
   /// In en, this message translates to:
   /// **'Log out'**
   String get login_logout;
+
+  /// No description provided for @login_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to access your escape.'**
+  String get login_subtitle;
 
   /// No description provided for @roomPreviewCard_details.
   ///
@@ -478,6 +490,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Email'**
   String get signup_email;
+
+  /// No description provided for @signup_emailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'example@mail.com'**
+  String get signup_emailHint;
 
   /// No description provided for @signup_password.
   ///
