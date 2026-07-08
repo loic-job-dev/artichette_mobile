@@ -31,7 +31,9 @@ class User {
       pseudo: json['pseudo'],
       email: json['email'],
       media: json['media'],
-      addresses: {Address.fromJson(json)},
+      addresses: (json['addresses'] as List<dynamic>)
+          .map((e) => Address.fromJson(e as Map<String, dynamic>))
+          .toSet(),
     );
   }
 
