@@ -64,7 +64,7 @@ class BookingViewModel extends ChangeNotifier {
 
   Future<void> createBooking(RoomType room) async {
     if (range == null || adults == null) {
-      errorMessage = "Missing booking information";
+      errorMessage = "Informations manquantes";
       notifyListeners();
       return;
     }
