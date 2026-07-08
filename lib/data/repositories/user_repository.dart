@@ -8,7 +8,7 @@ class UserRepository {
 
   Future<User> getMe() async {
     final data = await api.getMe();
-    return User.fromJson(data);
+    return User.fromJsonUserResponse(data);
   }
 
   Future<User> updateMe({
