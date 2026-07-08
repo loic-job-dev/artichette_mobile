@@ -1,8 +1,10 @@
 import 'package:artichette/screens/profile_screen.dart';
 import 'package:go_router/go_router.dart';
 
+import '../domain/models/booking.dart';
 import '../domain/models/room_type.dart';
 import '../screens/auth_screen.dart';
+import '../screens/booking_summary_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/main_scaffold.dart';
 import '../screens/room_detail_screen.dart';
@@ -50,6 +52,17 @@ final GoRouter appRouter = GoRouter(
 
             return RoomDetailScreen(
               room: room,
+            );
+          },
+        ),
+
+        GoRoute(
+          path: '/booking-summary',
+          builder: (context, state) {
+            final booking = state.extra as Booking;
+
+            return BookingSummaryScreen(
+              booking: booking,
             );
           },
         ),

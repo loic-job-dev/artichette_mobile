@@ -64,10 +64,13 @@ class BookingViewModel extends ChangeNotifier {
 
   Future<void> createBooking(RoomType room) async {
     if (range == null || adults == null) {
+      debugPrint("ERREUR : range ou adults null");
       errorMessage = "Informations manquantes";
       notifyListeners();
       return;
     }
+
+    debugPrint("AVANT API");
 
     loading = true;
     errorMessage = null;
@@ -82,15 +85,19 @@ class BookingViewModel extends ChangeNotifier {
         roomType: room.type,
       );
 
+      debugPrint("RETOUR API : ${booking.id}");
+
       currentBooking = booking;
 
-      // reset
+      debugPrint("CURRENT BOOKING : ${currentBooking?.id}");
+
       range = null;
       adults = null;
       children = null;
       rooms = [];
 
     } catch (e) {
+      debugPrint("ERREUR CREATE BOOKING : $e");
       errorMessage = e.toString();
     } finally {
       loading = false;

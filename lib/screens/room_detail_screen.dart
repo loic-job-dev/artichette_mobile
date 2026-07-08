@@ -223,9 +223,22 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                           ],
                         ),
                         FilledButton(
-                          onPressed: () {
+                          onPressed: () async {
                             if (user != null) {
-                              bookingVM.createBooking(widget.room);
+                              await bookingVM.createBooking(widget.room);
+
+                              debugPrint("BOOKING : ${bookingVM.currentBooking?.id}");
+
+                              if (!context.mounted) return;
+
+                              if (bookingVM.currentBooking != null) {
+                                debugPrint("NAVIGATION");
+
+                                context.go(
+                                  '/booking-summary',
+                                  extra: bookingVM.currentBooking,
+                                );
+                              }
                             } else {
                               context.go('/login');
                             }

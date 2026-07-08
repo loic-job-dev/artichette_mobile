@@ -46,9 +46,15 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 16),
                 child: RoomPreviewCard(
                   roomType: room,
-                  onBook: (room) {
+                  onBook: (room) async {
                     if (user != null) {
-                      bookingVM.createBooking(room);
+                      await bookingVM.createBooking(room);
+                      if (bookingVM.currentBooking != null && context.mounted) {
+                        context.go(
+                          '/booking-summary',
+                          extra: bookingVM.currentBooking,
+                        );
+                      }
                     } else {
                       context.go('/login');
                     }
