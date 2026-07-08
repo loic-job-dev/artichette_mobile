@@ -200,7 +200,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login_connexion => 'Sign in';
 
   @override
+  String get login_forgotPassword => 'Forgot password ?';
+
+  @override
   String get login_logout => 'Log out';
+
+  @override
+  String get login_subtitle => 'Sign in to access your escape.';
 
   @override
   String get roomPreviewCard_details => 'Details';
@@ -213,6 +219,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signup_email => 'Email';
+
+  @override
+  String get signup_emailHint => 'example@mail.com';
 
   @override
   String get signup_password => 'Password';
