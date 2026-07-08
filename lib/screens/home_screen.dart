@@ -23,15 +23,6 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          if (bookingVM.errorMessage != null)
-            Card(
-              color: Colors.red.shade100,
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: SelectableText(bookingVM.errorMessage!),
-              ),
-            ),
-          Text(ApiConfig.baseUrl),
           StaySearchCard(
             onSearch: (start, end, adults, children) {
               bookingVM.searchRooms(
