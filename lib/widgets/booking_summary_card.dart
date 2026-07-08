@@ -1,9 +1,6 @@
 import 'package:artichette/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:artichette/widgets/outlined_button.dart';
-import 'package:artichette/widgets/filled_button.dart';
-import 'package:artichette/data/mocks/booking_mock.dart';
 
 import '../domain/models/booking.dart';
 
