@@ -16,6 +16,6 @@ class UserRepository {
     required String password,
   }) async {
     final data = await api.updateMe(user.toUpdateRequest(password: password));
-    return User.fromJson(data);
+    return User.fromJsonUserResponse(data);
   }
 }

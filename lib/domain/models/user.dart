@@ -37,6 +37,18 @@ class User {
     );
   }
 
+  factory User.fromJsonUserResponse(Map<String, dynamic> json) {
+    return User(
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      phoneNumber: json['phoneNumber'],
+      pseudo: json['pseudo'],
+      email: json['email'],
+      media: json['media'],
+      addresses: {Address.fromJson(json)},
+    );
+  }
+
   UserUpdateRequest toUpdateRequest({required String password}) {
     return UserUpdateRequest(
       firstName: firstName,
