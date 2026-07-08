@@ -12,26 +12,20 @@ class AuthApi {
 
   Future<AuthResponse> login(LoginRequest request) async {
     try {
-      final res = await dio.post(
-        '/auth/login',
-        data: request.toJson(),
-      );
+      final res = await dio.post('/auth/login', data: request.toJson());
 
       return AuthResponse.fromJson(res.data);
     } on DioException catch (e) {
       throw ApiException(
         statusCode: e.response?.statusCode,
-        message: _extractMessage(e),
+        message: e.error?.toString() ?? 'Une erreur est survenue.',
       );
     }
   }
 
   Future<AuthResponse> signUp(SignUpRequest request) async {
     try {
-      final res = await dio.post(
-        '/auth/signup',
-        data: request.toJson(),
-      );
+      final res = await dio.post('/auth/signup', data: request.toJson());
 
       return AuthResponse.fromJson(res.data);
     } on DioException catch (e) {

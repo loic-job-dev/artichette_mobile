@@ -9,13 +9,15 @@ import 'filled_button.dart';
 import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+  final void Function(String message) onError;
+
+  const LoginForm({super.key, required this.onError});
 
   @override
-  State<LoginForm> createState() => _LoginFormState ();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _LoginFormState  extends State<LoginForm> {
+class _LoginFormState extends State<LoginForm> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
 
@@ -31,23 +33,18 @@ class _LoginFormState  extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final authRepository = context.read<AuthRepository>();
-     final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          l10n.login_signin,
-          style: AppTextTheme.textTheme.displayMedium,
-        ),
+        Text(l10n.login_signin, style: AppTextTheme.textTheme.displayMedium),
 
         const SizedBox(height: 12),
 
         TextField(
           controller: emailController,
           keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(
-            hintText: "Email",
-          ),
+          decoration: const InputDecoration(hintText: "Email"),
         ),
 
         const SizedBox(height: 16),
@@ -81,24 +78,23 @@ class _LoginFormState  extends State<LoginForm> {
             onPressed: () async {
               try {
                 await authRepository.login(
-                   email: emailController.text,
-                   password: passwordController.text,
+                  email: emailController.text,
+                  password: passwordController.text,
                 );
                 if (!mounted) return;
-
                 await context.read<UserViewModel>().load();
                 context.go('/');
               } on ApiException catch (e) {
+                print('heee : ${e.runtimeType}');
                 if (!mounted) return;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(e.message),
-                  ),
-                );
+                widget.onError(e.message);
+              } catch (e) {
+                if (!mounted) return;
+                widget.onError('Une erreur est survenue.');
               }
             },
             compact: false,
-            child:  Text(l10n.login_connexion),
+            child: Text(l10n.login_connexion),
           ),
         ),
 
@@ -112,7 +108,7 @@ class _LoginFormState  extends State<LoginForm> {
             if (!mounted) return;
             context.go('/');
           },
-          child:  Text(l10n.login_logout),
+          child: Text(l10n.login_logout),
         ),
       ],
     );

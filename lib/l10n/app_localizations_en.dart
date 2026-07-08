@@ -233,6 +233,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signup_streetNumber => 'Number';
 
   @override
+  String get signup_streetNumberError => 'Street number is incorrect';
+
+  @override
   String get signup_streetType => 'Type (street, avenue...)';
 
   @override
@@ -255,6 +258,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signup_submit => 'Create an account';
+
+  @override
+  String get signup_invalid_email => 'Please enter a valid email address.';
+
+  @override
+  String get signup_password_too_short => 'Password must be at least 8 characters long.';
+
+  @override
+  String get signup_missing_first_last_name => 'Please enter your first and last name.';
+
+  @override
+  String get signup_invalid_phone => 'Please enter a valid phone number.';
+
+  @override
+  String get signup_missing_pseudo => 'Please enter a username.';
+
+  @override
+  String get signup_invalid_street_number => 'Please enter a valid street number.';
+
+  @override
+  String get signup_missing_street_type => 'Please enter a street type (street, avenue, etc.).';
+
+  @override
+  String get signup_missing_street_name => 'Please enter a street name.';
+
+  @override
+  String get signup_invalid_zip_code => 'Please enter a valid zip code (5 digits).';
+
+  @override
+  String get signup_missing_city => 'Please enter a city.';
 
   @override
   String get staySearchCard_stay => 'Stay';
