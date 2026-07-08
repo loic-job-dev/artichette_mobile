@@ -1,3 +1,4 @@
+import 'package:artichette/core/network/api_config.dart';
 import 'package:artichette/l10n/app_localizations.dart';
 import 'package:artichette/widgets/login_form.dart';
 import 'package:artichette/widgets/signup_form.dart';
@@ -31,6 +32,8 @@ class _AuthScreenState extends State<AuthScreen> {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
+          //debug print
+          Text(ApiConfig.baseUrl),
           SegmentedButton<AuthMode>(
             segments: [
               ButtonSegment(value: AuthMode.login, label: Text(l10n.auth_signin)),
