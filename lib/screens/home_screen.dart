@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+
 import '../domain/models/user.dart';
 import '../view_models/booking_view_model.dart';
 import '../view_models/user_view_model.dart';
 import '../widgets/room_preview_card.dart';
 import '../widgets/stay_search_card.dart';
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

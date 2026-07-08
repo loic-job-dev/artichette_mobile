@@ -1,11 +1,14 @@
 import 'package:artichette/widgets/feature_chip.dart';
 import 'package:flutter/material.dart';
+
+import '../domain/models/booking.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../domain/models/room_type.dart';
 import '../domain/models/user.dart';
 import '../view_models/booking_view_model.dart';
 import '../view_models/user_view_model.dart';
+
 
 class RoomDetailScreen extends StatefulWidget {
   final RoomType room;
@@ -227,12 +230,9 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                             if (user != null) {
                               await bookingVM.createBooking(widget.room);
 
-                              debugPrint("BOOKING : ${bookingVM.currentBooking?.id}");
-
                               if (!context.mounted) return;
 
                               if (bookingVM.currentBooking != null) {
-                                debugPrint("NAVIGATION");
 
                                 context.go(
                                   '/booking-summary',
