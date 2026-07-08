@@ -311,17 +311,11 @@ abstract class AppLocalizations {
   /// **'Implementation in progress'**
   String get profile_implementationInProgressMessage;
 
-  /// No description provided for @profile_saveSnackBarAction.
+  /// No description provided for @profile_saveSnackBarConfirmation.
   ///
   /// In en, this message translates to:
-  /// **'Got it, I\'ll take a nap.'**
-  String get profile_saveSnackBarAction;
-
-  /// No description provided for @profile_logoutSnackBarAction.
-  ///
-  /// In en, this message translates to:
-  /// **'Got it, I\'ll have some tea.'**
-  String get profile_logoutSnackBarAction;
+  /// **'Changes saved.'**
+  String get profile_saveSnackBarConfirmation;
 
   /// No description provided for @auth_signup.
   ///
