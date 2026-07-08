@@ -1,4 +1,3 @@
-// lib/widgets/login_form.dart
 import 'package:artichette/l10n/app_localizations.dart';
 import 'package:artichette/view_models/user_view_model.dart';
 import 'package:auth_artichette/auth_artichette.dart';
