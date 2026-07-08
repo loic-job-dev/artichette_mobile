@@ -237,89 +237,91 @@ class _SignupFormState extends State<SignupForm> {
                 const Icon(Icons.arrow_forward, size: 18, color: Colors.white),
               ],
             ),
-          ],
-        ),
+          ),
 
-        const SizedBox(height: 12),
+          const SizedBox(height: 12),
 
-        TextField(
-          controller: streetNameController,
-          decoration: InputDecoration(hintText: l10n.signup_streetName),
-        ),
+          TextField(
+            controller: streetNameController,
+            decoration: InputDecoration(hintText: l10n.signup_streetName),
+          ),
 
-        const SizedBox(height: 12),
+          const SizedBox(height: 12),
 
-        TextField(
-          controller: addressComplementController,
-          decoration: InputDecoration(hintText: l10n.signup_addressComplement),
-        ),
+          TextField(
+            controller: addressComplementController,
+            decoration: InputDecoration(
+              hintText: l10n.signup_addressComplement,
+            ),
+          ),
 
-        const SizedBox(height: 12),
+          const SizedBox(height: 12),
 
-        TextField(
-          controller: zipCodeController,
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(hintText: l10n.signup_zipCode),
-        ),
+          TextField(
+            controller: zipCodeController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(hintText: l10n.signup_zipCode),
+          ),
 
-        const SizedBox(height: 12),
+          const SizedBox(height: 12),
 
-        TextField(
-          controller: cityController,
-          decoration: InputDecoration(hintText: l10n.signup_city),
-        ),
+          TextField(
+            controller: cityController,
+            decoration: InputDecoration(hintText: l10n.signup_city),
+          ),
 
-        const SizedBox(height: 24),
+          const SizedBox(height: 24),
 
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: AppFilledButton(
-            onPressed: () async {
-              final validationError = _validate();
-              if (validationError != null) {
-                widget.onError(validationError);
-                return;
-              }
-              try {
-                await authRepository.signUp(
-                  email: emailController.text,
-                  password: passwordController.text,
-                  firstName: firstNameController.text,
-                  lastName: lastNameController.text,
-                  phoneNumber: phoneController.text,
-                  pseudo: pseudoController.text,
-                  streetNumber: int.parse(streetNumberController.text),
-                  streetType: streetTypeController.text,
-                  streetName: streetNameController.text,
-                  addressComplement: addressComplementController.text.isEmpty
-                      ? null
-                      : addressComplementController.text,
-                  zipCode: zipCodeController.text,
-                  city: cityController.text,
-                );
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: AppFilledButton(
+              onPressed: () async {
+                final validationError = _validate();
+                if (validationError != null) {
+                  widget.onError(validationError);
+                  return;
+                }
+                try {
+                  await authRepository.signUp(
+                    email: emailController.text,
+                    password: passwordController.text,
+                    firstName: firstNameController.text,
+                    lastName: lastNameController.text,
+                    phoneNumber: phoneController.text,
+                    pseudo: pseudoController.text,
+                    streetNumber: int.parse(streetNumberController.text),
+                    streetType: streetTypeController.text,
+                    streetName: streetNameController.text,
+                    addressComplement: addressComplementController.text.isEmpty
+                        ? null
+                        : addressComplementController.text,
+                    zipCode: zipCodeController.text,
+                    city: cityController.text,
+                  );
 
-                if (!mounted) return;
+                  if (!mounted) return;
 
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(SnackBar(content: Text(l10n.signup_success)));
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text(l10n.signup_success)));
 
-                await context.read<UserViewModel>().load();
+                  await context.read<UserViewModel>().load();
 
-                // Navigation vers login ou home
-              } on ApiException catch (e) {
-                if (!mounted) return;
-                widget.onError(e.message);
-              } on FormatException {
-                if (!mounted) return;
-                widget.onError(l10n.signup_streetNumberError);
-              } catch (e) {
-                if (!mounted) return;
-                widget.onError(l10n.signup_errorUnexpected);
-              }
-            },
-            compact: false,
-            child: Text(l10n.signup_submit),
+                  // Navigation vers login ou home
+                } on ApiException catch (e) {
+                  if (!mounted) return;
+                  widget.onError(e.message);
+                } on FormatException {
+                  if (!mounted) return;
+                  widget.onError(l10n.signup_streetNumberError);
+                } catch (e) {
+                  if (!mounted) return;
+                  widget.onError(l10n.signup_errorUnexpected);
+                }
+              },
+              compact: false,
+              child: Text(l10n.signup_submit),
+            ),
           ),
         ],
       ),

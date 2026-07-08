@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:artichette/l10n/app_localizations.dart';
 import 'package:artichette/widgets/login_form.dart';
 import 'package:artichette/widgets/signup_form.dart';
