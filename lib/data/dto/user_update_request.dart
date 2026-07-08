@@ -3,7 +3,7 @@ class UserUpdateRequest {
   final String lastName;
   final String phoneNumber;
   final String? pseudo;
-  final String email;
+  final String? email;
   final int streetNumber;
   final String streetType;
   final String streetName;
@@ -17,7 +17,7 @@ class UserUpdateRequest {
     required this.lastName,
     required this.phoneNumber,
     this.pseudo,
-    required this.email,
+    this.email,
     required this.streetNumber,
     required this.streetType,
     required this.streetName,

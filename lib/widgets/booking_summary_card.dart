@@ -1,9 +1,6 @@
 import 'package:artichette/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:artichette/widgets/outlined_button.dart';
-import 'package:artichette/widgets/filled_button.dart';
-import 'package:artichette/data/mocks/booking_mock.dart';
 
 import '../domain/models/booking.dart';
 
@@ -11,23 +8,16 @@ class BookingSummaryCard extends StatelessWidget {
   const BookingSummaryCard({
     super.key,
     required this.booking,
-    required this.onConfirm,
   });
 
   final Booking booking;
-  final VoidCallback onConfirm;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final mockBooking = BookingMock.getMockBooking();
-    final startBookedDate = DateFormat(
-      'dd-MM-yyyy',
-    ).format(mockBooking.startBookedDate);
-    final endBookedDate = DateFormat(
-      'dd-MM-yyyy',
-    ).format(mockBooking.endBookedDate);
     final l10n = AppLocalizations.of(context)!;
+    final startDate = DateFormat('dd-MM-yyyy').format(booking.startBookedDate);
+    final endDate = DateFormat('dd-MM-yyyy').format(booking.endBookedDate);
 
     return SingleChildScrollView(
       child: Card(
@@ -50,16 +40,20 @@ class BookingSummaryCard extends StatelessWidget {
               const SizedBox(height: 16),
 
               Stack(
+                alignment: Alignment.center,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      'assets/pictures/rooms/DLX2.png',
-                      width: 150,
-                      height: 200,
-                      fit: BoxFit.cover,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: 250,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.asset(
+                        'assets/pictures/rooms/DLX2.png',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
+
                   Positioned(
                     top: 6,
                     left: 6,
@@ -73,7 +67,7 @@ class BookingSummaryCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
-                        "Réservation n° ${mockBooking.id}",
+                        "Réservation n° ${booking.id}",
                         style: theme.textTheme.labelSmall?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -81,7 +75,6 @@ class BookingSummaryCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 215),
                 ],
               ),
               Align(
@@ -107,17 +100,17 @@ class BookingSummaryCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                mockBooking.roomTypes.first.type,
+                                booking.roomTypes.first.description,
                                 style: theme.textTheme.titleMedium,
                               ),
                               Text(
-                                "${mockBooking.numberOfNights} ${l10n.bookingSummaryCard_nbNight(mockBooking.numberOfNights)}",
+                                l10n.bookingSummaryCard_nbNight(booking.numberOfNights),
                                 style: theme.textTheme.headlineMedium,
                               ),
                             ],
                           ),
                           Text(
-                            "450€ / ${l10n.bookingSummaryCard_night}",
+                            booking.roomUnitPriceDisplay,
                             style: theme.textTheme.bodySmall,
                           ),
                           Divider(
@@ -132,7 +125,7 @@ class BookingSummaryCard extends StatelessWidget {
                                 children: [
                                   Text(l10n.bookingSummaryCard_arrival),
                                   Text(
-                                    startBookedDate.toString(),
+                                    startDate,
                                     style: theme.textTheme.titleLarge,
                                   ),
                                 ],
@@ -142,7 +135,7 @@ class BookingSummaryCard extends StatelessWidget {
                                 children: [
                                   Text(l10n.bookingSummaryCard_leaving),
                                   Text(
-                                    endBookedDate.toString(),
+                                    endDate,
                                     style: theme.textTheme.titleLarge,
                                   ),
                                 ],
@@ -157,60 +150,59 @@ class BookingSummaryCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Total payé',
+                                'Total à payer',
                                 style: theme.textTheme.labelLarge,
                               ),
                               Text(
-                                mockBooking.totalStayPriceWithoutOptionsDisplay,
+                                booking.totalStayPriceWithoutOptionsDisplay,
                                 style: theme.textTheme.labelLarge,
                               ),
                             ],
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              AppOutlinedButton(
-                                onPressed: () {
-                                  // TODO : create navigation between screens
-                                },
-                                compact: false,
-                                child: Text(l10n.bookingSummaryCard_calendar),
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     AppOutlinedButton(
+                          //       onPressed: () {
+                          //         // TODO : create navigation between screens
+                          //       },
+                          //       compact: false,
+                          //       child: Text(l10n.bookingSummaryCard_calendar),
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 16),
 
                     const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AppFilledButton(
-                          onPressed: () {
-                            // TODO : create navigation between screens
-                          },
-                          compact: false,
-                          child: Text(l10n.bookingSummaryCard_home),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AppOutlinedButton(
-                          onPressed: () {
-                            // TODO : create navigation between screens
-                          },
-                          compact: false,
-                          child: Text(l10n.bookingSummaryCard_myBookings),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     AppFilledButton(
+                    //       onPressed: () {
+                    //         // TODO : create navigation between screens
+                    //       },
+                    //       compact: false,
+                    //       child: Text(l10n.bookingSummaryCard_home),
+                    //     ),
+                    //   ],
+                    // ),
+                    // const SizedBox(height: 16),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     AppOutlinedButton(
+                    //       onPressed: () {
+                    //         // TODO : create navigation between screens
+                    //       },
+                    //       compact: false,
+                    //       child: Text(l10n.bookingSummaryCard_myBookings),
+                    //     ),
+                    //   ],
+                    // ),
 
-                    const SizedBox(height: 50),
                   ],
                 ),
               ),
@@ -218,40 +210,6 @@ class BookingSummaryCard extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _InfoRow extends StatelessWidget {
-  const _InfoRow({
-    required this.icon,
-    required this.title,
-    required this.value,
-  });
-
-  final IconData icon;
-  final String title;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(icon),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title, style: theme.textTheme.labelLarge),
-              Text(value, style: theme.textTheme.bodyLarge),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

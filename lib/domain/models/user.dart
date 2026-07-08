@@ -7,7 +7,7 @@ class User {
   final String lastName;
   final String phoneNumber;
   final String? pseudo;
-  final String email;
+  final String? email;
   final String? media;
   final Set<Address> addresses;
 
@@ -16,7 +16,7 @@ class User {
     required this.lastName,
     required this.phoneNumber,
     this.pseudo,
-    required this.email,
+    this.email,
     this.media,
     required this.addresses,
   });

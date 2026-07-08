@@ -7,10 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('Theme uses the right colors', (tester) async {
     await tester.pumpWidget(
-      MaterialApp(
-        theme: AppTheme.light,
-        home: const Scaffold(),
-      ),
+      MaterialApp(theme: AppTheme.light, home: const Scaffold()),
     );
 
     final BuildContext context = tester.element(find.byType(Scaffold));
@@ -36,9 +33,7 @@ void main() {
       ),
     );
 
-    final text = tester.widget<Text>(
-      find.text('Bienvenue'),
-    );
+    final text = tester.widget<Text>(find.text('Bienvenue'));
 
     expect(text.style?.fontSize, 30);
   });
@@ -48,17 +43,12 @@ void main() {
       MaterialApp(
         theme: AppTheme.light,
         home: Scaffold(
-          body: AppFilledButton(
-            onPressed: () {},
-            child: const Text('test'),
-          ),
+          body: AppFilledButton(onPressed: () {}, child: const Text('test')),
         ),
       ),
     );
 
-    final button = tester.widget<FilledButton>(
-      find.byType(FilledButton),
-    );
+    final button = tester.widget<FilledButton>(find.byType(FilledButton));
 
     final style = button.style!;
 
@@ -66,9 +56,6 @@ void main() {
     final foreground = style.foregroundColor?.resolve({});
 
     expect(background, AppColors.primary);
-    expect(
-      style.foregroundColor?.resolve({}),
-      AppColors.accent,
-    );
+    expect(foreground, AppColors.accent);
   });
 }

@@ -1,5 +1,4 @@
 import 'package:artichette/l10n/app_localizations.dart';
-import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,12 +18,13 @@ class AppBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authRepository = context.read<AuthRepository>();
     final l10n = AppLocalizations.of(context)!;
 
     final user = context.select<UserViewModel, User?>(
           (vm) => vm.user,
     );
+
+    debugPrint('BottomBar rebuild : $user');
 
     return SafeArea(
       top: false,

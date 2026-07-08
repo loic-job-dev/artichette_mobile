@@ -10,6 +10,7 @@ import '../theme/app_spacing.dart';
 import '../theme/app_text_theme.dart';
 import 'custom_input.dart';
 import 'filled_button.dart';
+import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
