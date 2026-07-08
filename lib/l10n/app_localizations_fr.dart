@@ -239,6 +239,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get signup_streetNumber => 'Numéro';
 
   @override
+  String get signup_streetNumberError => 'Le numéro de rue doit être un nombre valide.';
+
+  @override
   String get signup_streetType => 'Type (rue, av...)';
 
   @override
@@ -261,6 +264,36 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get signup_submit => 'Créer un compte';
+
+  @override
+  String get signup_invalid_email => 'Merci de renseigner un email valide.';
+
+  @override
+  String get signup_password_too_short => 'Le mot de passe doit contenir au moins 8 caractères.';
+
+  @override
+  String get signup_missing_first_last_name => 'Merci de renseigner votre nom et prénom.';
+
+  @override
+  String get signup_invalid_phone => 'Merci de renseigner un numéro de téléphone valide.';
+
+  @override
+  String get signup_missing_pseudo => 'Merci de renseigner un pseudo.';
+
+  @override
+  String get signup_invalid_street_number => 'Merci de renseigner un numéro de rue valide.';
+
+  @override
+  String get signup_missing_street_type => 'Merci de renseigner un type de voie (rue, avenue...).';
+
+  @override
+  String get signup_missing_street_name => 'Merci de renseigner un nom de rue.';
+
+  @override
+  String get signup_invalid_zip_code => 'Merci de renseigner un code postal valide (5 chiffres).';
+
+  @override
+  String get signup_missing_city => 'Merci de renseigner une ville.';
 
   @override
   String get staySearchCard_stay => 'Séjour';

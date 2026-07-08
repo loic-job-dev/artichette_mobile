@@ -80,6 +80,7 @@
     "signup_phone": "Téléphone",
     "signup_pseudo": "Pseudo",
     "signup_streetNumber": "Numéro",
+    "signup_streetNumberError": "Le numéro de rue doit être un nombre valide.",
     "signup_streetType": "Type (rue, av...)",
     "signup_streetName": "Nom de rue",
     "signup_addressComplement": "Complément d'adresse (optionnel)",
@@ -88,9 +89,19 @@
     "signup_success": "Compte créé avec succès",
     "signup_errorUnexpected": "Erreur inattendue",
     "signup_submit": "Créer un compte",
+    "signup_invalid_email": "Merci de renseigner un email valide.",
+    "signup_password_too_short": "Le mot de passe doit contenir au moins 8 caractères.",
+    "signup_missing_first_last_name": "Merci de renseigner votre nom et prénom.",
+    "signup_invalid_phone": "Merci de renseigner un numéro de téléphone valide.",
+    "signup_missing_pseudo": "Merci de renseigner un pseudo.",
+    "signup_invalid_street_number": "Merci de renseigner un numéro de rue valide.",
+    "signup_missing_street_type": "Merci de renseigner un type de voie (rue, avenue...).",
+    "signup_missing_street_name": "Merci de renseigner un nom de rue.",
+    "signup_invalid_zip_code": "Merci de renseigner un code postal valide (5 chiffres).",
+    "signup_missing_city": "Merci de renseigner une ville.",
     
-  "staySearchCard_stay": "Séjour",
-  "staySearchCard_selectDates": "Sélectionner les dates",
-  "staySearchCard_travelers": "Voyageurs",
-  "staySearchCard_searchRoom": "Rechercher une chambre"
+    "staySearchCard_stay": "Séjour",
+    "staySearchCard_selectDates": "Sélectionner les dates",
+    "staySearchCard_travelers": "Voyageurs",
+    "staySearchCard_searchRoom": "Rechercher une chambre"
 }

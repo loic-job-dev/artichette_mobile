@@ -13,7 +13,9 @@ import 'filled_button.dart';
 import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+  final void Function(String message) onError;
+
+  const LoginForm({super.key, required this.onError});
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -108,10 +110,10 @@ class _LoginFormState extends State<LoginForm> {
                   password: passwordController.text,
                 );
                 if (!mounted) return;
-
                 await context.read<UserViewModel>().load();
                 context.go('/');
               } on ApiException catch (e) {
+                print('heee : ${e.runtimeType}');
                 if (!mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

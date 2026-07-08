@@ -527,6 +527,12 @@ abstract class AppLocalizations {
   /// **'Number'**
   String get signup_streetNumber;
 
+  /// No description provided for @signup_streetNumberError.
+  ///
+  /// In en, this message translates to:
+  /// **'Street number is incorrect'**
+  String get signup_streetNumberError;
+
   /// No description provided for @signup_streetType.
   ///
   /// In en, this message translates to:
@@ -574,6 +580,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Create an account'**
   String get signup_submit;
+
+  /// No description provided for @signup_invalid_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address.'**
+  String get signup_invalid_email;
+
+  /// No description provided for @signup_password_too_short.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 8 characters long.'**
+  String get signup_password_too_short;
+
+  /// No description provided for @signup_missing_first_last_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your first and last name.'**
+  String get signup_missing_first_last_name;
+
+  /// No description provided for @signup_invalid_phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number.'**
+  String get signup_invalid_phone;
+
+  /// No description provided for @signup_missing_pseudo.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a username.'**
+  String get signup_missing_pseudo;
+
+  /// No description provided for @signup_invalid_street_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid street number.'**
+  String get signup_invalid_street_number;
+
+  /// No description provided for @signup_missing_street_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a street type (street, avenue, etc.).'**
+  String get signup_missing_street_type;
+
+  /// No description provided for @signup_missing_street_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a street name.'**
+  String get signup_missing_street_name;
+
+  /// No description provided for @signup_invalid_zip_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid zip code (5 digits).'**
+  String get signup_invalid_zip_code;
+
+  /// No description provided for @signup_missing_city.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a city.'**
+  String get signup_missing_city;
 
   /// No description provided for @staySearchCard_stay.
   ///

@@ -88,8 +88,7 @@
   "signup_errorUnexpected": "Unexpected error",
   "signup_submit": "Create an account",
     "staySearchCard_stay": "Stay",
-  "staySearchCard_selectDates": "Select dates",
-  "staySearchCard_travelers": "Travelers",
-  "staySearchCard_searchRoom": "Search for a room"
-
+    "staySearchCard_selectDates": "Select dates",
+    "staySearchCard_travelers": "Travelers",
+    "staySearchCard_searchRoom": "Search for a room"
 }
