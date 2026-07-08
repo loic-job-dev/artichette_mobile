@@ -1,9 +1,5 @@
 import 'package:artichette/widgets/feature_chip.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:artichette/widgets/outlined_button.dart';
-import 'package:artichette/widgets/filled_button.dart';
-import 'package:artichette/data/mocks/booking_mock.dart';
 import '../domain/models/booking.dart';
 
 class RoomDetailScreen extends StatefulWidget {
@@ -41,13 +37,6 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final mockBooking = BookingMock.getMockBooking();
-    final startBookedDate = DateFormat(
-      'dd-MM-yyyy',
-    ).format(mockBooking.startBookedDate);
-    final endBookedDate = DateFormat(
-      'dd-MM-yyyy',
-    ).format(mockBooking.endBookedDate);
 
     return SingleChildScrollView(
       child: Center(

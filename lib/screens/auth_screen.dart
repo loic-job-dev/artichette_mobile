@@ -1,12 +1,7 @@
 import 'package:artichette/l10n/app_localizations.dart';
-import 'package:artichette/theme/app_text_theme.dart';
 import 'package:artichette/widgets/login_form.dart';
 import 'package:artichette/widgets/signup_form.dart';
-import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../widgets/filled_button.dart';
-import '../widgets/outlined_button.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});

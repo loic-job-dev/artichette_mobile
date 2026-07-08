@@ -1,6 +1,5 @@
 import 'package:artichette/domain/models/room.dart';
 import 'package:artichette/domain/models/reservation_option.dart';
-import 'package:artichette/domain/models/room.dart';
 import 'package:artichette/domain/models/room_type.dart';
 
 import 'user.dart';
