@@ -1,3 +1,4 @@
+import 'package:artichette/l10n/app_localizations.dart';
 import 'package:artichette/theme/app_text_theme.dart';
 import 'package:artichette/view_models/user_view_model.dart';
 import 'package:auth_artichette/auth_artichette.dart';
@@ -51,22 +52,20 @@ class _SignupFormState extends State<SignupForm> {
   @override
   Widget build(BuildContext context) {
     final authRepository = context.read<AuthRepository>();
+    final l10n = AppLocalizations.of(context)!;
 
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            "Créer un compte",
-            style: AppTextTheme.textTheme.displayMedium,
-          ),
+          Text(l10n.signup_title, style: AppTextTheme.textTheme.displayMedium),
 
           const SizedBox(height: 12),
 
           TextField(
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(hintText: "Email"),
+            decoration: InputDecoration(hintText: l10n.signup_email),
           ),
 
           const SizedBox(height: 12),
@@ -74,21 +73,21 @@ class _SignupFormState extends State<SignupForm> {
           TextField(
             controller: passwordController,
             obscureText: true,
-            decoration: const InputDecoration(hintText: "Mot de passe"),
+            decoration: InputDecoration(hintText: l10n.signup_password),
           ),
 
           const SizedBox(height: 12),
 
           TextField(
             controller: firstNameController,
-            decoration: const InputDecoration(hintText: "Prénom"),
+            decoration: InputDecoration(hintText: l10n.signup_firstName),
           ),
 
           const SizedBox(height: 12),
 
           TextField(
             controller: lastNameController,
-            decoration: const InputDecoration(hintText: "Nom"),
+            decoration: InputDecoration(hintText: l10n.signup_lastName),
           ),
 
           const SizedBox(height: 12),
@@ -96,14 +95,14 @@ class _SignupFormState extends State<SignupForm> {
           TextField(
             controller: phoneController,
             keyboardType: TextInputType.phone,
-            decoration: const InputDecoration(hintText: "Téléphone"),
+            decoration: InputDecoration(hintText: l10n.signup_phone),
           ),
 
           const SizedBox(height: 12),
 
           TextField(
             controller: pseudoController,
-            decoration: const InputDecoration(hintText: "Pseudo"),
+            decoration: InputDecoration(hintText: l10n.signup_pseudo),
           ),
 
           const SizedBox(height: 12),
@@ -115,7 +114,9 @@ class _SignupFormState extends State<SignupForm> {
                 child: TextField(
                   controller: streetNumberController,
                   keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(hintText: "Numéro"),
+                  decoration: InputDecoration(
+                    hintText: l10n.signup_streetNumber,
+                  ),
                 ),
               ),
               const SizedBox(width: 8),
@@ -123,7 +124,7 @@ class _SignupFormState extends State<SignupForm> {
                 flex: 3,
                 child: TextField(
                   controller: streetTypeController,
-                  decoration: const InputDecoration(hintText: "Type (rue, av...)"),
+                  decoration: InputDecoration(hintText: l10n.signup_streetType),
                 ),
               ),
             ],
@@ -133,14 +134,16 @@ class _SignupFormState extends State<SignupForm> {
 
           TextField(
             controller: streetNameController,
-            decoration: const InputDecoration(hintText: "Nom de rue"),
+            decoration: InputDecoration(hintText: l10n.signup_streetName),
           ),
 
           const SizedBox(height: 12),
 
           TextField(
             controller: addressComplementController,
-            decoration: const InputDecoration(hintText: "Complément d'adresse (optionnel)"),
+            decoration: InputDecoration(
+              hintText: l10n.signup_addressComplement,
+            ),
           ),
 
           const SizedBox(height: 12),
@@ -148,14 +151,14 @@ class _SignupFormState extends State<SignupForm> {
           TextField(
             controller: zipCodeController,
             keyboardType: TextInputType.number,
-            decoration: const InputDecoration(hintText: "Code postal"),
+            decoration: InputDecoration(hintText: l10n.signup_zipCode),
           ),
 
           const SizedBox(height: 12),
 
           TextField(
             controller: cityController,
-            decoration: const InputDecoration(hintText: "Ville"),
+            decoration: InputDecoration(hintText: l10n.signup_city),
           ),
 
           const SizedBox(height: 24),
@@ -185,9 +188,7 @@ class _SignupFormState extends State<SignupForm> {
                   if (!mounted) return;
 
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Compte créé avec succès"),
-                    ),
+                     SnackBar(content: Text(l10n.signup_success)),
                   );
                   
                   await context.read<UserViewModel>().load();
@@ -196,28 +197,23 @@ class _SignupFormState extends State<SignupForm> {
                 } on ApiException catch (e) {
                   if (!mounted) return;
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(e.message),
-                    ),
-                  );
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text(e.message)));
                 } catch (e) {
                   if (!mounted) return;
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text("Erreur inattendue"),
-                    ),
-                  );
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text(l10n.signup_errorUnexpected)));
                 }
               },
               compact: false,
-              child: const Text("Créer un compte"),
+              child:  Text(l10n.signup_submit),
             ),
           ),
 
           const SizedBox(height: 12),
-
         ],
       ),
     );

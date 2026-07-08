@@ -1,20 +1,19 @@
+import 'package:artichette/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'filled_button.dart';
 import 'date_range_picker.dart';
 
 class StaySearchCard extends StatefulWidget {
-  const StaySearchCard({
-    super.key,
-    required this.onSearch,
-  });
+  const StaySearchCard({super.key, required this.onSearch});
 
   final void Function(
-      DateTime startBookedDate,
-      DateTime endBookedDate,
-      int adults,
-      int children,
-      ) onSearch;
+    DateTime startBookedDate,
+    DateTime endBookedDate,
+    int adults,
+    int children,
+  )
+  onSearch;
 
   @override
   State<StaySearchCard> createState() => _StaySearchCardState();
@@ -44,9 +43,11 @@ class _StaySearchCardState extends State<StaySearchCard> {
     );
   }
 
-  String get _dateLabel {
+  String _dateLabel(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     if (_startDate == null || _endDate == null) {
-      return "Sélectionner les dates";
+      return l10n.staySearchCard_selectDates;
     }
 
     return "${_formatter.format(_startDate!)} → ${_formatter.format(_endDate!)}";
@@ -54,6 +55,7 @@ class _StaySearchCardState extends State<StaySearchCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -61,8 +63,8 @@ class _StaySearchCardState extends State<StaySearchCard> {
           children: [
             ListTile(
               leading: const Icon(Icons.calendar_month),
-              title: const Text("Séjour"),
-              subtitle: Text(_dateLabel),
+              title: Text(l10n.staySearchCard_stay),
+              subtitle: Text(_dateLabel(context)),
               trailing: const Icon(Icons.chevron_right),
               onTap: _selectDates,
             ),
@@ -74,17 +76,15 @@ class _StaySearchCardState extends State<StaySearchCard> {
                 const Icon(Icons.people),
                 const SizedBox(width: 16),
 
-                const Expanded(
-                  child: Text("Voyageurs"),
-                ),
+                Expanded(child: Text(l10n.staySearchCard_travelers)),
 
                 IconButton(
                   onPressed: _adults > 1
                       ? () {
-                    setState(() {
-                      _adults--;
-                    });
-                  }
+                          setState(() {
+                            _adults--;
+                          });
+                        }
                       : null,
                   icon: const Icon(Icons.remove_circle_outline),
                 ),
@@ -112,16 +112,16 @@ class _StaySearchCardState extends State<StaySearchCard> {
               child: AppFilledButton(
                 onPressed: (_startDate != null && _endDate != null)
                     ? () {
-                  widget.onSearch(
-                    _startDate!,
-                    _endDate!,
-                    _adults,
-                    _children,
-                  );
-                }
+                        widget.onSearch(
+                          _startDate!,
+                          _endDate!,
+                          _adults,
+                          _children,
+                        );
+                      }
                     : null,
                 compact: false,
-                child: const Text("Rechercher une chambre"),
+                child: Text(l10n.staySearchCard_searchRoom),
               ),
             ),
           ],

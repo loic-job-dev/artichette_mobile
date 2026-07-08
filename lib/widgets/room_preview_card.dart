@@ -1,3 +1,4 @@
+import 'package:artichette/l10n/app_localizations.dart';
 import 'package:artichette/theme/app_color.dart';
 import 'package:artichette/theme/app_radius.dart';
 import 'package:artichette/widgets/carousel_room.dart';
@@ -22,7 +23,7 @@ class RoomPreviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isAvailable = roomType.availability;
-
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       child: InkWell(
         //onTap: onDetails,
@@ -52,9 +53,7 @@ class RoomPreviewCard extends StatelessWidget {
 
               CarouselRoom(pictureList: roomType.pictures),
 
-               const SizedBox(height: 8),
-
-
+              const SizedBox(height: 8),
 
               const SizedBox(height: 16),
 
@@ -79,14 +78,14 @@ class RoomPreviewCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AppOutlinedButton(
-                      onPressed: onDetails,
-                      compact: true,
-                      child: const Text("Détails"),
+                    onPressed: onDetails,
+                    compact: true,
+                    child: Text(l10n.roomPreviewCard_details),
                   ),
                   AppFilledButton(
                     onPressed: isAvailable ? () => onBook(roomType) : null,
                     compact: true,
-                    child: const Text("Réserver"),
+                    child: Text(l10n.roomPreviewCard_bookingBtn),
                   ),
                 ],
               ),
@@ -99,7 +98,6 @@ class RoomPreviewCard extends StatelessWidget {
 }
 
 class _AvailabilityBadge extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -110,10 +108,7 @@ class _AvailabilityBadge extends StatelessWidget {
       ),
       child: Text(
         "Indisponible",
-        style: const TextStyle(
-          color: AppColors.textLight,
-          fontSize: 12,
-        ),
+        style: const TextStyle(color: AppColors.textLight, fontSize: 12),
       ),
     );
   }

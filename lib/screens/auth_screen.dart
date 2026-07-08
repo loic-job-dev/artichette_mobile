@@ -1,3 +1,4 @@
+import 'package:artichette/l10n/app_localizations.dart';
 import 'package:artichette/theme/app_text_theme.dart';
 import 'package:artichette/widgets/login_form.dart';
 import 'package:artichette/widgets/signup_form.dart';
@@ -24,16 +25,17 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           SegmentedButton<AuthMode>(
             segments: const [
-              ButtonSegment(value: AuthMode.login, label: Text('Connexion')),
+              ButtonSegment(value: AuthMode.login, label: Text(l10n.auth_signup)),
               ButtonSegment(
                 value: AuthMode.register,
-                label: Text("Inscription"),
+                label: Text(l10n.auth_signin),
               ),
             ],
             selected: {_selected},
