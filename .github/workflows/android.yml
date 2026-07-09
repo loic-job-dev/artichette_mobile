@@ -25,8 +25,9 @@ jobs:
 
       - name: Restore keystore
         run: |
-          echo "${{ secrets.ANDROID_KEYSTORE_GUI }}" | base64 --decode > upload-keystore.jks
-
+          echo "${{ secrets.ANDROID_KEYSTORE_GUI }}" | base64 --decode > android/upload-keystore.jks
+          test -f android/upload-keystore.jks
+          ls -lh android/upload-keystore.jks
 
       - name: Create key.properties
         run: |
