@@ -24,8 +24,8 @@ void main() {
   final dio = Dio(
     BaseOptions(
       baseUrl: ApiConfig.baseUrl,
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 10),
+      connectTimeout: const Duration(seconds: 120),
+      receiveTimeout: const Duration(seconds: 120),
     ),
   );
 
