@@ -35,10 +35,22 @@ jobs:
         run: |
           flutter build apk \
           --release \
-          --dart-define=API_URL=http://163.172.185.206:8080
+          --dart-define=API_URL=${{ secrets.API_URL }}
+
+      - name: Build App Bundle
+        run: |
+          flutter build appbundle \
+            --release \
+            --dart-define=API_URL=${{ secrets.API_URL }}
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Artichette-Guillaume-APK
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/Artichette-Guillaume.apk
+
+      - name: Upload App Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-aab
+          path: build/app/outputs/bundle/release/app-release.aab
