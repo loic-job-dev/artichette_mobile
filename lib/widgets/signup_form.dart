@@ -3,6 +3,7 @@ import 'package:artichette/theme/app_text_theme.dart';
 import 'package:artichette/view_models/user_view_model.dart';
 import 'package:auth_artichette/auth_artichette.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import 'filled_button.dart';
@@ -183,16 +184,12 @@ class _SignupFormState extends State<SignupForm> {
                     zipCode: zipCodeController.text,
                     city: cityController.text,
                   );
-
-                  if (!mounted) return;
-
-                  ScaffoldMessenger.of(context).showSnackBar(
-                     SnackBar(content: Text(l10n.signup_success)),
-                  );
-                  
-                  await context.read<UserViewModel>().load();
-
-                  // Navigation vers login ou home
+                  if (mounted) {
+                    await context.read<UserViewModel>().load();
+                    context.go('/');
+                  } else {
+                    return;
+                  }
                 } on ApiException catch (e) {
                   if (!mounted) return;
 

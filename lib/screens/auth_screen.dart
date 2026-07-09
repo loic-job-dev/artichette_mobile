@@ -27,10 +27,10 @@ class _AuthScreenState extends State<AuthScreen> {
         children: [
           SegmentedButton<AuthMode>(
             segments: [
-              ButtonSegment(value: AuthMode.login, label: Text(l10n.auth_signup)),
+              ButtonSegment(value: AuthMode.login, label: Text(l10n.auth_signin)),
               ButtonSegment(
                 value: AuthMode.register,
-                label: Text(l10n.auth_signin),
+                label: Text(l10n.auth_signup),
               ),
             ],
             selected: {_selected},

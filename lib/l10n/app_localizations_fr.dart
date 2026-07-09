@@ -117,10 +117,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profile_implementationInProgressMessage => 'Implémentation en cours';
 
   @override
-  String get profile_saveSnackBarAction => 'C\'est compris, je vais faire une sieste.';
+  String get profile_saveSnackBarAction => 'Enregistrer les modifications';
 
   @override
-  String get profile_logoutSnackBarAction => 'C\'est compris, je vais prendre un thé.';
+  String get profile_logoutSnackBarAction => 'Se déconnecter';
 
   @override
   String get auth_signup => 'Inscription';
