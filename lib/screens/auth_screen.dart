@@ -32,8 +32,6 @@ class _AuthScreenState extends State<AuthScreen> {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          //debug print
-          Text(ApiConfig.baseUrl),
           SegmentedButton<AuthMode>(
             segments: [
               ButtonSegment(value: AuthMode.login, label: Text(l10n.auth_signin)),
