@@ -45,6 +45,11 @@ jobs:
       - name: Run tests
         run: flutter test
 
+      - name: Debug key.properties
+        run: |
+          ls -la android
+          cat android/key.properties
+
       - name: Build APK
         run: |
           flutter build apk \
